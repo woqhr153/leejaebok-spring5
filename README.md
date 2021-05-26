@@ -1,0 +1,11 @@
+#### 202010526(수)
+- 스프링MVC프로젝트: ModelViewController? 약자 MVC구조(웹프로그램구조)
+- src/test/java폴더 만들었습니다.: 테스트작업은 이 폴더에서 하라는 약속.
+- src/main/java폴더가 진짜 프로그램작업을 하는 폴더.
+- javac HelloWorld.java -encoding UTF-8 (한글 내용도 컴파일됨)
+- 위 java컴파일러로 실행한 결과 -> HelloWorld.class 실행파일이 생성됨.
+- 주), 클래스파일은 실행 패키지의 루트(최상위)에서 실행해야 함.
+- kr.or.test패키지 root폴더 src/test/java폴더에 실행을 해야함.
+- java kr.or.test.HelloWorld 클래스를 실행하게 됨
+- 이클립스 나오기 전, 25년전 javac 컴파일에서 class프로그램을 만들었습니다.
+- 지금은 터미널에서 javac 사용하지 않고, 이클립스에서 바로 실행합니다.
