@@ -31,12 +31,15 @@ public class Step1 {
 		int[] ages = {10,18,28};
 		String[] phoneNums = {"000-0000-0000","111-1111-1111","222-2222-2222"};
 		printMember(names, ages, phoneNums);//장점:메서드 1번호출하면 3명이 모두 출력
-		//메서드명이 같습니다.단,로드된 파라미터 다른 메서드를 호출=오버로드
+		//메서드명이 같습니다.단,로드된 파라미터 타입,개수 다른 메서드를 호출=오버로드 (loading...)
 	}
 
 	private static void printMember(String[] names, int[] ages, String[] phoneNums) {
-		// for 반복문으로 3개를 한번에 출력
+		// for 반복문으로 3명을 한번에 출력
 		int dataLength = names.length;
+		for(int i=0;i<dataLength;i++) {
+			System.out.println("입력하신 회원의 이름은 "+names[i]+"님, 나이는 "+ages[i]+", 폰번호는 "+phoneNums[i]);
+		}
 	}
 
 	private static void printMember(String name, int age, String phoneNum) {
