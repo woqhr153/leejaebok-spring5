@@ -1,8 +1,16 @@
 #### 20210528(금) 작업예정.
-- 오라클11g ExpressEditon 설치예정.
+- 오라클11g ExpressEditon 설치예정. OracleXE112_Win64.zip
+- SQL디벨러퍼를 다운받아서 압축풉니다. - ERD제작할 예정.
+- StructuredQueryLanguage: 구조화된 질의 언어(오라클서버) -> 답변
+- QueryString: URL에서 전송하는 값(서버에 질의문)을 문장으로 저장한내용 ?로 시작.
 - CommendLineInterface : SQL*Plus 터미널화면으로 SQL쿼리 실행 X
 - GrapicUserInter: SQL디벨러퍼 윈도우화면 에디터에서 SQL쿼리 실행 O
 - SQL Developer 프로그램으로 ERD 다이어그램그림으로 프로그젝트 구조제작예정.
+- EntityRelationDiagram: 테이블관계도형(아래) 
+- 프로젝트 진행: 발주(클라이언트) -> 수주(개발사) -> 디자인UI(Client-Dev) -> ERD(이사,팀장) -> 코딩시작(ERD보면서+UI소스에 프로그램입히기)
+- ERD에서 SQL쿼리가 생성 -> 물리테이블을 생성.
+- -------------------------------------------------
+- 첨부파일(자식)->게시판테이블(부모)<-댓글테이블(자식)
 - 자바앱에서는 객체를 생성후 사용이 끝나면, 메모리에서 삭제하는 명령이 필수.
 - 객체를 메모리에서 삭제: Object = null; Object.close();
 - 스프링에서는 내장된 가비지컬렉터(garbage쓰레기수집가)가 자동실행 사용하지 않는 객체를 자동으로 지워줌.
