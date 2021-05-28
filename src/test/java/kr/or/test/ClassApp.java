@@ -60,7 +60,7 @@ class Traiangle extends GraphicObject {
 	@Override //부모클래스의 메서드를 재정의해서 사용 = 오버라이드  / 오버로드 차이점확인(Step1.java확인) 
 	void draw() {
 		// 삼삭형을 만듬
-		System.out.println("*");
+		System.out.println("  *  ");
 		System.out.println(" * * ");
 		System.out.println("*****");
 	}
@@ -79,8 +79,10 @@ public class ClassApp {
 
 	public static void main(String[] args) {
 		//추상클래스를 이용해서 오버라이드 메서드 사용(아래)
-		GraphicObject graphicObject = new Traiangle();//추상클래스는 객체로 만들지 못함.
-		
+		GraphicObject traiangleObject = new Traiangle();//추상클래스는 객체로 만들지 못함.
+		GraphicObject rectangleObject = new Rectangle();
+		traiangleObject.draw();
+		rectangleObject.draw();
 		// 개발자가 입력한 반지름의 원의 넓이를 구하는 오브젝트를 생성(아래)
 		Circle circle = new Circle(5);//반지름이 5인 원의 넓이를 구한는 객체생성
 		System.out.println("원의 넓이는 " + circle.getCircle());
