@@ -57,6 +57,13 @@ public class Step2 {
 		//출력도 메서드를 바로 호출하지 않고, 외부 클래스에서 객체로 만들어서 메서드를 호출합니다.
 		MemberService memberService = new MemberService();
 		memberService.printMember(members);
+		//객체로 만들면, 호출(runtime)시 메모리에 로딩됩니다. -> 실행끝나면, 반환.
+		//외부클래스는 아래처럼 직접 접근해서 메서드나 변수를 사용할 수 없음.
+		//외부클래스로 접그하려면, 객체(실행가능한=메모리로딩)로 만들어야 가능함.
+		//static 예약어는 컴파일시 메모리에 로딩(객체가됨)이 되게 명시
+		//매번 static으로 만들면 메모리 가득차서 프로실행이 느려지거나 멈춤.
+		//MemberService.printMember(members);
+		memberService = null;//메모리에서 오브젝트를 삭제하는 명령
 	}
 }
 class MemberService {
