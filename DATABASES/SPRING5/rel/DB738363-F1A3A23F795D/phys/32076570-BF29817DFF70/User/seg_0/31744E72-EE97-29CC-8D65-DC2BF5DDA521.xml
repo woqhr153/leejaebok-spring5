@@ -20,5 +20,11 @@
 <ownerDesignName>SPRING5</ownerDesignName>
 <tableSpace>DDE68617-39D1-42B8-447A-870F3A9698C5</tableSpace>
 </QuotaItem>
+<QuotaItem class="oracle.dbtools.crest.model.design.storage.oracle.v10g.QuotaItemOraclev10g" name="QuotaItem3" id="299D6C92-46A3-B6EA-0428-8EBA8E2A3801">
+<createdBy>User</createdBy>
+<createdTime>2021-05-31 07:53:51 UTC</createdTime>
+<ownerDesignName>SPRING5</ownerDesignName>
+<tableSpace>DDE68617-39D1-42B8-447A-870F3A9698C5</tableSpace>
+</QuotaItem>
 </quotaItems>
 </UserOraclev10g>

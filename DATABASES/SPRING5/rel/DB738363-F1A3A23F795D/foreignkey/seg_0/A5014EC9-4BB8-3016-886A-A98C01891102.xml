@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A5014EC9-4BB8-3016-886A-A98C01891102" containerWithKeyObject="4ACEF4BE-F7D4-AAB7-6019-193ECDF4933A" localFKIndex="C096735C-DF85-0986-B740-6066DEC2F4EB" name="TBL_BOARD_TBL_BOARD_TYPE_FK">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>XE</sourceObjSchema>
+<sourceObjName>TBL_BOARD_TBL_BOARD_TYPE_FK</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 03:14:35 UTC</createdTime>
 <ownerDesignName>SPRING5</ownerDesignName>

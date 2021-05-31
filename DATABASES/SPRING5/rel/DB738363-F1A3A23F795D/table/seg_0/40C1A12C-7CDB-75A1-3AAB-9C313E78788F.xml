@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="40C1A12C-7CDB-75A1-3AAB-9C313E78788F" name="TBL_BOARD_TYPE">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>XE</sourceObjSchema>
+<sourceObjName>TBL_BOARD_TYPE</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 01:48:26 UTC</createdTime>
 <commentInRDBMS><![CDATA[게시판생성관리(NOTICE,GALLERY등등)]]></commentInRDBMS>
@@ -10,6 +13,9 @@
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="BOARD_TYPE" id="14F77786-8576-60C8-B5E7-B1B18D06ACE1">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_BOARD_TYPE</sourceObjSchema>
+<sourceObjName>BOARD_TYPE</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 02:16:18 UTC</createdTime>
 <commentInRDBMS><![CDATA[게시판타입(NOTICE,GALLERY등)]]></commentInRDBMS>
@@ -22,6 +28,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="BOARD_NAME" id="DAAE1262-1A56-6298-5E18-22B24F632F19">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_BOARD_TYPE</sourceObjSchema>
+<sourceObjName>BOARD_NAME</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 02:29:23 UTC</createdTime>
 <commentInRDBMS><![CDATA[한글게시판이름]]></commentInRDBMS>
@@ -35,6 +44,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="BOARD_SUN" id="E51B7737-C9F4-0D01-525B-8D57DB6E30B6">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_BOARD_TYPE</sourceObjSchema>
+<sourceObjName>BOARD_SUN</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 02:32:53 UTC</createdTime>
 <commentInRDBMS><![CDATA[게시판출력순서]]></commentInRDBMS>
@@ -50,6 +62,9 @@
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="29D77317-6936-02C4-ED44-AD3B98B8CA18" name="TBL_BOARD_TYPE_PK">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>XE</sourceObjSchema>
+<sourceObjName>TBL_BOARD_TYPE_PK</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 02:16:18 UTC</createdTime>
 <ownerDesignName>SPRING5</ownerDesignName>

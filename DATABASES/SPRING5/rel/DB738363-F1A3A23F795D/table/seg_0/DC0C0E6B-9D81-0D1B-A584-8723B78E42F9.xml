@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DC0C0E6B-9D81-0D1B-A584-8723B78E42F9" name="TBL_REPLY">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>XE</sourceObjSchema>
+<sourceObjName>TBL_REPLY</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 03:24:18 UTC</createdTime>
 <commentInRDBMS><![CDATA[댓글관리테이블]]></commentInRDBMS>
@@ -10,6 +13,9 @@
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
 <Column name="RNO" id="BF3FB532-AAF6-B4CF-4ACA-4980AC8CCE05">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>RNO</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 03:26:20 UTC</createdTime>
 <commentInRDBMS><![CDATA[댓글고유번호(자동증가AI)]]></commentInRDBMS>
@@ -22,6 +28,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="REPLY_TEXT" id="26751A2F-C344-F735-D22A-29DDC572F4D3">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>REPLY_TEXT</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 03:37:20 UTC</createdTime>
 <commentInRDBMS><![CDATA[댓글내용]]></commentInRDBMS>
@@ -35,6 +44,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="REPLYER" id="E1467818-2A06-BD65-FED2-3325060B6360">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>REPLYER</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 03:38:08 UTC</createdTime>
 <commentInRDBMS><![CDATA[댓글작성자ID]]></commentInRDBMS>
@@ -48,6 +60,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="REG_DATE" id="C2132084-9D9E-E933-D20F-728C56AB9C1B">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>REG_DATE</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 03:38:41 UTC</createdTime>
 <commentInRDBMS><![CDATA[등록일]]></commentInRDBMS>
@@ -60,6 +75,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="UPDATE_DATE" id="3081CE51-03D9-12A9-5710-B5AF24A6F4E6">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>UPDATE_DATE</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 03:39:09 UTC</createdTime>
 <commentInRDBMS><![CDATA[수정일]]></commentInRDBMS>
@@ -72,6 +90,9 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="BNO" id="8DA5CE5E-155E-8E2A-8501-8D21C1181FFE">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>TBL_REPLY</sourceObjSchema>
+<sourceObjName>BNO</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 03:47:00 UTC</createdTime>
 <commentInRDBMS><![CDATA[게시물관리고유값외래키]]></commentInRDBMS>
@@ -90,6 +111,9 @@
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="50B93FBA-8AA8-EBB9-E3E2-4410BCE17F7B" name="TBL_REPLY_PK">
+<sourceConnName>XE</sourceConnName>
+<sourceObjSchema>XE</sourceObjSchema>
+<sourceObjName>TBL_REPLY_PK</sourceObjName>
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 03:26:20 UTC</createdTime>
 <ownerDesignName>SPRING5</ownerDesignName>
