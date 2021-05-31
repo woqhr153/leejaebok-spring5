@@ -19,7 +19,7 @@
 <createdTime>2021-05-31 03:39:09 UTC</createdTime>
 <ownerDesignName>SPRING5</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="TBL_BOARD_BNO" id="8DA5CE5E-155E-8E2A-8501-8D21C1181FFE">
+<ColumnProxy name="BNO" id="8DA5CE5E-155E-8E2A-8501-8D21C1181FFE">
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 03:47:00 UTC</createdTime>
 <ownerDesignName>SPRING5</ownerDesignName>
