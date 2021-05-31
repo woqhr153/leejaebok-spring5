@@ -12,13 +12,39 @@
 <Column name="BOARD_TYPE" id="14F77786-8576-60C8-B5E7-B1B18D06ACE1">
 <createdBy>User</createdBy>
 <createdTime>2021-05-31 02:16:18 UTC</createdTime>
-<commentInRDBMS><![CDATA[게시판타입(NOTICE,GALLERY)]]></commentInRDBMS>
+<commentInRDBMS><![CDATA[게시판타입(NOTICE,GALLERY등)]]></commentInRDBMS>
 <ownerDesignName>SPRING5</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>20</dataTypeSize>
 <ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOARD_NAME" id="DAAE1262-1A56-6298-5E18-22B24F632F19">
+<createdBy>User</createdBy>
+<createdTime>2021-05-31 02:29:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[한글게시판이름]]></commentInRDBMS>
+<ownerDesignName>SPRING5</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOARD_SUN" id="E51B7737-C9F4-0D01-525B-8D57DB6E30B6">
+<createdBy>User</createdBy>
+<createdTime>2021-05-31 02:32:53 UTC</createdTime>
+<commentInRDBMS><![CDATA[게시판출력순서]]></commentInRDBMS>
+<ownerDesignName>SPRING5</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<ownDataTypeParameters>,11,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
