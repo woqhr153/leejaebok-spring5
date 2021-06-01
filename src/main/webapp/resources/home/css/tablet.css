@@ -1,0 +1,214 @@
+@charset "UTF-8";
+/* 테블릿용 메인페이지 스타일 지정(아래) */
+@media all and (min-width:801px) {
+	/* 상단로고와 메뉴스타일 */
+	header {
+		height: 113px;
+	}
+	.header_area h1 {
+		float: left;/* 로고 이미지를 가운데 -> 왼쪽으로 정렬 */
+		padding: 15px 0px 0px;
+		padding-left: 20px;
+		width: auto;
+		height: inherit;/* 상속:현재영역의 부모의 높이를 그대로 사용하겠다는 명시 */
+		text-align: inherit;
+	}
+	.header_area h1 a {
+		display: block;
+		width: 100px;
+		height: 80px;
+		background-size: 70px 80px !important;
+	}
+	.openMOgnb {
+		display: none; /* 모바일용 햄버거메뉴 숨기기 */
+	}
+	.header_cont {
+		display: block;
+		float: right;
+		width: 60%;
+		padding-right: 20px;
+		background: none;
+		margin-top: 0px;
+	}
+	.closePop { display: none; }
+	.util { /* 메인메뉴 상단의 소메뉴 util이라고 이름지음 */
+		padding: 0px;
+		text-align: right;
+		padding-top: 10px;
+	}
+	.util li {
+		float: none;
+		display: inline;
+	}
+	.util li::after {
+		color: #fff;
+	}
+	.util li a {
+		font-size: 14px;
+	}
+	.gnb { /* 대메뉴=1차메뉴 */
+		float: right;
+		padding-top: 5px;
+		height: inherit;
+		border-top: none;
+	}
+	.gnb li {
+		width: auto;
+		text-align: inherit;
+		box-sizing: inherit;
+		border-bottom: none;
+	}
+	.gnb li:nth-child(2n+1) { /* 대메뉴 중간 막대 사라지게 하는 명령 */
+		border: none;
+	}
+	.gnb li a {
+		padding: 26px 25px;
+		font-size: 18px;
+		height: inherit;
+		line-height: inherit;
+		background: none;
+	}
+	.gnb li + li a {
+		background: none;
+	}
+	.gnb li + li + li a {
+		background: none;
+	}
+	.gnb li + li + li + li a {
+		background: none;
+	}
+	.gnb li:last-child a { /* 제일 오른쪽 li태그 영역 */
+		padding-right: 0px;
+	}
+	/* //상단로고와 메뉴스타일 */
+
+    /* 컨테이너영역 */
+	#container {
+		padding-bottom: 20px;
+		width: auto;
+		position: inherit;/* 상속:부모영역의 위치를 상속받습니다. */
+	}
+	/* //컨테이너영역 */
+	/* 슬라이드영역 */
+	ul.viewImgList li {
+		height: 550px;
+	}
+	/* //슬라이드영역 */
+	/* 최신겔러리 */
+	.about_area h2 {
+		padding: 55px 0px 105px;
+		font-size: 40px;
+	}
+	.about_area h2 b {
+		display: inherit;
+		padding-top: inherit;
+	}
+	.place_list {
+		box-sizing: border-box;
+		padding: 0px 20px;
+	}
+	.place_list li:first-child {
+		margin-left: 0px;
+	}
+	.place_list li {
+		float: left;/* 세로배치를 가로배치로 바꾸는 명령 */
+		width: 32%; /* 32%x3=96%, 3개 사이 2%씩이면 = 4%가 여백, 전체 100% */
+		margin-left: 2%;
+		position: relative; /* li태그의 안쪽 겔러리 이미지,제목 위치의 기준값 */
+		top: -50px;
+		padding: 0px;
+	}
+	.place_list li p.txt {
+		padding: 10px 30px 0px;
+		line-height: 1.8;
+	}
+	.place_list li .view {
+		margin-top: 20px;
+	}
+	/* //최신겔러리 */
+
+    /* 전화상담과 최근공지사항 */
+	.appbbs_area {
+		padding: 60px 0px;
+	}
+	.appbbs_box {
+		box-sizing: border-box;
+		padding: 0px 20px;
+	}
+	.app_line {
+		display: inherit;
+		float: left;
+		width: 65%; /* 나머지 35%가 최근공지사항영역 */
+		box-sizing: border-box;
+		padding: 46px 0px;
+		background: url(../img/bg_app.jpg);/* no-repeat가 필요없음. 단일색상이라서 */
+		font-size: 0px;/* 시각장애을 위해서 존재 */
+		text-align: center;
+	}
+	.app_line a {
+		font-size: 19px;
+		display: inline-block;
+		width: 42.4%;/* 65%(app_line)영역의 42.4%를 가집니다. */
+		height: 100px;
+		line-height: 100px;
+		box-sizing: border-box;
+		padding-left: 55px;
+		text-align: left;
+		background: rgba(0,0,0,0.3) url(../img/ico_katalk.png) no-repeat 10px 50%;/* 10px 가로위치, 50% 세로가운데위치 */
+		border: 2px solid #fff;
+		color: #fff;
+		vertical-align: middle;/* 세로가운데정렬 */
+		margin-right: 10px;
+	}
+	.app_line a + a {/* 형제 sibling 태그영역 */
+		background-image: url(../img/ico_phone.png);
+		margin-right: 0px;
+		padding-left: 65px;
+	}
+	.bbs_line { /* 최신공지사항영역 */
+		float: right;
+		width: 29%; /* 나머지 35%중 29%영역지정 나머지 6%는 여백으로 사용 */
+		border-top: none;
+		padding: inherit;
+	}
+	.bbs_line h3 {
+		font-size: 26px;
+		font-weight: inherit;
+	}
+	.bbs_line .notice_recent li a {
+		display: block;
+		padding-left: 14px;
+		background: url(../img/ico_bullet.png) no-repeat 0px 50%;
+		overflow: hidden;
+		text-overflow: ellipsis;/* 문자열이 영역을 벗어났을 ... 표시하는 명령 */
+		white-space: nowrap;/* 문자를 자를때 단어를 기준으로 하지 wrapping 않겠다. */
+	}
+	/* //전화상담과 최근공지사항 */
+
+    /* 푸터영역 */
+	footer {
+		padding: inherit;/* 상속:부모 영역의 패딩속성을 상속받겠다. */
+	}
+	.foot_area {
+		padding-left: 20px;
+		padding-bottom: 0px;
+	}
+	.addr {
+		font-size: 13px;
+		line-height: 1.4;
+	}
+	.br_line {
+		display: inherit; /* 모바일에서 적용했던 스타일 해제 하겠다는 의미  */
+	}
+	.snslink {
+		position: absolute;/* 현재 태그를 고정위치로 만들겠다. */
+		right: 20px;
+		top: 20px;
+		width: auto;
+		margin: inherit;
+	}
+	.snslink li {
+		margin-left: 15px;
+	}
+	/* //푸터영역 */
+}

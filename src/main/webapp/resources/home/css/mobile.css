@@ -1,0 +1,435 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+/* 모바일용 메인페이지 스타일 지정(아래) */
+/* 공통영역 */
+body { /* body a 태그엔 적용이 않됩니다. */
+    font-family: 'Nanum Gothic', '나눔 고딕', sans-serif !important;
+    font-size: 16px !important;/* important 중요함, body 폰트크기는 무조건 고정 */
+    letter-spacing: -1px !important;
+    color: #444 !important;
+    word-wrap: break-word !important;/* 워드랩,줄바꿈할때 책
+	가방(X) 단어가 분리가 않되면서(단어단위로) 줄바꿈이 됩니다. */
+	line-height: 1 !important;/* 단위 1이면 16px 입니다. */
+}
+dl, ol, ul {margin-bottom: 0 !important;}
+#container a:hover {color:#000 !important;}/* : 가상선택자, :: 가상요소 */
+a:link {color: #444;}
+a:hover {color: #fff !important;}
+a:visited {color: #444;}
+a {text-decoration: none;}/* 링크의 밑줄이 사라짐. */
+.clear::after {
+	content: '';
+	clear: both;/* 태그의 위치를 지정하는 float:left|right 속성을 초기화 시킴 */
+	display: block;/* float는 블럭 속성이 없어진것을 clear시키면, 다시 block속성 부여 */
+}
+/* //공통영역 */
+
+/* 부트스트랩 CSS 수정 */
+.txt_right {
+	text-align: right !important;
+}
+.mt20 { /* mt 네이밍은 부트스트랩과 동일 */
+	margin-top: 20px !important;
+}
+.w100p { /* 너비크기 100% percent  */
+	width: 100% !important;
+}
+/* //부트스트랩 CSS 수정 */
+
+/* 헤더영역 */
+.on { /* .클래스선택자 */
+	background: #32353d;
+}
+header { /* 태그선택자 */
+	height: 90px;
+	text-align: center;
+	z-index: 200;/* z-index z순서: x(가로축),y(세로축),z(위쪽공간) */
+	/* 빨간색 z-index:0 은 제일 아래, 녹색 z-index:1, 값을 높을수로 위쪽에 배치 */
+	/* z-index를 200으로 주는 이유는 슬라이드 이미지 겹칠때 메뉴가 다른 태그에 가려지는 것을 방지 */
+	background: rgba(0,0,0,0.5);/* alpha 약자: 투명도 크기 1:100%, 0.5:50% */
+	position: absolute;/* relative 다른태그와 관계(기본값), 위치에서 다른태그에 영향을 받지않음 */
+	left: 0; top:0;
+	width: 100%;
+}
+.box_inner {
+	width: 100%; margin: 0 auto;
+}
+/* //헤더영역 */
+/* 로고영역 */
+.header_area h1 {
+	float: none;
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	padding: 3px 0px 0px;/* 3px(상하) 0px(좌) 0px(우) */
+}
+.header_area h1 a {
+	/* 로고는 이미지인데 글을 더한 이유는 웹접근성 때문에 추가(스크린리더:시각장애인용유틸리티)  */
+	display: inline-block;
+	width: 150px;
+	height: 80px;
+	background: url(../img/logo.png) no-repeat;/* css3는 함수를 지원합니다. */
+	background-size: 50px 60px !important;/* 백그라운드 이미지 사이즈 가로50px, 세로60px */
+	background-position: center center !important;/* 이미지위치가 가로 가운데, 세로 가운데정렬 */
+	text-indent: -9999px;/* 들여쓰기 이미지만 보이고, 글자는 숨기기 위치 */
+	overflow: hidden;
+}
+/* //로고영역 */
+
+/* 상단메뉴영역 */
+.openMOgnb {
+	/* gnb: global navigation bar 약자 메뉴명칭으로 사용 */
+	display: block;
+	position: absolute;
+	left:15px;
+	top:35px;
+	width: 25px;
+	height: 16px;
+}
+.hdd {
+	text-indent: -9999px;
+	position: absolute;
+}
+.openMOgnb span {
+	box-sizing: border-box;/* 박스크기를 테두리까지 크기로 고정 */
+	display: block;
+	width: 25px; height: 3px;
+	margin-bottom: 4px;
+	border-radius: 10px;/* 테두리 라운드 처리 */
+	background: #fff;
+}
+.openMOgnb span:first-of-type + span {width: 17px;} /* + 형제 인접연자 */
+.openMOgnb span:last-child {
+	/* width: 25px; */
+	margin-bottom: 0px;
+}
+.header_cont {
+	float: none;
+	width: 100%;
+	background: #31343d;
+	margin-top: 36px;
+	display: none;
+}
+.closePop {
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 15px;
+}
+.closePop a {
+	display: block;
+	width: 60px; height: 60px;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url(../img/btn_closeMenu.png) no-repeat;
+	background-size: 60px;
+}
+.util {padding: 20px;}
+.header_cont a {
+	color: #fff; font-size: 16px;
+}
+.util li {float: left;}
+.util li::after {
+	/* ::가상요소를 추가 */
+	content: '|';
+	display: inline-block;
+	padding: 0 10px;
+	color: #a2a2a3;
+	font-size: 10px;
+	position: relative;
+	top:-2px;
+}
+.util li:last-child::after {
+	/* 가상선택자 마지막 li태그에서 가성요소 추가 */
+	content: '';
+	display: none;
+}
+.gnb {
+	float: none;
+	box-sizing: border-box;
+	padding-top: 0px;
+	height: auto;
+	border-top:1px solid #83868b;
+}
+.gnb li {
+	float: left;
+	width: 50%;
+	text-align: left;
+	box-sizing: border-box;/* width 50%안쪽에 테두리 까지 포함 */
+	border-bottom: 1px solid #83868b;
+}
+.gnb li a {
+	display: block;
+	padding: 0px 0px 0px 65px;
+	height: 60px;
+	line-height: 60px;
+	background: url(../img/ico_gnb01.png) no-repeat 10px center;/* 10px 가로위치, center 세로가운데정렬 */
+	background-size: 49px 56px;
+}
+.gnb_depth {
+	/* 2차(서브)메뉴 */
+	display: none;
+}
+.gnb li + li a { /* 1차(대메뉴) li 태그중 2번째영역 */
+	background-image: url(../img/ico_gnb02.png);	
+}
+.gnb li + li + li a { /* 1차(대메뉴) li 태그중 3번째영역 */
+	background-image: url(../img/ico_gnb02.png);	
+}
+.gnb li + li + li + li a { /* 1차(대메뉴) li 태그중 4번째영역 */
+	background-image: url(../img/ico_gnb02.png);	
+}
+.gnb li:nth-child(2n+1) {
+	/* 2n+1 홀수번째의 li태그를 말함 */
+	border-right: 1px solid #83868b;
+}
+/* //상단메뉴영역 */
+
+/* 본문컨테이너영역 */
+#container, footer, .hdd, .quick_area {
+	text-align: center;
+}
+#container {
+	position: relative;
+	width: 100%;
+	padding-bottom: 30px;
+}
+/* 슬라이드영역 */
+.main_rolling_pc {
+	display: block;
+}
+.visualRoll {
+	position: relative;
+	width: 100%;
+}
+.viewImgList {
+	position: relative;
+	width: 100%;
+}
+ul.viewImgList li {
+	/* ul.클래스명: ul태그중 클래스명이 viewImgList 영역 */
+	text-align: center;
+	height: 300px;
+	line-height: 550px;
+	background-size: cover;/* 배경 이미지의 크기를 꽉 채우는 값 cover */
+	width: 100%;
+}
+.roll_content a img {
+	display: none;
+}
+li.imglist0 {
+	position: relative; /* 기준위치 */
+	z-index: 50;
+	background: url(../img/slide1.jpg) no-repeat;
+}
+li.imglist1 {
+	position: absolute;
+	z-index: 10;
+	left:0; top:0;
+	background: url(../img/slide2.jpg) no-repeat;
+}
+li.imglist2 {
+	position: absolute;
+	z-index: 10;
+	left:0; top:0;
+	background: url(../img/slide3.jpg) no-repeat;
+}
+.roll_content {
+	position: static;
+}
+.roll_content .roll_txtline {
+	position: absolute;
+	left:0;
+	bottom: 60px;/* roll_content하단에서 60px 위에 위치 */
+	width: 100%;
+	line-height: 1;
+	text-align: center;
+	font-size: 22px;
+	color: #fff;
+	letter-spacing: 2px;
+}
+.rollbtnArea {
+	position: absolute;/* 위치를 기준위치에서 고정시켜놓겠다 */
+	width: 100%;
+	left: 0px;
+	bottom: 25px;
+	z-index: 200;
+}
+.rollingbtn {
+	width: 320px;
+	margin: 0 auto;/* 버튼영역에 5개 들어가고, 가운데 정렬 시킴 */
+	text-align: center;
+}
+.rollingbtn li.butt0 {
+	margin-left: 10px;
+}
+.rollingbtn li {
+	display: inline-block;
+	margin-left: 5px;
+}
+.rollingbtn li a {
+	vertical-align: top;/* img하고 다른태그사용시 다른 태그의 세로 정렬 */
+}
+/* //슬라이드영역 */
+/* 겔러리최근게시물영역 */
+.about_area h2 {
+	font-size: 20px;
+	padding: 27px 0px 25px;/* 27상하, 0좌, 25우 */
+}
+.about_area h2 b {
+	display: block;/* 1개 라인 영역 모두차지 */
+	padding-top: 10px;
+}
+.about_box {background: #fff;}
+.place_list li {
+	float: none;
+	width: 100%;
+	margin:0;
+	box-sizing: border-box;
+	padding: 0px 20px;
+}
+.place_list li img {
+	width: 100%;/* 가로크기 반응형으로 만드는 방법 크기를 ~% 표시 */
+}
+.place_list li h3 {
+	font-weight: bold;
+	font-size: 18px;
+	padding-top: 25px;
+}
+.place_list p.txt {
+	padding: 10px 50px 30px;
+	line-height: 1.4;
+	box-sizing: border-box;
+	width: 100%;
+	overflow: hidden;
+	word-break: keep-all;
+	color: #666;
+}
+.place_list li .view {
+	padding-bottom: 10px;
+	margin: 0px 0px 30px;
+	display: inline-block;
+	padding-top: 5px;
+	border-top: 2px solid #333;
+	color: #666;
+}
+/* //겔러리최근게시물영역 */
+/* 공지사항최근게시물영역 */
+.app_line {display: none;} /* 태블릿,PC 전용 콘텐츠입니다. */
+.appbbs_area {
+	padding: 0px 20px;
+	text-align: left;
+}
+.bbs_line {
+	float: none;
+	width: 100%;
+	padding: 20px 0px;
+	border-top: 1px solid #d6d7d8;
+}
+.bbs_line h3 {
+	font-weight: bold;
+	font-size: 19px;
+}
+.bbs_line .notice_recent {
+	padding-top: 10px;
+}
+.bbs_line .notice_recent li {
+	padding: 8px 0px;
+}
+/* //공지사항최근게시물영역 */
+
+/* //본문컨테이너영역 */
+/* 푸터스타일지정 */
+footer {
+	border-top: 1px solid #ddd;
+	text-align: left;
+}
+.foot_area { /* 모바일에서는 의미없고, 테블릿이상에서 의미있는 스타일 */
+	box-sizing: border-box;
+	padding: 0px 20px 90px;
+	position: relative;/* relative가 있다는 것은 foot_area안쪽에 태그의 기준으로 사용하다는 의미 */
+}
+.foot_list {
+	padding-top: 25px;
+}
+.foot_list li {
+	float: left;/* 세로배치 콘텐츠를 가로로 배치할때 사용 */
+}
+.foot_list li:first-child::after {
+	content: '|';
+	display: inline-block;
+	padding: 0px 10px;
+	font-size: 10px;
+	position: relative;
+	top: -2px;
+}
+.foot_list li a {
+	font-weight: bold;
+	font-size: 15px;
+}
+.foot_list li a:hover {color: black !important;}
+.foot_area h2 {
+	padding-top: 15px;
+	font-size: 14px;/* px:픽셀pixel html크기 단위,기타단위: em, rem(root em) */
+	color: #666;
+}
+.addr {
+	line-height: 1.3;/* 줄간격 1.3배 */
+	font-size: 14px;
+	color: #767676;
+	padding-top: 5px;
+}
+.br_line {
+	display: block;/* 블럭영역은 1줄모두 자리차지==엔터==줄바꿈 */
+}
+.copy {
+	padding: 3px 0px 20px;
+	font-size: 14px;
+	color: #767676;
+}
+.snslink {
+	position: static;/* 다른태그를 기준으로 static고정값,relative상대값 */
+	width: 210px;
+	margin: 10px auto;/* 10상하여백, auto 좌우=가운데정렬  */
+}
+.snslink li:first-child {
+	margin-left: 0px;
+}
+.snslink li {
+	margin-left: 30px;
+	float: left;/* 리스트li태그의 세로배치를 가로배치로 변경할때 사용 */
+}
+.snslink li a {
+	display: block;
+	width: 50px;
+	height: 74px;
+	text-indent: -9999px;/* 들여쓰기, 글자를 숨기기: 웹접근성(시각장애인용구현) */
+	background: url(../img/ico_blog_r.png) no-repeat;
+	overflow: hidden;
+}
+.snslink li + li a {/* 인접(형제)연산자+ == sibling(시블링) */
+	background-image: url(../img/ico_facebook_r.png);
+}
+.snslink li + li + li a {
+	background-image: url(../img/ico_instargram_r.png);
+}
+/* 퀴메뉴영역 */
+.to_top {
+	position: fixed;/* 붙박이:마우스 스크롤해도 항상 그자리 고정되어 있음. */
+	right: 20px;
+	bottom: 100px;
+	text-align: center;
+	background: none;
+	z-index: 100;/* 슬라이드 이미지 200 보다는 아래이기때문에 겹치면 않보임. */
+}
+.to_top a {
+	display: block;
+	width: 45px;
+	height: 45px;
+	background: url(../img/ico_totop_mo.png) no-repeat center;
+	background-size: 45px;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+/* //퀵메뉴영역 */
+/* //푸터스타일지정 */
