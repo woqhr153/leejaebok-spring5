@@ -6,10 +6,10 @@
 - VS code에서 만든 UI를 이클립스에서 JSP로 변경 한 후 스프링웹프로젝트를 진행합니다.
 
 #### 20210602(수) 작업예정.
-- views/home/index.jsp 엑박처리 후 분해(header.jsp, footer.jsp, index.jsp)
-- admin 폴더 만든이후 분해 처리예정.
+- views/home/index.jsp 엑박처리, 분해는 관리자단 실습 후 작업합니다.
+- admin 폴더 만든이후 분해는 Junit 실습 후 작업합니다.
 - admin 부터 프로그램 작업 시작예정.
-- 4장 패키지와 예외처리 실습.
+- 4장 패키지와 예외처리 실습 후 오라클 CRUD 실습.
 
 #### 20210601(화) 작업.
 - 에러: 404(file not found 경로이상일때), 500(자바프로그램에러)
