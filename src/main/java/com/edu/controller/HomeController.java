@@ -20,8 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	//스프링빈(클래스) 에서는 로거로 디버그를 합니다.=로거객체를 만듭니다.
 	// 로그중 slf4j(Spring Log For Java)
-	//private Logger logger = Logger.
-	//private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
 	 * 사용자요청(웹브라우저)을 받아서=@RequestMapping인테페이스를 사용해서 메서드명을 스프링이 구현합니다.
@@ -33,8 +32,9 @@ public class HomeController {
 	public String homepage(Model model) { //콜백메스드,자동실행됨.
 		String jspVar = "@서비스(DB)에서 처리한 결과";
 		model.addAttribute("jspObject", jspVar);
+		logger.info("디버그 스프링로고사용: " + jspVar);//System.out 대신 logger 객체를 사용
 		//home.jsp파일로 자료를 전송(스프링)하는 기능= model인터페이스 객체(스프링이처리)에 내용만 채우면됨
-		return "home";//확장자가 생략 .jsp가 생략되어 있음.
+		return "home/index";//확장자가 생략 .jsp가 생략되어 있음.
 	}
 	
 }
