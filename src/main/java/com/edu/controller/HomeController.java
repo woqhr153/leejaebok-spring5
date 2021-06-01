@@ -1,5 +1,7 @@
 package com.edu.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 //외부 라이브러리(모듈) 사용 = import
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
