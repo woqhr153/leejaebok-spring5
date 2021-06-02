@@ -15,7 +15,9 @@
 - Views폴더처럼 직접접근이 불가능한 컨텐츠는 Controller(라우터)로 접근하게 됨
 - views/home/index.jsp 엑박처리OK, 분해는 관리자단 실습 후 작업합니다.
 - 개발순서: ERD제작 -> html제작 -> jsp제작(현재:관리자단10기능 작업 후 사용자단5기능)
-- admin 폴더 만든이후 분해는 Junit 실습 후 작업합니다.
+- admin 폴더 만든이후 분해OK. Junit 실습 후 작업합니다.
+- Junit(Java Unit Test): 자바 단위 테스트(서비스프로그램만들기전 프로토타입 시제품 제작)- Junit CRUD 작업 후 본격작업시작.
+- 로거의 레벨: DEBUG > INFO > WARN > ERROR > FATAL
 - admin 부터 프로그램 작업 시작예정.
 - 4장 패키지와 예외처리 실습 후 오라클 CRUD 실습.
 
