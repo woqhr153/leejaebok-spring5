@@ -1,9 +1,8 @@
 package com.edu.test;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -21,7 +20,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class DataSourceTest {
 	//디버그용 로그 객체변수생성
-	private Logger logger = LoggerFactory.getLogger(DataSourceTest.class);
+	private Logger logger = Logger.getLogger(DataSourceTest.class);
 	
 	@Test
 	public void junitTest() {
