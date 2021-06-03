@@ -6,12 +6,11 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- 알리아스Alias(별명) dataSource로 만듭니다.이유? 여러개의 DB와 호환되게 만들게됩니다.
-		오라클, Mysql, Hsql 등 여러 DB서버와 호환되게 만드는데 필요(아래)
-	 -->
+	<!-- 알리아스 Alias(별명) dataSource로 만듭니다.이유? 여러개의 DB와 호환되게 만들게됩니다. -->
+	<!-- 오라클, Mysql, Hsql 등 여러 DB서버와 호환되게 만드는데 필요(아래) -->
 	<alias name="dataSource-oracle_local" alias="dataSource"/>
-	<!-- 로컬(PC) Hsql용-헤로쿠클라우드에 배포용 드라이버 설정(아래) -->
-	<!-- <bean id="dataSource-hsql_local"></bean>  -->
+	<!-- 로컬(PC) Hsql용-헤로쿠클라우드에 배포용 드라이버 설정(나중에) -->
+
 	<!-- 로컬(PC) 오라클 jdbc 드라이버 설정(아래) -->
 	<bean id="dataSource-oracle_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" 
