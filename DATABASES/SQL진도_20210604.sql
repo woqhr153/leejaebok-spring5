@@ -1,3 +1,34 @@
+--19장 사용자추가(CreateWorkSpace)시 오라클데스크탑(고전)X 대신 
+-- 웹프로그램을 사용 (http://127.0.0.1:9000/apex/f?p=4950)
+-- ,SQL플러스X, 
+--15장 PK생성시 자동으로 2가 생성 NOT NULL(빈값방지), UNIQUE(NO중복)
+-- 제약조건(constraint) 이 자동생성, Index(테이블)도 자동생성(검색시중요)
+-- ERD로 게시판테이블-[댓글|첨부파일]Foreign KEY(외래키)부자관계생성
+--14장 트랜잭션 DB단에서 사용하지 않고, 
+-- 스프링단에서 트랜잭션을 사용 @Transactional 인터페이스를 사용
+-- commit과rollback;(DML문:insert,update,delete)
+-- rollback는 제일 마지막 커밋된 상태로 되돌립니다.
+--12장 테이블 구조생성(create;),변경(alter;),삭제(drop;)
+-- ERD 관계형 다이어그램으로 물리적 테이블 생성(포워드엔지니어링)
+DROP TABLE tbl_member_del;
+CREATE TABLE TBL_MEMBER_DEL
+(
+USER_ID VARCHAR(50) PRIMARY KEY
+,USER_PW VARCHAR(255)
+,USER_NAME VARCHAR(255)
+,EMAIL VARCHAR(255)
+,POINT NUMBER(11)
+,ENABLED NUMBER(1)
+,LEVELS VARCHAR(255)
+,REG_DATE TIMESTAMP
+,UPDATE_DATE TIMESTAMP
+);
+--ALTER 테이블로 필드명 변경(아래)
+DESC tbl_member_del;
+ALTER TABLE tbl_member_del RENAME COLUMN email TO user_email;
+--DEPT테이블의 deptno 숫자2자리때문에 에러 -> 4자리 크기를 변경
+DESC dept;--단, 작은자리 큰자리로 변경 문제없음.
+ALTER TABLE dept MODIFY(deptno NUMBER(4));
 --11서브쿼리
 -- 단일행서브쿼리 필드값을 비교할때, 비교하는 값인 단일한(필드값)
 -- 다중행서브쿼리 테이블값을 select쿼리로 생성(레코드값)
