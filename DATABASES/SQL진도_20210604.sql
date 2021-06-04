@@ -1,4 +1,30 @@
+--10.테이블 조인 2개테이블 연결해서 결과를 구하는 예약어
+--댓글개수 구할때, 
+--카티시안프러덕트 조인(합집합-게시물10개,댓글100=110개~1000개)
+--(인너)조인(교집합) 을 제일많이 사용
+--아래조인방식 Oracle방식(아래)
+SELECT dept.dname, emp.* FROM emp , dept 
+WHERE emp.deptno = dept.deptno
+AND emp.ename = 'SCOTT';
+--표준쿼리(ANSI)방식(아래)INNER 키워드 디폴트값임.
+SELECT d.dname, e.* FROM emp e INNER JOIN dept d 
+ON e.deptno = d.deptno
+WHERE e.ename = 'SCOTT';
+--조인과 그룹을 이용해서 댓글카운터도 출력하는 게시판리스트만들기
+SELECT bod.bno,title||'['||count(*)||']'
+,writer,bod.reg_date,view_count
+FROM tbl_board BOD
+INNER JOIN tbl_reply REP ON bod.bno=rep.bno
+GROUP BY bod.bno, title, writer, bod.reg_date, view_count
+ORDER BY bod.bno;
+--9장 패스(레포트용 함수사용)
 --8장 함수(count,upper,lower,to_char,round...) 그룹함수
+--having은 group by 의 조건문을 적습니다.
+--부서별 평균 연봉이 2000 이상인 부서의 번호와 부서별평균급여
+SELECT deptno, round(avg(sal)) FROM emp
+--where avg(sal) >= 2000 --검색조건
+GROUP BY deptno
+HAVING avg(sal) >= 2000;--그룹조건
 --부서별 연봉의 합계를 구해서 제일급여가 많이 지출되는 부서(아래)
 --자바코딩에서는 소문자로 통일합니다.Select
 --DB셋팅에서 대소문자구분해서 사용할지, 구분하지 않을 지 셋팅
