@@ -33,6 +33,17 @@
 		<property name="password" value="apmsetup"></property>
 	</bean>
 	
-	<!-- 위 오라클 jdbc빈을 스프링 사용(아래) -->
+	<!-- 위 오라클 jdbc빈을 스프링-마이바티스 에서 사용(아래) -->
+	<!-- SQL세션팩토리(공장)클래스를 빈으로 생성: 쿼리를 찍어낼수 있는 메서드가 있는 클래스 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	   
+	 	<property name="dataSource" ref="dataSource" />
+	 	<!-- 매퍼 xml로만든 쿼리파일의 경로를 인식하게 함.(아래 classpath경로 src/main/resources/쿼리xml) -->
+	 	 <property name="mapperLocations" value="classpath:mappers/**/oracle/*Mapper.xml"></property>
+	</bean>
+	<!-- 위 SQL세션팩토리를 이용해서 템플릿클래스를 생성(insert(),select(),update(),
+	delete()등의 메서드를 사용할수 있는 클래스:세션이름인 이유는 쿼리 접속정보/해제정보를 관리하기 때문에 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+	  <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
 	
 </beans>
