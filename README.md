@@ -68,13 +68,16 @@ DROP USER XE2 CASCADE;--XE2사용자를 지울때,
 - 오라클: 댓글은 수동등록 후 마무리.(추후 코딩시 작업)
 
 ```
-쿼리에서 초단위와 밀리초(백만분의 1초) 단위 계산 비교
+쿼리에서 초단위와 밀리초(천분의 1초) 단위 계산 비교
 - 오라클:
 초단위 계산: sysdate+(cnt*(1/24/60/60))
 밀리초단위 계산: systimestamp + numtodsinterval( cnt / 1000, 'SECOND' )
 - Mysql(마리아DB): 밀리세컨드는 MySQL 5.6.4 버전부터 지원가능합니다.
-초단위계산: ADDTIME(now(), cnt);
-밀리초단위계산: ADDTIME(now(3), cnt*"0.000001")
+밀리세컨드는 천분의 1초 mysql에서 now(3),
+마이크로세컨드가 백만분의 1초 입니다. mysql에서 now(6)으로 시간이 표현 됩니다.(아래)
+초단위: ADDTIME(now(), cnt);
+밀리초단위: ADDTIME(now(3), cnt*"0.000001")
+마이크로초:  ADDTIME(now(6), cnt*"0.000001")
 ```
 #### 20210604(금) 작업.
 - 오라클일때: localhost:1521/xe 접속URL끝의 xe 서비스(서버)ID명  1개 > XE, XE2 스키마2개(DB2개) 존재합니다.
