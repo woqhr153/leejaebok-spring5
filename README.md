@@ -10,6 +10,31 @@
 - VS code에서 만든 UI를 이클립스에서 JSP로 변경 한 후 스프링웹프로젝트를 진행합니다.
 
 #### 20210608(화) 작업.
+- 페이징에 사용되는 변수(쿼리변수+VO변수) 아래
+- queryStartNo, queryPerPageNum, page, perPageNum, startPage, endPage
+- 검색에 사용되는 변수(쿼리변수만): 검색어(search_keyword), 검색조건(search_type)
+
+```
+--SQL쿼리 페이징을 구현해서 변수로 삼을것을 정의
+--PageVO의 멤버변수로 사용예정
+SELECT TableB.* FROM
+(
+    SELECT ROWNUM AS RNUM, TableA.* FROM
+    (
+        SELECT * FROM tbl_member
+        WHERE user_id LIKE '%admin%'
+        OR user_name LIKE '%사용자8%'
+        ORDER BY reg_date DESC
+    ) TableA WHERE ROWNUM <= (1*5)+ 5 --  (page*b)+b
+) TableB WHERE TableB.RNUM > 1*5      --  (page*b)
+--페이징쿼리에서 필요한 변수는 2개
+--현재페이지수의 변수 page*b == queryStartNo
+--1페이당보여줄 개수의변수 b == queryPerPageNum
+--PageVO에서 필요한 추가변수: page
+--UI하단의 페이지 선택번호 출력할때 사용하는 변수(아래) 
+-- perPageNum 변수받아서 startPage, endPage 를 구해서
+-- 하단의 페이지 선택 번호를 출력
+```
 - 스프링코딩 작업순서 1부터6까지(아래)
 - 1. ERD를 기준으로 VO클래스를 생성.
 - M-V-C 사이에 데이터를 입출력하는 임시저장 공간(VO클래스-멤버변수+Get/Set메서드) 생성 
