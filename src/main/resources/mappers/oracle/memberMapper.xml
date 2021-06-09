@@ -11,7 +11,17 @@ select count(*) from tbl_member
 </select>
 <!-- pageVO 받아서 처리하는 조회 쿼리 -->
 <select id="selectMember" resultType="com.edu.vo.MemberVO">
-select * from tbl_member 
-where user_id = #{search_keyword}
+<![CDATA[
+SELECT TableB.* FROM
+(
+    SELECT ROWNUM AS RNUM, TableA.* FROM
+    (
+        SELECT * FROM tbl_member
+        WHERE user_id LIKE '%'||#{search_keyword}||'%'
+        OR user_name LIKE '%'||#{search_keyword}||'%'
+        ORDER BY reg_date DESC
+    ) TableA WHERE ROWNUM <= (#{queryStartNo}*#{queryPerPageNum})+#{queryPerPageNum}
+) TableB WHERE TableB.RNUM > #{queryStartNo}*#{queryPerPageNum}
+]]>
 </select>
 </mapper>

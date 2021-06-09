@@ -6,10 +6,10 @@ SELECT TableB.* FROM
     (
         SELECT * FROM tbl_member
         WHERE user_id LIKE '%admin%'
-        OR user_name LIKE '%사용자8%'
+        OR user_name LIKE '%사용자%'
         ORDER BY reg_date DESC
-    ) TableA WHERE ROWNUM <= (0*5)+ 5
-) TableB WHERE TableB.RNUM > 0*5
+    ) TableA WHERE ROWNUM <= (2*5)+ 5 -- 0부터 선택한까지 전부
+) TableB WHERE TableB.RNUM > 2*5 -- 1페지당 보여줄 개수만 출력
 --페이징쿼리에서 필요한 변수는 2개
 --현재페이지수의 변수 page*b == queryStartNo
 --1페이당보여줄 개수의변수 b == queryPerPageNum
