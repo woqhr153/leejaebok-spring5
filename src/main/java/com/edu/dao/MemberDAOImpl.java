@@ -28,4 +28,11 @@ public class MemberDAOImpl implements IF_MemberDAO{
 		return listMember;
 	}
 
+	@Override
+	public int countMember() throws Exception {
+		// SqlSession빈의 메서드를 이용해서 매퍼 쿼리를 실행(아래)
+		int totalCount = sqlSession.selectOne("memberMapper.countMember");
+		return totalCount;
+	}
+
 }

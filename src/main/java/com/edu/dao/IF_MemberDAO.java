@@ -14,4 +14,6 @@ public interface IF_MemberDAO {
 	//List<제네릭타입> : MemberVO1개레코드를 List클래스형 감싸주면 
 	//다수의 레코드를 저장할 수 가 있는 형태가 됩니다.
 	public List<MemberVO> selectMember() throws Exception;
+	//회원의 전체 명수를 구합니다(아래)
+	public int countMember() throws Exception;
 }
