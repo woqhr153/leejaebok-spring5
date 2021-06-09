@@ -26,6 +26,10 @@ if조건문에서 test조건부분에 문자열비교시 '문자열'.toString()�
 	     </if>
     </if>
 </sql>
+<!-- jsp폼에서 전송받은 user_id값의 데이터를 이용해서 dB에 해당레코드를 삭제(아래) -->
+<delete id="deleteMember">
+delete from tbl_member where user_id = #{user_id}
+</delete>
 <!-- jsp폼에서 전송받은 memberVO객체의 데이터를 DB에 insert합니다(아래) -->
 <insert id="insertMember">
 insert into tbl_member 

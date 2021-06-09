@@ -43,6 +43,10 @@ public class DataSourceTest {
 	private IF_MemberService memberService;
 	
 	@Test
+	public void deleteMember() throws Exception {
+		memberService.deleteMember("user_del");
+	}
+	@Test
 	public void insertMember() throws Exception {
 		MemberVO memberVO = new MemberVO();
 		//insert쿼리에 저장할 객체
