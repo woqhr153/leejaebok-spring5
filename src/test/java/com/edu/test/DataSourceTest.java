@@ -42,6 +42,20 @@ public class DataSourceTest {
 	@Inject //MemberService서비스를 주입받아서 객체를 사용합니다.(아래)
 	private IF_MemberService memberService;
 	
+	@Test
+	public void insertMember() throws Exception {
+		MemberVO memberVO = new MemberVO();
+		//insert쿼리에 저장할 객체
+		memberVO.setUser_id("user_del");
+		memberVO.setUser_pw("1234");//스프링시큐리티5버전으로 암호화로 처리예정
+		memberVO.setEmail("user@test.com");
+		memberVO.setPoint(10);
+		memberVO.setEnabled(true);
+		memberVO.setLevels("ROLE_USER");
+		memberVO.setUser_name("삭제할사용자");
+		memberService.insertMember(memberVO);
+		selectMember();
+	}
 	//스프링 코딩 작업 순서(칠판으로 옮겨 놓았습니다.)
 	@Test
 	public void selectMember() throws Exception {
@@ -59,7 +73,7 @@ public class DataSourceTest {
 		pageVO.setQueryPerPageNum(10);//쿼리사용 페이지당 개수
 		pageVO.setTotalCount(memberService.countMember());//테스트하려고, 100명을 입력합니다.
 		pageVO.setSearch_type("user_id");//검색타입 all, user_id, user_name
-		pageVO.setSearch_keyword("admin");//검색어
+		pageVO.setSearch_keyword("user_del");//검색어
 		//위 setTotalCount위치가 다른 설정보다 상단이면, 에러발생 왜냐하면, calcPage()가 실행되는데, 실행시 위 3가지변수값이 저정되 있어야지 계산메서드가 정상작동되기때문입니다.
 		//위토탈카운트변수값은 startPage, endPage계산에 필수입니다. 
 		//매퍼쿼리<-DAO클래스<-Service클래스<-JUnit(나중엔 컨트롤러에서작업) 이제 역순으로 작업진행

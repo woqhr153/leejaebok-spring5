@@ -36,4 +36,10 @@ public class MemberDAOImpl implements IF_MemberDAO{
 		return totalCount;
 	}
 
+	@Override
+	public void insertMember(MemberVO memberVO) throws Exception {
+		// sqlSession빈의 메서드를 이용해서 매퍼 쿼리를 실행(아래)
+		sqlSession.insert("memberMapper.insertMember", memberVO);
+	}
+
 }
