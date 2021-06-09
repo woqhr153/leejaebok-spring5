@@ -16,8 +16,7 @@
 ```
 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 String userPwEncoder = passwordEncoder.encode(memberVO.getUser_pw());
-	memberVO.setUser_pw(userPwEncoder);
-}
+memberVO.setUser_pw(userPwEncoder);
 ```
 - 컨트롤러를 이용해서 관리자단 회원관리화면 JSP 만들기 진행예정.
 
