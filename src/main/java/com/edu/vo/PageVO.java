@@ -20,6 +20,14 @@ public class PageVO {
 	private String search_keyword;//jsp에서 받은 검색어 쿼리전용 변수
 	private String search_type;//검색조건에 해당 쿼리전용 변수
 	
+	@Override
+	public String toString() {
+		return "PageVO [queryStartNo=" + queryStartNo + ", queryPerPageNum=" + queryPerPageNum + ", page=" + page
+				+ ", perPageNum=" + perPageNum + ", totalCount=" + totalCount + ", startPage=" + startPage
+				+ ", endPage=" + endPage + ", prev=" + prev + ", next=" + next + ", search_keyword=" + search_keyword
+				+ ", search_type=" + search_type + "]";
+	}
+	
 	public int getQueryStartNo() {
 		//this.page-1하는 이유는 jsp에서는 1,2,3...받지만,
 		//쿼리에서는 0,1,2...으로 사용되기 때문에. page*페이지당보여줄개수

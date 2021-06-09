@@ -9,8 +9,9 @@
 <select id="countMember" resultType="int">
 select count(*) from tbl_member
 </select>
-<!-- 무조건 조회 쿼리 -->
+<!-- pageVO 받아서 처리하는 조회 쿼리 -->
 <select id="selectMember" resultType="com.edu.vo.MemberVO">
-select * from tbl_member
+select * from tbl_member 
+where user_id = #{search_keyword}
 </select>
 </mapper>
