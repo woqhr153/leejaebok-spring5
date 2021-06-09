@@ -58,6 +58,7 @@ public class DataSourceTest {
 		pageVO.setPerPageNum(10);//UI하단사용 페이지 개수
 		pageVO.setQueryPerPageNum(10);//쿼리사용 페이지당 개수
 		pageVO.setTotalCount(memberService.countMember());//테스트하려고, 100명을 입력합니다.
+		pageVO.setSearch_type("user_id");
 		pageVO.setSearch_keyword("admin");
 		//위 setTotalCount위치가 다른 설정보다 상단이면, 에러발생 왜냐하면, calcPage()가 실행되는데, 실행시 위 3가지변수값이 저정되 있어야지 계산메서드가 정상작동되기때문입니다.
 		//위토탈카운트변수값은 startPage, endPage계산에 필수입니다. 
