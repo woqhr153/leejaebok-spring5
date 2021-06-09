@@ -6,6 +6,22 @@
 이번주 조회기능중 검색기능, 페이징처리기능을 실습하시는 것이 핵심.
  -->
 <mapper namespace="memberMapper">
+<!-- 공통쿼리 마이바티스 include문사용 -->
+<sql id="sqlWhere">
+	<if test="search_type != '' and search_type != null">
+    WHERE 
+    	 <if test="search_type == 'all'.toString()">
+		    user_id LIKE '%'||#{search_keyword}||'%'
+		    OR user_name LIKE '%'||#{search_keyword}||'%'
+	     </if>
+	     <if test="search_type == 'user_id'.toString()">
+	     	user_id LIKE '%'||#{search_keyword}||'%'
+	     </if>
+	     <if test="search_type == 'user_name'.toString()">
+	     	user_name LIKE '%'||#{search_keyword}||'%'
+	     </if>
+    </if>
+</sql>
 <select id="countMember" resultType="int">
 select count(*) from tbl_member
 </select>
@@ -16,19 +32,7 @@ SELECT TableB.* FROM
     SELECT ROWNUM AS RNUM, TableA.* FROM
     (
         SELECT * FROM tbl_member
-        <if test="search_type != '' and search_type != null">
-        WHERE 
-        	<if test="search_type == 'all'.toString()">
-		        user_id LIKE '%'||#{search_keyword}||'%'
-		        OR user_name LIKE '%'||#{search_keyword}||'%'
-	        </if>
-	        <if test="search_type == 'user_id'.toString()">
-	        	user_id LIKE '%'||#{search_keyword}||'%'
-	        </if>
-	        <if test="search_type == 'user_name'.toString()">
-	        	user_name LIKE '%'||#{search_keyword}||'%'
-	        </if>
-        </if>
+        <include refid="sqlWhere" />
         ORDER BY reg_date DESC
     ) TableA
 <![CDATA[ 
