@@ -58,6 +58,8 @@ public class DataSourceTest {
 		String userPwEncoder = passwordEncoder.encode(memberVO.getUser_pw());
 		memberVO.setUser_pw(userPwEncoder);//암호화된 해시데이터가 memberVO객체 임시저장됨.
 		memberVO.setUser_id("admin");//수정 조회조건에 사용.
+		// =========== 여기까는 jsp에서 1명의 회원만 업데이트(수정)할때 사용하는 로직
+		// =========== 이후 부터는 모든회원중의 시큐리티암호화가 되지않는 사용자만 암호만 업데이트하는 로직
 		//아래 수정 call호출을 회원수만큼 반복을 해야 합니다.(아래)
 		PageVO pageVO = new PageVO();
 		pageVO.setPage(1);//기본값으로 1페이지를 입력합니다.
@@ -67,10 +69,11 @@ public class DataSourceTest {
 		List<MemberVO> listMember = memberService.selectMember(pageVO);
 		//향상된 for반복문(memberOne:listMember) {구현내용}
 		for(MemberVO memberOne:listMember) { //listMember객체 비워질때까지 반복
-			//memberOne객체(1개의레코드)의 암호를 뽑아서 시큐리티로 암호화 시킨 후 onePwEncoder변수입력
-			String onePwEncoder = passwordEncoder.encode(memberOne.getUser_pw());
 			//혹시 여러번 실행시켜서 중복암호화 시킬수 있으므로 제외조건을 추가(아래)
-			if(onePwEncoder.length() < 10) {
+			String rawPassword = memberOne.getUser_pw();
+			if(rawPassword.length() < 10) {//원시암호데이터 길이가 50보다 작을때만 암호화로직 진입
+				//memberOne객체(1개의레코드)의 암호를 뽑아서 시큐리티로 암호화 시킨 후 onePwEncoder변수입력
+				String onePwEncoder = passwordEncoder.encode(rawPassword);
 				memberOne.setUser_pw(onePwEncoder);
 				memberService.updateMember(memberOne);//1명(admin만) 수정 -> 모든회원을 업데이트
 			}

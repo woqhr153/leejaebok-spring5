@@ -52,4 +52,10 @@ public class MemberServiceImpl implements IF_MemberService {
 		return memberDAO.readMember(user_id);
 	}
 
+	@Override
+	public void updateMember(MemberVO memberOne) throws Exception {
+		// DAO 호출(아래)
+		memberDAO.updateMember(memberOne);
+	}
+
 }
