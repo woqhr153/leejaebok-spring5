@@ -11,6 +11,8 @@
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
 #### 20210610(목) 작업.
+- 컨트롤러를 이용해서 관리자단 회원관리화면 JSP 만들기 진행시작.
+- JUnit 마치고, 관리자단 회원관리(CRUD) jsp까지는 작업합니다. 이후 앞에 내용참조해서 확장해 나가는 작업이 이어집니다.
 - 수업전 내용 확인 합니다.(아래)
 - 쿼리실습에서 .equals함수 사용에 대해서 설명할때,아래 isEmpty메서드와 착각해서 이야기 한 내용이 있어서 정정 합니다.
 - 자바에서 객체가 공백 또는 비었는지 비교할때, 예를 들면, 우리프로젝트에서 첨부파일이 있는지 비교할때 아래 처럼 사용하지 않고
@@ -35,7 +37,6 @@ BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 String userPwEncoder = passwordEncoder.encode(memberVO.getUser_pw());
 memberVO.setUser_pw(userPwEncoder);
 ```
-- 컨트롤러를 이용해서 관리자단 회원관리화면 JSP 만들기 진행예정.
 
 #### 20210609(수) 작업.
 - 프로젝트를 진행: 보유기술 70%(솔루션있는업체) + 신기술 30%(개발사도 모릅니다) - 9할 성공
