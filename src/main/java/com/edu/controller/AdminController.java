@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.edu.vo.PageVO;
+
 /**
  * 이 클래스는 Admin관리자단을 접근하는 클래스
  * 변수 Object를 만들어서 jsp로 전송 <-> jsp 폼값을 받아서 Object로 처리
@@ -13,6 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class AdminController {
+	//이 메서드는 회원목록을 출력하는 jsp와 매핑이 됩니다.
+	@RequestMapping(value="/admin/member/member_list", method=RequestMethod.GET)
+	public String selectMember(PageVO pageVO) throws Exception {
+		//컨트롤러수정하면 자동로딩(auto컴파일)
+		return "admin/member/member_list";//jsp파일 상대경로
+	}
 	//URL요청 경로는 @RequestMapping 반드시 절대경로로 표시
 	@RequestMapping(value="/admin", method=RequestMethod.GET)
 	public String admin(Model model) throws Exception {//에러발생시 Exception클래스의 정보를 스프링으로 보내게 됩니다.		
