@@ -40,9 +40,14 @@ public class AdminController {
 		}
 		//pageVO의 calcPage메서드를 실행하려면, 필수 변수값입력(아래)
 		pageVO.setQueryPerPageNum(10);
-		logger.info("디버그" + pageVO.toString());//지금까지 jsp->컨트롤러 일방향 자료 이동.
+		pageVO.setPerPageNum(10);//하단UI에 보여줄 페이지번호 개수
+		//totalCount를 구하는 메서드는 위 변수 2개값이 필수 -> prev, next값을 구할 수 있습니다.
+		pageVO.setTotalCount(memberService.countMember(pageVO));
+		//위 검색된 결과의 전체카운트값(단, 페이징 관련없개수)
 		List<MemberVO> listMember = memberService.selectMember(pageVO);
-		pageVO.setTotalCount(listMember.size());//검색되든 않되든 결과의 전체카운트값
+		//100명의 회원에서는 하단 페이징 개수가 1...10 까지면 next가 false가 정상 입니다.
+		logger.info("디버그" + pageVO.toString());//지금까지 jsp->컨트롤러 일방향 자료 이동.
+		//컨트롤러에서 jsp로 역방향으로 보내는 자료를 Model에 담아서 보내게 됩니다.
 		return "admin/member/member_list";//jsp파일 상대경로
 	}
 	//URL요청 경로는 @RequestMapping 반드시 절대경로로 표시
