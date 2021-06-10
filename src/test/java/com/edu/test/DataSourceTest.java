@@ -43,8 +43,18 @@ public class DataSourceTest {
 	private IF_MemberService memberService;
 	
 	@Test
+	public void readMember() throws Exception {
+		//이 메서드는 회원 상세보기(1개 레코드) jsp에 사용될 예정.
+		MemberVO memberVO = new MemberVO();
+		//100명중 1명을 보려면, 고유키(기본키,주키,PK)필요 = user_id
+		//String user_id = "admin";
+		memberVO.setUser_id("admin");
+		memberVO = memberService.readMember(memberVO.getUser_id());
+	}
+	@Test
 	public void deleteMember() throws Exception {
 		memberService.deleteMember("user_del");
+		selectMember();
 	}
 	@Test
 	public void insertMember() throws Exception {
