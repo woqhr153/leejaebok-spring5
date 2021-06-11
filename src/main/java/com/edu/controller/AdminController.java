@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,7 +32,7 @@ public class AdminController {
 	private IF_MemberService memberService;
 	
 	@RequestMapping(value="/admin/member/member_list", method=RequestMethod.GET)
-	public String selectMember(PageVO pageVO,Model model) throws Exception {
+	public String selectMember(@ModelAttribute("pageVO")PageVO pageVO,Model model) throws Exception {
 		/*
 		이 메서드는 2개 객체 생성하는 로직이 필요. 결과를 JSP로 보내는 기능을 수행
 		1객체: memberList객체를 생성해서 model을 통해서 jsp로 전송 
@@ -52,7 +53,7 @@ public class AdminController {
 		logger.info("디버그" + pageVO.toString());
 		//컨트롤러에서 jsp로 자료를 Model에 담아서 보내게 됩니다.
 		model.addAttribute("listMember", listMember);
-		model.addAttribute("pageVO", pageVO);//나중에 @ModelAttribute로 대체
+		//model.addAttribute("pageVO", pageVO);//나중에 @ModelAttribute로 대체
 		return "admin/member/member_list";//jsp파일 상대경로
 	}
 	//URL요청 경로는 @RequestMapping 반드시 절대경로로 표시

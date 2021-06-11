@@ -100,7 +100,7 @@
               <c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1" var="idx">
 	              
 	              <li class="paginate_button page-item <c:out value="${idx==pageVO.page?'active':''}" />">
-	                <a href="/admin/member/member_list?page=${idx}" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">${idx}</a>
+	                <a href="/admin/member/member_list?page=${idx}&search_keyword=${pageVO.search_keyword}&search_type=${pageVO.search_type}" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">${idx}</a>
 	              </li> 
               </c:forEach>
                             
