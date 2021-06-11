@@ -75,9 +75,9 @@
                 <!-- jstl반복문으로 listMember객체 바인딩 -->
                 <c:forEach var="memberVO" items="${listMember}">
                 <tr style="cursor: pointer;" onclick="location.replace('/admin/member/member_view?user_id=${memberVO.user_id}');">
-                  <td>${memberVO.user_id}</td>
-                  <td>${memberVO.user_name}</td>
-                  <td>${memberVO.email}</td>
+                  <td><c:out value="${memberVO.user_id}" /></td>
+                  <td><c:out value="${memberVO.user_name}" /></td>
+                  <td><c:out value="${memberVO.email}" /></td>
                   <td>${memberVO.levels}</td>
                   <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss.SSSS" value="${memberVO.reg_date}"/></td>
                 </tr>
@@ -97,18 +97,13 @@
                 <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
               </li>
               
-              <c:forEach var="idx" begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1">
-	              <!-- 
-	              	jstl c:out value값에 java삼항연산자 비교값을 구현  
-	              	c:out 을 써서 출력  == ExressionLanguage(표현언어) ${}
-	              	차이점은 c:out 해킹방지 코드가 들었다. == 시큐어코딩 방식
-	              -->
-	              <c:out value="${(idx==pageVO.page)?'active':''}"></c:out>
-	              <li class="paginate_button page-item active">
-	                <a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-	              </li>
-              </c:forEach>              
-              
+              <c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1" var="idx">
+	              
+	              <li class="paginate_button page-item <c:out value="${idx==pageVO.page?'active':''}" />">
+	                <a href="/admin/member/member_list?page=${idx}" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">${idx}</a>
+	              </li> 
+              </c:forEach>
+                            
               <li class="paginate_button page-item next" id="example2_next">
                 <a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
               </li>
