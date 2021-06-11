@@ -81,10 +81,10 @@
               <button type="button" class="btn btn-default" id="btn_list">목록</button>
               <!-- 목록으로 이동하려면, pageVO도 가져야 합니다. 또한 삭제/수정 보안때문에 
               URL쿼리 스트링(GET)으로 보내면 X, POST방식으로 보냅니다. -->
-              <input type="text" name="page" value="${pageVO.page}">
-              <input type="text" name="search_type" value="${pageVO.search_type}">
-              <input type="text" name="search_keyword" value="${pageVO.search_keyword}">
-              <input type="text" name="user_id" value="${memberVO.user_id}">
+              <input type="hidden" name="page" value="${pageVO.page}">
+              <input type="hidden" name="search_type" value="${pageVO.search_type}">
+              <input type="hidden" name="search_keyword" value="${pageVO.search_keyword}">
+              <input type="hidden" name="user_id" value="${memberVO.user_id}">
             </div>
           </form>
         </div>
@@ -100,9 +100,9 @@
 <script>
 $(document).ready(function(){
 	$("#btn_list").click(function(){
-		alert('준비중 입니다.');
-		//var queryString = 'page='+${pageVO.page};//&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}';
-		//location.replace('/admin/member/member_list?'+queryString);
+		var queryString = 'page=${pageVO.page}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}';
+		//alert(queryString);//디버그
+		location.replace('/admin/member/member_list?'+queryString);
 	});
 });
 </script>
