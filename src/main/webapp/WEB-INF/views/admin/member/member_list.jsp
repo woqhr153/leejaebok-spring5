@@ -93,8 +93,9 @@
           <a href="/admin/member/member_insert" class="btn btn-primary mb-3">회원등록</a>
           
           <ul class="pagination justify-content-center">
-              <li class="paginate_button page-item previous disabled" id="example2_previous">
-                <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+          	  
+              <li class="paginate_button page-item previous <c:out value="${pageVO.prev==false?'disabled':'' }" />" id="example2_previous">
+                <a href="/admin/member/member_list?page=${pageVO.startPage-1}&search_keyword=${pageVO.search_keyword}&search_type=${pageVO.search_type}" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
               </li>
               
               <c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1" var="idx">
@@ -104,8 +105,8 @@
 	              </li> 
               </c:forEach>
                             
-              <li class="paginate_button page-item next" id="example2_next">
-                <a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+              <li class="paginate_button page-item next <c:out value="${pageVO.next==false?'disabled':'' }" />" id="example2_next">
+                <a href="/admin/member/member_list?page=${pageVO.endPage+1}&search_keyword=${pageVO.search_keyword}&search_type=${pageVO.search_type}" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
               </li>
           </ul>
         </div>
