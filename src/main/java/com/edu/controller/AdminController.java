@@ -31,7 +31,7 @@ public class AdminController {
 	private IF_MemberService memberService;
 	
 	@RequestMapping(value="/admin/member/member_list", method=RequestMethod.GET)
-	public String selectMember(Model model, PageVO pageVO) throws Exception {
+	public String selectMember(PageVO pageVO,Model model) throws Exception {
 		/*
 		이 메서드는 2개 객체 생성하는 로직이 필요. 결과를 JSP로 보내는 기능을 수행
 		1객체: memberList객체를 생성해서 model을 통해서 jsp로 전송 
@@ -42,7 +42,7 @@ public class AdminController {
 			pageVO.setPage(1);//초기값 1페이지 입력
 		}
 		//학습포인트: calcPage()로직(이해) < 변수(객체)값의 이동확인(코딩사용)
-		pageVO.setQueryPerPageNum(10);//memberList객체+endPage구할때 필요
+		pageVO.setQueryPerPageNum(5);//memberList객체+endPage구할때 필요
 		pageVO.setPerPageNum(5);//startPage구할때-UI하단 페이지번호개수
 		//위 2개의 변수값을 이용해서 아래 setTotalCount메서드에서 calcPage()호출됨
 		pageVO.setTotalCount(memberService.countMember(pageVO));
@@ -52,7 +52,7 @@ public class AdminController {
 		logger.info("디버그" + pageVO.toString());
 		//컨트롤러에서 jsp로 자료를 Model에 담아서 보내게 됩니다.
 		model.addAttribute("listMember", listMember);
-		
+		model.addAttribute("pageVO", pageVO);//나중에 @ModelAttribute로 대체
 		return "admin/member/member_list";//jsp파일 상대경로
 	}
 	//URL요청 경로는 @RequestMapping 반드시 절대경로로 표시
