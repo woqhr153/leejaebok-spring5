@@ -32,8 +32,15 @@ public class AdminController {
 	@Inject
 	private IF_MemberService memberService;
 	
+	@RequestMapping(value="/admin/member/member_delete", method=RequestMethod.POST)
+	public String deleteMember(MemberVO memberVO) throws Exception {
+		//이 메서드는 회원상세보기페이지에서 삭제버튼을 클릭시 전송받은 memberVO값을 이용해서 삭제를 구현(아래)
+		memberService.deleteMember(memberVO.getUser_id());
+		return null;
+	}
 	@RequestMapping(value="/admin/member/member_view", method=RequestMethod.GET)
 	public String viewMemberForm(Model model, @RequestParam("user_id")String user_id, @ModelAttribute("pageVO")PageVO pageVO) throws Exception{
+	//페이진입 시 받은 클래스변수값 PageVO pageVO
 		/*
 		 * 이 메서드는 리스트페이지에서 상세보기로 이동할때 보여주는 1개 레코드값을 보여주는 구현을 합니다.
 		 * JUnit에서 테스트했던 readMember 방식을 이용.
@@ -41,6 +48,8 @@ public class AdminController {
 		 */
 		//위 출력값 memberVO 1개의 레코드를 model를 이용해서 member_view.jsp 보냅니다.(아래)
 		model.addAttribute("memberVO", memberService.readMember(user_id));
+		//model.addAttribute("pageVO", pageVO);
+	//아래 페이지 반환시(렌더링) @ModelAttribute("pageVO")에 의해서 pageVO.page변수값으로 jsp보냅니다.
 		return "admin/member/member_view";//상태경로 폴더파일위치
 	}
 	@RequestMapping(value="/admin/member/member_list", method=RequestMethod.GET)
