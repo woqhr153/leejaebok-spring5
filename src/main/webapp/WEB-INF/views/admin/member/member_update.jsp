@@ -35,17 +35,17 @@
           <!-- /.card-header -->
           <!-- form start -->
           <!-- 첨부파일을 전송할때 enctype=필수 없으면, 첨부파일이 전송X -->
-          <form name="form_write" action="/admin/member/member_update" enctype="multipart/form-data">
+          <form name="form_write" action="/admin/member/member_update" method="post" enctype="multipart/form-data">
             <div class="card-body">
               
               <div class="form-group">
                 <label for="user_id">사용자ID</label>
-                <input value="${memberVO.user_id}" name="user_id" type="text" class="form-control" id="user_id" placeholder="회원ID를 입력해 주세요" required>
+                <input readonly value="${memberVO.user_id}" name="user_id" type="text" class="form-control" id="user_id" placeholder="회원ID를 입력해 주세요" required>
               </div>
               <div class="form-group">
                 <label for="user_pw">암호</label>
                 <!-- 암호는 기존값이 필요없음. 이유는 값이 있으면 업데이트진행, 없으면 업데이트제외됨 -->
-                <input value="" name="user_pw" type="password" class="form-control" id="user_pw" placeholder="암호를 입력해 주세요" required>
+                <input value="" name="user_pw" type="password" class="form-control" id="user_pw" placeholder="암호를 입력해 주세요">
               </div>
               <div class="form-group">
                 <label for="user_name">사용자이름</label>
@@ -81,9 +81,9 @@
               <button type="button" class="btn btn-info" id="btn_prev">이전</button>
               <button type="button" class="btn btn-default" id="btn_list">목록</button>
             </div>
-            <input name="page" type="hidden" value="">
-            <input name="search_type" type="hidden" value="">
-            <input name="search_keyword" type="hidden" value="">
+            <input name="page" type="hidden" value="${pageVO.page}">
+            <input name="search_type" type="hidden" value="${pageVO.search_type}">
+            <input name="search_keyword" type="hidden" value="${pageVO.search_keyword}">
           </form>
         </div>
         <!-- //콘텐츠 내용 -->
@@ -99,13 +99,11 @@
 $(document).ready(function(){
 	var form_update = $("form[name='form_write']");
 	$("#btn_prev").click(function(){
-		
 		form_update.attr("action","/admin/member/member_view");
 		form_update.attr("method","get");
 		form_update.submit();
 	});
 	$("#btn_list").click(function(){
-		var form_update = $("form[name='form_write']");
 		form_update.attr("action","/admin/member/member_list");
 		form_update.attr("method","get");
 		form_update.submit();

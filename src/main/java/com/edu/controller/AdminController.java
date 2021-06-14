@@ -34,12 +34,16 @@ public class AdminController {
 	
 	//아래 경로는 수정처리를 호출=DB를 변경처리함.
 	@RequestMapping(value="/admin/member/member_update", method=RequestMethod.POST)
-	public String updateMember() throws Exception {
-		
-		return null;
+	public String updateMember(MemberVO memberVO, PageVO pageVO) throws Exception {
+		//update 서비스만 처리하면 끝
+		//이 메서드는 수정 처리 이후 보인 페이지에 있습니다.
+		memberService.updateMember(memberVO);//반환값이 없습니다.
+		//redirect로 페이지를 이동하면, model로 담아서 보낼수 없습니다. 쿼리스트링(URL?)으로 보냅니다.
+		String queryString = "user_id="+memberVO.getUser_id()+"&page="+pageVO.getPage()+"&search_type="+pageVO.getSearch_type()+"&search_keyword="+pageVO.getSearch_keyword();
+		return "redirect:/admin/member/member_update_form?"+queryString;
 	}
 	//아래 경로는 수정폼을 호출=화면에 출력만=렌더링만
-	@RequestMapping(value="/admin/member/member_update_form", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/member/member_update_form", method=RequestMethod.GET)
 	public String updateMemberForm(MemberVO memberVO, Model model,@ModelAttribute("pageVO")PageVO pageVO) throws Exception {
 		//이 메서드는 수정폼에 pageVO, memberVO 2개의 데이터객체를 jsp로 보냅니다.
 		//사용자1명의 레코드를 가져오는 멤버서비스(쿼리)를 실행(아래)
