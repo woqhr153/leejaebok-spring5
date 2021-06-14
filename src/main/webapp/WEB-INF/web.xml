@@ -29,5 +29,21 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	<!-- 톰캣기반에서 페이지간 데이터전송시 영어기반으로 입출력이 되기때문에 한글은 깨집니다. 
+		그래서, 전송값을 UTF-8로 전환시키는 필터클래스를 사용합니다.
+		웹프로그램실행시 제일 먼저 실행되는 web.xml에 UTF-8유니코드 인코딩필터를 설정을 합니다.
+	-->
+	<filter>
+	  <filter-name>encoding</filter-name>
+	  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	  <init-param>
+	   <param-name>encoding</param-name>
+	   <param-value>UTF-8</param-value>
+	  </init-param>
+	</filter>	
+	<filter-mapping>
+	  <filter-name>encoding</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 </web-app>
