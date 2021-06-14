@@ -34,8 +34,11 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/member/member_delete", method=RequestMethod.POST)
 	public String deleteMember(MemberVO memberVO) throws Exception {
+		logger.info("디버그: " + memberVO.toString());
+		//MemberVO memberVO는 클래스형 변수: String user_id 스트링형 변수 같은 방식.
+		String user_id = memberVO.getUser_id();
 		//이 메서드는 회원상세보기페이지에서 삭제버튼을 클릭시 전송받은 memberVO값을 이용해서 삭제를 구현(아래)
-		memberService.deleteMember(memberVO.getUser_id());
+		//memberService.deleteMember(user_id);
 		return null;
 	}
 	@RequestMapping(value="/admin/member/member_view", method=RequestMethod.GET)
