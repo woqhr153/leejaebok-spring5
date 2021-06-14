@@ -26,7 +26,7 @@
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
 #### 20210614(월) 작업.
-- 수업 전 관리자 회원관리 view화면구현 마무리.
+- 수업 전 관리자 회원관리 view화면구현 마무리OK.
 - multipart(첨부파일기능) 라는 폼태그 전송방식을 추가 -> commons.fileupload 외부모듈필수(pom.xml에서 의존성을 추가합니다.)
 - 위 외부모듈을 스프링 빈으로 등록합니다.(servlet-context.xml 하단에 추가)
 - CRUD에서 multipart를 사용한다면, 리졸브(resolve-해석기) 스프링빈이 필요
@@ -35,7 +35,7 @@
 <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
    </beans:bean>
 ```
-- 나머지 관리자 회원관리 CRUD 화면 JSP구현 update, delete , insert
+- 나머지 관리자 회원관리 CRUD 화면 JSP구현 update, delete(OK) , insert
 - [공지]06-17 목요일(4교시) UI 디자인 시험 있습니다.(화면기획서XLS제작, 화면설계서PPT제출용)
 - 관리자 게시판 생성관리 CRUD 정방향 방식으로 JSP구현.
 
