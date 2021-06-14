@@ -40,36 +40,37 @@
               
               <div class="form-group">
                 <label for="user_id">사용자ID</label>
-                <input value="" name="user_id" type="text" class="form-control" id="user_id" placeholder="회원ID를 입력해 주세요" required>
+                <input value="${memberVO.user_id}" name="user_id" type="text" class="form-control" id="user_id" placeholder="회원ID를 입력해 주세요" required>
               </div>
               <div class="form-group">
                 <label for="user_pw">암호</label>
+                <!-- 암호는 기존값이 필요없음. 이유는 값이 있으면 업데이트진행, 없으면 업데이트제외됨 -->
                 <input value="" name="user_pw" type="password" class="form-control" id="user_pw" placeholder="암호를 입력해 주세요" required>
               </div>
               <div class="form-group">
                 <label for="user_name">사용자이름</label>
-                <input value="" name="user_name" type="text" id="user_name" class="form-control" placeholder="이름을 입력해주세요." required>
+                <input value="${memberVO.user_name}" name="user_name" type="text" id="user_name" class="form-control" placeholder="이름을 입력해주세요." required>
               </div>
               <div class="form-group">
                 <label for="email">이메일</label>
-                <input value="" name="email" type="email" class="form-control" id="email" placeholder="이메일을 입력해 주세요" required>
+                <input value="${memberVO.email}" name="email" type="email" class="form-control" id="email" placeholder="이메일을 입력해 주세요" required>
               </div>
               <div class="form-group">
                 <label for="point">포인트</label>
-                <input value="" name="point" type="number" class="form-control" id="point" placeholder="포인트를 입력해 주세요" required>
+                <input value="${memberVO.point}" name="point" type="number" class="form-control" id="point" placeholder="포인트를 입력해 주세요" required>
               </div>
               <div class="form-group">
                 <label for="enabled">로그인여부</label>
                 <select name="enabled" id="enabled" class="form-control">
-                  <option value="1">허용</option>
-                  <option value="0">금지</option>
+                  <option value="1" ${memberVO.enabled==true?'selected':''}>허용</option>
+                  <option value="0" ${memberVO.enabled==false?'selected':''}>금지</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="levels">권한부여</label>
                 <select name="levels" id="levels" class="form-control">
-                  <option value="ROLE_USER">사용자</option>
-                  <option value="ROLE_ADMIN">관리자</option>
+                  <option value="ROLE_USER" ${memberVO.levels=='ROLE_USER'?'selected':''}>사용자</option>
+                  <option value="ROLE_ADMIN" ${memberVO.levels=='ROLE_ADMIN'?'selected':''}>관리자</option>
                 </select>
               </div>
             </div>
@@ -77,7 +78,8 @@
 
             <div class="card-footer text-right">
               <button type="submit" class="btn btn-primary">수정</button>
-              <button class="btn btn-default" id="btn_list">목록</button>
+              <button type="button" class="btn btn-info" id="btn_prev">이전</button>
+              <button type="button" class="btn btn-default" id="btn_list">목록</button>
             </div>
             <input name="page" type="hidden" value="">
             <input name="search_type" type="hidden" value="">
@@ -95,6 +97,18 @@
 <!-- 관리자단은 jQuery코어가 하단 footer에 있기 때문에 여기에 위치합니다. -->
 <script>
 $(document).ready(function(){
-	
+	var form_update = $("form[name='form_write']");
+	$("#btn_prev").click(function(){
+		
+		form_update.attr("action","/admin/member/member_view");
+		form_update.attr("method","get");
+		form_update.submit();
+	});
+	$("#btn_list").click(function(){
+		var form_update = $("form[name='form_write']");
+		form_update.attr("action","/admin/member/member_list");
+		form_update.attr("method","get");
+		form_update.submit();
+	});
 });
 </script>
