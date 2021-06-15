@@ -32,7 +32,7 @@ public class CommonUtil {
 	public String id_check(@RequestParam("user_id")String user_id) throws Exception {
 		//중복아이디를 체크로지(아래)
 		String memberCnt = "1";//중복ID가 있을때, 기본값 1
-		if(!user_id.isEmpty()) {//user_id가 공백이 아니라면,
+		if(!user_id.isEmpty()) {//!주의 user_id가 공백이 아니라면,
 			MemberVO memberVO = memberService.readMember(user_id);
 			logger.info("디버그: " + memberVO);//user_id를 공백을 전송해도 null이기때문에 조건 추가필요
 			if(memberVO == null) {//중복아이디가 존재하지 않으면 {}안을 실행
