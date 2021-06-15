@@ -90,7 +90,7 @@
         <!-- //콘텐츠 내용 -->
         <!-- 페이징 처리 -->
         <div class="col-12 text-right">
-          <a href="/admin/member/member_insert" class="btn btn-primary mb-3">회원등록</a>
+          <a href="/admin/member/member_insert_form?page=${pageVO.page}&search_keyword=${pageVO.search_keyword}&search_type=${pageVO.search_type}" class="btn btn-primary mb-3">회원등록</a>
           
           <ul class="pagination justify-content-center">
           	  
