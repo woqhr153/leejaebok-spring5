@@ -43,6 +43,9 @@ public class AdminController {
 	@RequestMapping(value="/admin/member/member_insert", method=RequestMethod.POST)
 	public String insertMember(PageVO pageVO,MemberVO memberVO) throws Exception {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String rawPassword = memberVO.getUser_pw();//원시 패스워드값
+		String encPassword = passwordEncoder.encode(rawPassword);
+		memberVO.setUser_pw(encPassword);
 		memberService.insertMember(memberVO);
 		return "redirect:/admin/member/member_list";//.jsp생략
 	}
