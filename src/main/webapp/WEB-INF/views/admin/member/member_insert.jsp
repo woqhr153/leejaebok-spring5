@@ -115,7 +115,7 @@ $(document).ready(function(){
 				}
 				if(result==1){//중복ID가 있다면 진행중지
 					$("#btn_insert").attr("disabled",true);//등록버튼 비활성화
-					alert("중복ID가 존재합니다. 다시 입력해 주세요!");
+					alert("올바르지 않거나,중복ID가 존재합니다. 다시 입력해 주세요!");
 				}
 			},
 			error:function(){

@@ -31,11 +31,13 @@ public class CommonUtil {
 	@ResponseBody //반환받은 값의 헤더값을 제외하고, 내용(body)만 반환하겠다는 명시
 	public String id_check(@RequestParam("user_id")String user_id) throws Exception {
 		//중복아이디를 체크로지(아래)
-		String memberCnt = "0";//중복ID가 없을때, 기본값 0
-		MemberVO memberVO = memberService.readMember(user_id);
-		
-		if(memberVO != null) {//!주의 중복아이디가 존재하면 {}안을 실행
-			memberCnt = "1";
+		String memberCnt = "1";//중복ID가 있을때, 기본값 1
+		if(!user_id.isEmpty()) {//user_id가 공백이 아니라면,
+			MemberVO memberVO = memberService.readMember(user_id);
+			logger.info("디버그: " + memberVO);//user_id를 공백을 전송해도 null이기때문에 조건 추가필요
+			if(memberVO == null) {//중복아이디가 존재하지 않으면 {}안을 실행
+				memberCnt = "0";
+			}
 		}
 		return memberCnt;//0.jsp 이렇게 작동하지 않습니다. 이유는 @ResponseBody때문이고, RestAPI는 값만 반환
 	}
