@@ -19,7 +19,9 @@ import com.edu.vo.MemberVO;
 import com.edu.vo.PageVO;
 
 /**
- * 이 클래스는 Admin관리자단을 접근하는 클래스
+ * 이 클래스는 Admin관리자단을 접근하는 컨트롤러 클래스 <- 디스패처 서블렛(게이트웨이) 기능을 합니다.
+ * 디스페처 서블렛 클래스는 톰캣이 실행(web.xml)될때 제일 먼저 실행되는 클래스, 그래서, 게이트웨이라고 합니다.
+ * 디스페처 서블릿 실행될때, 컨트롤러의 Request매핑경로를 재 등록합니다.
  * 변수 Object를 만들어서 jsp로 전송 <-> jsp 폼값을 받아서 Object로 처리
  * @author 김일국
  *
@@ -33,6 +35,34 @@ public class AdminController {
 	@Inject
 	private IF_MemberService memberService;
 	
+	//jsp에서 게시판생성관리에 Get/Post 접근할때 URL을 bbs_type로 지정합니다.
+	//왜 board_type하지않고, bbs_type하는 이유는 왼쪽메뉴 고정시키는 로직에서 경로 board와 겹치지 않도록
+	@RequestMapping(value="/admin/bbs_type/bbs_type_list", method=RequestMethod.GET)
+	public String selectBoardTypeList() throws Exception {//목록폼1
+		return null;
+	}
+	@RequestMapping(value="/admin/bbs_type/bbs_type_insert", method=RequestMethod.GET)
+	public String insertBoardTypeForm() throws Exception {//입력폼1
+		return null;
+	}
+	@RequestMapping(value="/admin/bbs_type/bbs_type_insert", method=RequestMethod.POST)
+	public String insertBoardType() throws Exception {//입력처리1
+		return null;
+	}
+	//게시판 생성관리는 이 기능은 사용자단에서 UI를 사용할 일이 없기때문에, Read, Update를 1개로 사용.
+	@RequestMapping(value="/admin/bbs_type/bbs_type_update", method=RequestMethod.GET)
+	public String updateBoardTypeForm() throws Exception {//수정폼1
+		return null;
+	}
+	@RequestMapping(value="/admin/bbs_type/bbs_type_update", method=RequestMethod.POST)
+	public String updateBoardType() throws Exception {//수정처리1
+		return null;
+	}
+	@RequestMapping(value="/admin/bbs_type/bbs_type_delete", method=RequestMethod.POST)
+	public String deleteBoardType() throws Exception {//삭제처리1
+		return null;
+	}
+	//=============================================================
 	//아래 경로는 회원신규등록 폼을 호출하는 URL쿼리스트링으로 보낸것을 받을때는 GET방식으로 받습니다.
 	@RequestMapping(value="/admin/member/member_insert_form", method=RequestMethod.GET)
 	public String insertMemberForm(@ModelAttribute("pageVO")PageVO pageVO) throws Exception {
