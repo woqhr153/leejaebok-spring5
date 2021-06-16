@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -44,12 +44,13 @@
               </thead>
               <tbody>
                 <!-- 아래 링크주소에 jsp에서 프로그램처리예정 -->
-                <tr style="cursor: pointer;" onclick="location.replace('/admin/bbs_type/bbs_type_update?board_type=notice');">
-                  <td>NOTICE</td>
-                  <td>공지사항</td>
-                  <td>1</td>
+                <c:forEach var="boardTypeVO" items="${listBoardTypeVO}">
+                <tr style="cursor: pointer;" onclick="location.replace('/admin/bbs_type/bbs_type_update?board_type=${boardTypeVO.board_type}');">
+                  <td>${boardTypeVO.board_type}</td>
+                  <td>${boardTypeVO.board_name}</td>
+                  <td>${boardTypeVO.board_sun}</td>
                 </tr>
-                
+                </c:forEach>
               </tbody>
             </table>
           </div>
@@ -58,33 +59,8 @@
         <!-- //콘텐츠 내용 -->
         <!-- 페이징 처리 -->
         <div class="col-12 text-right">
-          <a href="board_write.html" class="btn btn-primary mb-3">게시판등록</a>
-          <ul class="pagination justify-content-center">
-              <li class="paginate_button page-item previous disabled" id="example2_previous">
-                <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-              </li>
-              <li class="paginate_button page-item active">
-                <a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-              </li>
-              <li class="paginate_button page-item ">
-                <a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-              </li>
-              <li class="paginate_button page-item ">
-                <a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-              </li>
-              <li class="paginate_button page-item ">
-                <a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-              </li>
-              <li class="paginate_button page-item ">
-                <a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-              </li>
-              <li class="paginate_button page-item ">
-                <a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link">6</a>
-              </li>
-              <li class="paginate_button page-item next" id="example2_next">
-                <a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-              </li>
-          </ul>
+          <a href="/admin/bbs_type/bbs_type_insert" class="btn btn-primary mb-3">게시판생성</a>
+          
         </div>
         <!-- //페이징 처리 -->
       </div><!-- /.container-fluid -->

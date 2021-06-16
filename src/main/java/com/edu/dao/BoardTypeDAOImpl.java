@@ -24,6 +24,7 @@ public class BoardTypeDAOImpl implements IF_BoardTypeDAO {
 	public void deleteBoardType(String board_type) throws Exception {
 		// TODO sqlSession템플릿(틀)을 이용해서 매퍼쿼를 실행
 		sqlSession.delete("boardTypeMapper.deleteBoardType", board_type);
+		// 서식 sqlSession.~템플릿메서드("SQL쿼리위치", 테이터객체변수);
 	}
 
 	@Override

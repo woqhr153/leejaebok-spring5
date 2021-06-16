@@ -16,6 +16,6 @@ select * from tbl_board_type where board_type = #{board_type}
 insert into tbl_board_type values (#{board_type},#{board_name},#{board_sun})
 </insert>
 <select id="selectBoardType" resultType="com.edu.vo.BoardTypeVO">
-select * from tbl_board_type
+select * from tbl_board_type order by board_sun asc
 </select>
 </mapper>

@@ -55,12 +55,16 @@ public class AdminController {
 	@RequestMapping(value="/admin/bbs_type/bbs_type_insert", method=RequestMethod.POST)
 	public String insertBoardType(BoardTypeVO boardTypeVO) throws Exception {//입력처리1
 		boardTypeService.insertBoardType(boardTypeVO);
-		return "redirect:/admin/bbs_type/bbs_type_list";//리다이렉트(뒤로가기불가)는 절대경로, forward:이동이 가능(뒤로가기 가능)
+		return "redirect:/admin/bbs_type/bbs_type_list";
+		//리다이렉트(뒤로가기 데이터사라짐)는 절대경로, forward:이동이 가능(뒤로가기 데이터가 살아있음)
+		//쇼핑몰에서 결제화면을 처리 후 뒤로가기를 누르면, 리다이렉트는 데이터가 사라지기때문에 재결제 불가
+		//forward로 결제화면을 처리 후 뒤로가기를 누르면, 재결제가 발생됩니다. 이러면 않되기때문에 사용안함. 
 	}
 	//게시판 생성관리는 이 기능은 사용자단에서 UI를 사용할 일이 없기때문에, Read, Update를 1개로 사용.
 	@RequestMapping(value="/admin/bbs_type/bbs_type_update", method=RequestMethod.GET)
 	public String updateBoardTypeForm(@RequestParam("board_type")String board_type, Model model) throws Exception {//수정폼1
-		model.addAttribute("boardTypeVO", boardTypeService.readBoardType(board_type));//서식 model.addAttribute("jsp변수", "데이터객체");
+		model.addAttribute("boardTypeVO", boardTypeService.readBoardType(board_type));
+		//서식model.add~("jsp변수로담아서 view화면으로 보냄","서비스에서 쿼리실행한 데이터객체");
 		return "admin/bbs_type/bbs_type_update";//.jsp생략
 	}
 	@RequestMapping(value="/admin/bbs_type/bbs_type_update", method=RequestMethod.POST)
