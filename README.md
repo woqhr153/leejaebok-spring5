@@ -34,7 +34,7 @@
 - 4게시판생성관리Service파일(인터페이스별도): https://github.com/miniplugin/kimilguk-spring5/blob/master/src/main/java/com/edu/service/BoardTypeServiceImpl.java
 - 10년,20년,지금 변하지 않는것은 변수값의 흐름은 변함이 없음. 정방향 개발시작
 - --------------------------------------------
-- 시작.VO->매퍼쿼리xml->DAO클래스생성->Service클래스생성->컨트롤러->jsp화면처리
+- 시작.VO->매퍼쿼리xml->DAO클래스생성->Service클래스생성->컨트롤러생성->jsp화면처리
 - 관리자단 게시물관리 CRUD 처리(4.파일업로드구현,5.트랜잭션구현).
 
 #### 20210615(화) 작업.
