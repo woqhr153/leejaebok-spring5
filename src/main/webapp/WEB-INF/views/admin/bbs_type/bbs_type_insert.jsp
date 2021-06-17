@@ -39,7 +39,7 @@
               <div class="form-group">
                 <!-- PK고유키,식별자는 중복체크는 생략  -->
                 <label for="board_type">게시판타입</label>
-                <input value="" name="board_type" type="text" class="form-control" id="board_type" placeholder="게시판타입을 입력해 주세요" required>
+                <input value="" name="board_type" type="text" style="ime-mode:disabled" class="form-control" id="board_type" placeholder="게시판타입을 입력해 주세요" required>
               </div>
               <div class="form-group">
                 <label for="board_name">게시판이름</label>
