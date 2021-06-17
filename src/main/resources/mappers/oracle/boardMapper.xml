@@ -29,7 +29,7 @@ select table_b.* from
 ) table_b where table_b.rnum > #{queryStartNo}*#{queryPerPageNum}
 	]]>
 </select>
-<!-- 검색처리는 멤버쿼리에서 작성한 내용 붙여넣기 다중게시판용 필드조회조건 추가예정? -->
+<!-- 검색처리는 멤버쿼리에서 작성한 내용 붙여넣고, 다중게시판용 필드조회조건 추가예정? -->
 <sql id="sqlWhere">
 	<if test="search_type != '' and search_type != null">
     WHERE 
