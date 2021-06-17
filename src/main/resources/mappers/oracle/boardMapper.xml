@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper">
-<!-- bno필드변수가 자동증가가 되는 기능이 필요 -->
-<!-- 검색처리는 멤버쿼리에서 작성한 내용 붙여넣기 -->
+<!-- bno필드변수가 자동증가가 되는 기능이 필요 seq.nextVal -->
+<insert id="insertBoard">
+	<selectKey keyProperty="seq_bno" resultType="int" order="BEFORE">
+	select seq_bno.nextval from dual
+	</selectKey>
+	insert into tbl_board 
+	( 
+	bno, title, content, writer, reg_date, board_type 
+	) 
+	values 
+	(
+	#{seq_bno},#{title},#{content},#{writer},systimestamp,#{board_type}
+	)
+</insert>
+<!-- 페이징 처리 때문에 중첩쿼리 생성(아래) -->
+<select id="selectBoard" resultType="com.edu.vo.BoardVO">
+select table_b.* from
+(
+	select rownum as rnum, table_a.* from 
+	(
+		select * from tbl_board
+		<include refid="sqlWhere" />
+	) table_a
+	<![CDATA[
+	where rownum <= (#{queryStartNo}*#{queryPerPageNum})+#{queryPerPageNum}
+) table_b where table_b.rnum > #{queryStartNo}*#{queryPerPageNum}
+	]]>
+</select>
+<!-- 검색처리는 멤버쿼리에서 작성한 내용 붙여넣기 다중게시판용 필드조회조건 추가예정? -->
 <sql id="sqlWhere">
 	<if test="search_type != '' and search_type != null">
     WHERE 
     	 <if test="search_type == 'all'.toString()">
-		    user_id LIKE '%'||#{search_keyword}||'%'
-		    OR user_name LIKE '%'||#{search_keyword}||'%'
+		    title LIKE '%'||#{search_keyword}||'%'
+		    OR content LIKE '%'||#{search_keyword}||'%'
 	     </if>
-	     <if test="search_type == 'user_id'.toString()">
-	     	user_id LIKE '%'||#{search_keyword}||'%'
+	     <if test="search_type == 'title'.toString()">
+	     	title LIKE '%'||#{search_keyword}||'%'
 	     </if>
-	     <if test="search_type == 'user_name'.toString()">
-	     	user_name LIKE '%'||#{search_keyword}||'%'
+	     <if test="search_type == 'content'.toString()">
+	     	content LIKE '%'||#{search_keyword}||'%'
 	     </if>
     </if>
 </sql>
