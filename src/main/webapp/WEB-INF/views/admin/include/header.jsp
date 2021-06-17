@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -118,18 +119,14 @@
             </a>
             <ul class="nav nav-treeview">
               <!-- 위 게시판 생성관리에서 만든 게시판 개수에 따라서 자동 증가(아래) -->
+              <c:forEach var="boardTypeVO" items="${listBoardTypeVO}">
               <li class="nav-item">
-                <a href="board_list.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="far fa-dot-circle nav-icon"></i>
-                  <p>공지사항</p>
+                  <p>${boardTypeVO.board_name}</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="board_list.html" class="nav-link">
-                  <i class="far fa-dot-circle nav-icon"></i>
-                  <p>겔러리</p>
-                </a>
-              </li>
+              </c:forEach>
             </ul>
           </li>
           
