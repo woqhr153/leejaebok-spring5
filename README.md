@@ -26,6 +26,7 @@
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
 #### 20210617(목) 작업예정.
+- 수업시작전 UI디자인 과제물 확인 후 진도 나갑니다.
 - 관리자단 게시판 생성관리 RU 페이지 마무리예정.
 - 관리자단 게시판 생성관리 D 처리.(3.스프링의 AOP기능구현).
 - UI디자인 과제물제출 4교시 예정.
@@ -33,14 +34,10 @@
 
 #### 20210616(수) 작업.
 - [공지]06-17 목요일(4교시) UI 디자인 시험 있습니다.(화면기획서XLS제작, 화면설계서PPT제출용) 확인 후 수업진행.
-- 관리자단 게시판 생성관리 CRUD 처리.(3.스프링의 AOP기능구현).
-- 1게시판생성관리VO파일: https://github.com/miniplugin/kimilguk-spring5/blob/master/src/main/java/com/edu/vo/BoardTypeVO.java
-- 2게시판생성관리매퍼파일: https://github.com/miniplugin/kimilguk-spring5/blob/master/src/main/resources/mappers/oracle/boardTypeMapper.xml
-- 3게시판생성관리DAO파일(인터페이스별도): https://github.com/miniplugin/kimilguk-spring5/blob/master/src/main/java/com/edu/dao/BoardTypeDAOImpl.java
-- 4게시판생성관리Service파일(인터페이스별도): https://github.com/miniplugin/kimilguk-spring5/blob/master/src/main/java/com/edu/service/BoardTypeServiceImpl.java
 - 10년,20년,지금 변하지 않는것은 변수값의 흐름은 변함이 없음. 정방향 개발시작
 - --------------------------------------------
 - 시작.VO->매퍼쿼리xml->DAO클래스생성->Service클래스생성->컨트롤러생성->jsp화면처리
+- 관리자단 게시판 생성관리 리스트 페이지 OK.
 
 #### 20210615(화) 작업.
 - 관리자단 회원관리 수정 암호 수정 잘 되는지 확인OK.

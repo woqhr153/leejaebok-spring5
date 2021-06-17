@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">게시판 생성/수정</h1>
+            <h1 class="m-0">게시판 뷰/수정</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -29,16 +29,17 @@
         <!-- 콘텐츠 내용 -->
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">등록/수정</h3>
+            <h3 class="card-title">뷰/수정</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
           <!-- 첨부파일을 전송할때 enctype=필수 없으면, 첨부파일이 전송X -->
-          <form name="form_write" action="board_write.html" enctype="multipart/form-data">
+          <form name="form_write" action="/admin/bbs_type/bbs_type_update" enctype="multipart/form-data">
             <div class="card-body">
               <div class="form-group">
+                <!-- PK고유키,식별자는 수정할수 있으면, 여기 묶여있는 하위 게시물들은 소속잃어 버립니다. 그래서, 수정불가X  -->
                 <label for="board_type">게시판타입</label>
-                <input value="${boardTypeVO.board_type}" name="board_type" type="text" class="form-control" id="board_type" placeholder="게시판타입을 입력해 주세요" required>
+                <input readonly value="${boardTypeVO.board_type}" name="board_type" type="text" class="form-control" id="board_type" placeholder="게시판타입을 입력해 주세요" required>
               </div>
               <div class="form-group">
                 <label for="board_name">게시판이름</label>
@@ -53,8 +54,8 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-              <button type="submit" class="btn btn-primary">등록</button>
-              <a href="board_list.html" class="btn btn-default">목록</a>
+              <button type="submit" class="btn btn-primary">수정</button>
+              <a href="/admin/bbs_type/bbs_type_list" class="btn btn-default">목록</a>
             </div>
           </form>
         </div>
