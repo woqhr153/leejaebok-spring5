@@ -53,6 +53,7 @@ public class DataSourceTest {
 		boardVO.setTitle("인서트후 반환값테스트");
 		boardVO.setContent("J유닛입력테스트");
 		boardVO.setWriter("admin");
+		boardVO.setBoard_type("gallery");
 		boardService.insertBoard(boardVO);
 	}
 	@Test
