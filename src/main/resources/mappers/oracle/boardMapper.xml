@@ -55,8 +55,8 @@ where bno = #{bno}
 select * from tbl_board where bno = #{bno}
 </select>
 <!-- bno필드변수가 자동증가가 되는 기능이 필요 seq.nextVal -->
-<insert id="insertBoard">
-	<selectKey keyProperty="seq_bno" resultType="int" order="BEFORE">
+<insert id="insertBoard" parameterType="com.edu.vo.BoardVO">
+	<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 	select seq_bno.nextval from dual
 	</selectKey>
 	insert into tbl_board 
@@ -65,7 +65,7 @@ select * from tbl_board where bno = #{bno}
 	) 
 	values 
 	(
-	#{seq_bno},#{title},#{content},#{writer},systimestamp,#{board_type}
+	#{bno},#{title},#{content},#{writer},systimestamp,#{board_type}
 	)
 </insert>
 <!-- 페이징을 제외한 검색쿼리(board_type포함)를 이용해서 개수물 개수totalCount변수값 구하기 -->

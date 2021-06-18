@@ -65,14 +65,19 @@ public class BoardServiceImpl implements IF_BoardService {
 		//게시물  등록
 		boardDAO.insertBoard(boardVO);
 		//첨부파일 등록: 1개 이상일때 가정해서 처리
-		String[] save_file_names=null;//폴더에 저장용 파일명들
-		String[] real_file_names=null;//UI용 배열 파일명들
+		String[] save_file_names=boardVO.getSave_file_names();//폴더에 저장용 파일명들
+		String[] real_file_names=boardVO.getReal_file_names();//UI용 배열 파일명들
+		if(save_file_names == null) { return; }//리턴이 발생되면, 이후 실행 않됨.
+		//첨부파일이 null 이 아닐때 아래가 진행됨.
 		int index = 0;
 		String real_file_name = "";//UI용 1개 파일명
-		if(save_file_names == null) { return; }//리턴이 발생되면, 이후 실행 않됨.
+		AttachVO attachVO = new AttachVO();
 		for(String save_file_name:save_file_names) {//첨부파일 개수만큼 반복진행
-			
-			boardDAO.insertAttach(null);
+			real_file_name = real_file_names[index];
+			attachVO.setBno(null);
+			attachVO.setReal_file_name(real_file_name);
+			attachVO.setSave_file_name(save_file_name);
+			boardDAO.insertAttach(attachVO);
 		}
 	}
 

@@ -27,6 +27,6 @@ public interface IF_BoardDAO {
 	public void deleteBoard(int bno) throws Exception;
 	public void updateBoard(BoardVO boardVO) throws Exception;
 	public BoardVO readBoard(int bno) throws Exception;
-	public void insertBoard(BoardVO boardVO) throws Exception;
+	public int insertBoard(BoardVO boardVO) throws Exception;
 	public List<BoardVO> selectBoard(PageVO pageVO) throws Exception;
 }

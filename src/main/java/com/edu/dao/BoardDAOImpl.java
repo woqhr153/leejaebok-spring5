@@ -82,9 +82,10 @@ public class BoardDAOImpl implements IF_BoardDAO {
 	}
 
 	@Override
-	public void insertBoard(BoardVO boardVO) throws Exception {
+	public int insertBoard(BoardVO boardVO) throws Exception {
 		// TODO 아래 주석 동일
 		sqlSession.insert("boardMapper.insertBoard", boardVO);
+		return boardVO.getBno();
 	}
 
 	@Override
