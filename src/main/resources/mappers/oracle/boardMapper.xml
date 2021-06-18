@@ -31,8 +31,9 @@ select table_b.* from
 </select>
 <!-- 검색처리는 멤버쿼리에서 작성한 내용 붙여넣고, 다중게시판용 필드조회조건 추가예정? -->
 <sql id="sqlWhere">
+WHERE board_type = #{board_type}
 	<if test="search_type != '' and search_type != null">
-    WHERE 
+     	and (
     	 <if test="search_type == 'all'.toString()">
 		    title LIKE '%'||#{search_keyword}||'%'
 		    OR content LIKE '%'||#{search_keyword}||'%'
@@ -43,6 +44,7 @@ select table_b.* from
 	     <if test="search_type == 'content'.toString()">
 	     	content LIKE '%'||#{search_keyword}||'%'
 	     </if>
+	     )
     </if>
 </sql>
 </mapper>
