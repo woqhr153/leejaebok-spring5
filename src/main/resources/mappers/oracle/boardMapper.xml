@@ -2,13 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper">
 <!-- 첨부파일 CRUD 쿼리생성, 주,우리로직에서는 첨부파일은 수정X->입력,삭제 -->
-<!-- 왜 수정이 없는가-> 저장된파일을 수정못하고, 기존삭제하고, 신규파일을 덮어씁니다. -->
+<!-- 첨부파일 삭제는 1개만 삭제하지 않고, 게시물별(bno) 일괄삭제도 있음. -->
+<delete id="deleteAttachAll">
+delete from tbl_attach where bno = #{bno}
+</delete>
+<delete id="deleteAttach">
+delete from tbl_attach where save_file_name = #{save_file_name}
+</delete>
+<!-- 왜 수정이 없는가-> 저장된파일을 수정못하고, 기존삭제하고, 신규파일을 덮어씁니다.단,bno를 매개변수 받습니다.-->
+<insert id="updateAttach">
+insert into tbl_attach (save_file_name,real_file_name,reg_date,bno)
+values (#{save_file_name},#{real_file_name},sysdate,#{bno})
+</insert>
+<select id="readAttach" resultType="com.edu.vo.AttachVO">
+select * from tbl_attach where bno = #{bno}
+</select> 
+<!-- 게시물등록시 발생된 bno를 구한 결과값 1개만 구해서 첨부파일의 bno입력값으로 사용-서브쿼리사용 -->
 <insert id="insertAttach">
 insert into tbl_attach 
-()
+(
+	save_file_name, real_file_name, reg_date, bno
+)
 values
-()
+(
+	#{save_file_name},#{real_file_name},sysdate,
+	select bno from (
+		select bno from tbl_board order by bno desc
+	) where rownum = 1
+)
 </insert>
+<!-- 위 bno는 게시물 등록시 첨부파일 쿼리는 bno 매개변수로 보낼 수가 없는 상태 임. -->
 <!-- 게시물CRUD 쿼리생성 -->
 <delete id="deleteBoard">
 delete from tbl_board where bno = #{bno}
