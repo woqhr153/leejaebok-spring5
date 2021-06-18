@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.edu.vo.AttachVO;
@@ -18,6 +20,7 @@ import com.edu.vo.PageVO;
  */
 @Repository
 public class BoardDAOImpl implements IF_BoardDAO {
+	private Logger logger = LoggerFactory.getLogger(BoardDAOImpl.class);
 	@Inject
 	private SqlSession sqlSession;//sql세션템플릿(틀)에는 insert,update()...
 	
@@ -83,8 +86,9 @@ public class BoardDAOImpl implements IF_BoardDAO {
 
 	@Override
 	public int insertBoard(BoardVO boardVO) throws Exception {
-		// TODO 아래 주석 동일
+		// TODO 아래 주석 동일+ 게시물 입력 후 반환값으로 bno를 받습니다.
 		sqlSession.insert("boardMapper.insertBoard", boardVO);
+		logger.info("디버그: " + boardVO.getBno());
 		return boardVO.getBno();
 	}
 

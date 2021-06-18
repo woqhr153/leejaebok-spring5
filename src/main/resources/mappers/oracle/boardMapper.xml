@@ -25,12 +25,16 @@ insert into tbl_attach
 )
 values
 (
-	#{save_file_name},#{real_file_name},sysdate,
-	select bno from (
-		select bno from tbl_board order by bno desc
-	) where rownum = 1
+	#{save_file_name},#{real_file_name},sysdate,#{bno}
+	
 )
 </insert>
+<!-- 
+bno 변수값으로 받는 로직을 추가했기때문에 아래 주석
+select bno from (
+		select bno from tbl_board order by bno desc
+	) where rownum = 1
+ -->
 <!-- 위 bno는 게시물 등록시 첨부파일 쿼리는 bno 매개변수로 보낼 수가 없는 상태 임. -->
 <!-- 게시물CRUD 쿼리생성 -->
 <delete id="deleteBoard">

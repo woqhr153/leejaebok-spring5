@@ -62,8 +62,8 @@ public class BoardServiceImpl implements IF_BoardService {
 	@Override
 	public void insertBoard(BoardVO boardVO) throws Exception {
 		// TODO [부모]게시물 insertBoard -> [자식] 첨부파일 있으면 첨부파일 insertAttach
-		//게시물  등록
-		boardDAO.insertBoard(boardVO);
+		//게시물  등록 + 반환값으로 bno 추가
+		int bno = boardDAO.insertBoard(boardVO);
 		//첨부파일 등록: 1개 이상일때 가정해서 처리
 		String[] save_file_names=boardVO.getSave_file_names();//폴더에 저장용 파일명들
 		String[] real_file_names=boardVO.getReal_file_names();//UI용 배열 파일명들
@@ -74,7 +74,7 @@ public class BoardServiceImpl implements IF_BoardService {
 		AttachVO attachVO = new AttachVO();
 		for(String save_file_name:save_file_names) {//첨부파일 개수만큼 반복진행
 			real_file_name = real_file_names[index];
-			attachVO.setBno(null);
+			attachVO.setBno(bno);
 			attachVO.setReal_file_name(real_file_name);
 			attachVO.setSave_file_name(save_file_name);
 			boardDAO.insertAttach(attachVO);
