@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper">
+<!-- 첨부파일 CRUD 쿼리생성, 주,우리로직에서는 첨부파일은 수정X->입력,삭제 -->
+<!-- 왜 수정이 없는가-> 저장된파일을 수정못하고, 기존삭제하고, 신규파일을 덮어씁니다. -->
+<insert id="insertAttach">
+insert into tbl_attach 
+()
+values
+()
+</insert>
+<!-- 게시물CRUD 쿼리생성 -->
+<delete id="deleteBoard">
+delete from tbl_board where bno = #{bno}
+</delete>
+<update id="updateBoard">
+update tbl_board set 
+board_type = #{board_type}
+,title = #{title}
+,content = #{content}
+,writer = #{writer}
+,update_date = systimestamp
+where bno = #{bno}
+</update>
+<!-- 아래 뷰카운터는 게시물 상세보기시 카운트 증가,예 유투브조회수 증가방식과 비슷 -->
+<update id="updateViewCount">
+update tbl_board set
+view_count = nvl(view_count,0) + 1
+where bno = #{bno}
+</update>
+<select id="readBoard" resultType="com.edu.vo.BoardVO">
+select * from tbl_board where bno = #{bno}
+</select>
 <!-- bno필드변수가 자동증가가 되는 기능이 필요 seq.nextVal -->
 <insert id="insertBoard">
 	<selectKey keyProperty="seq_bno" resultType="int" order="BEFORE">
@@ -29,7 +59,7 @@ select table_b.* from
 ) table_b where table_b.rnum > #{queryStartNo}*#{queryPerPageNum}
 	]]>
 </select>
-<!-- 검색처리는 멤버쿼리에서 작성한 내용 붙여넣고, 다중게시판용 필드조회조건 추가예정? -->
+<!-- 검색처리는 멤버쿼리에서 작성한 내용 붙여넣고, 다중게시판용 필드조회조건 추가 PageVO -->
 <sql id="sqlWhere">
 WHERE board_type = #{board_type}
 	<if test="search_type != '' and search_type != null">
