@@ -68,6 +68,11 @@ select * from tbl_board where bno = #{bno}
 	#{seq_bno},#{title},#{content},#{writer},systimestamp,#{board_type}
 	)
 </insert>
+<!-- 페이징을 제외한 검색쿼리(board_type포함)를 이용해서 개수물 개수totalCount변수값 구하기 -->
+<select id="countBoard" resultType="int">
+select count(*) from tbl_board
+<include refid="sqlWhere" />
+</select>
 <!-- 페이징 처리 때문에 중첩쿼리 생성(아래) -->
 <select id="selectBoard" resultType="com.edu.vo.BoardVO">
 select table_b.* from
