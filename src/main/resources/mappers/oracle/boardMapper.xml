@@ -58,7 +58,9 @@ where bno = #{bno}
 <select id="readBoard" resultType="com.edu.vo.BoardVO">
 select * from tbl_board where bno = #{bno}
 </select>
-<!-- bno필드변수가 자동증가가 되는 기능이 필요 seq.nextVal -->
+<!-- bno필드변수가 자동증가가 되는 기능이 필요 seq.nextVal 
+parameterType 출력처리 OK.
+-->
 <insert id="insertBoard" parameterType="com.edu.vo.BoardVO">
 	<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 	select seq_bno.nextval from dual
