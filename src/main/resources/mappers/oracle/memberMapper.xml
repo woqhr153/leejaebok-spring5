@@ -93,8 +93,8 @@ SELECT TableB.* FROM
         ORDER BY reg_date DESC
     ) TableA
 <![CDATA[ 
-    WHERE ROWNUM <= (#{queryStartNo}*#{queryPerPageNum})+#{queryPerPageNum}
-) TableB WHERE TableB.RNUM > #{queryStartNo}*#{queryPerPageNum}
+    WHERE ROWNUM <= #{queryStartNo}+#{queryPerPageNum}
+) TableB WHERE TableB.RNUM > #{queryStartNo}
 ]]>
 </select>
 </mapper>
