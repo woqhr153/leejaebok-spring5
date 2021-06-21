@@ -4,10 +4,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -15,6 +19,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.edu.service.IF_BoardTypeService;
 import com.edu.vo.BoardTypeVO;
+import com.edu.vo.BoardVO;
 import com.edu.vo.PageVO;
 
 /**
@@ -22,9 +27,11 @@ import com.edu.vo.PageVO;
  * @author 김일국
  *
  */
+@Component
 @Aspect
 @ControllerAdvice
 public class AspectAdvice {
+	private Logger logger = LoggerFactory.getLogger(AspectAdvice.class);
 	@Inject
 	private IF_BoardTypeService boardTypeService;
 	
@@ -35,18 +42,37 @@ public class AspectAdvice {
 	//Aspect로 AOP를 구현할때는 포인트컷(Advice참견이 실행될 위치)이 필요합니다.
 	//@Around=@Before+@After = @Around(포인트컷 전+후.*(...)모든 메서드)
 	//@Around는 콜백함수 매개변수로 조인포인트객체(포인트컷에서 실해되는 메서드들) 를 필수로 받습니다.
-	@Around("execution(* com.edu.controller.*Controller.*(...))")
+	@Around("execution(* com.edu.controller.*Controller.*(..))")
 	public Object sessionManager(ProceedingJoinPoint pjp) throws Throwable {
 		//board_type변수값을 세션에 저장하려고 함. 클라이언트별 세션이 발생됨.
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 		//일반적인 컨트롤러에서는 매개변수 HttpServletRequest를 사용가능함. 위처럼 복잡하게 구하지 않음.
 		//컨트롤러 클래스에서 매개변수로 받을값(board_type) < pageVO
 		PageVO pageVO = null;
-		//조인포인트리스트의 객체들의 메서드의 Arguments(매개변수)를 뽑아냄 
+		String board_type = null;//jsp에서 전송되는 값을 임시로 저장,목적은 세션변수 발생조건으로사용
+		//조인포인트리스트의 객체의 메서드의 Arguments(매개변수)를 뽑아냄 
 		for(Object object:pjp.getArgs()) {
-			
+			if(object instanceof PageVO) {
+				pageVO = (PageVO) object;
+				board_type = pageVO.getBoard_type();
+			}
 		}
-		return null;
+		if(request != null) {//jsp에서 Get,Post 있을때,
+			//세션값을 pageVO.board_type 값으로 저장 로직(아래)
+			HttpSession session = request.getSession();//PC가 스프링프로젝트 접근시 세션객체
+			if(board_type != null) {//최초로 세션변수가 발생
+				session.setAttribute("session_board_type", board_type);
+			}
+			if(session.getAttribute("session_board_type") != null) {
+				board_type = (String) session.getAttribute("session_board_type");
+				pageVO.setBoard_type(board_type);//검색목표달성:여기서 항상 값을 가져가도록 구현됩니다.
+			}
+			logger.info("디버그19: "+(String) session.getAttribute("session_board_type"));
+		}
+		//Aspect > 포인트컷(Around) > 조인포인트(메서드) > 매개변수로 구현한 결과를 리턴
+		
+		Object result = pjp.proceed();//여기서 조인포인트가 실행됩니다.
+		return result;
 	}
 	
 	//이 메서드는 컨트롤러의 메서드가 실행 전에 값을 생성해서 model객체에 담아서 jsp로 자료를 전송
