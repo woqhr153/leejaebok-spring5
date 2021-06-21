@@ -87,6 +87,7 @@ select table_b.* from
 	(
 		select * from tbl_board
 		<include refid="sqlWhere" />
+		order by bno desc
 	) table_a
 	<![CDATA[
 	where rownum <= #{queryStartNo}+#{queryPerPageNum}
