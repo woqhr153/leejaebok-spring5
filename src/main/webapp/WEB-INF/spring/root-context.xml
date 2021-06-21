@@ -57,4 +57,14 @@
 	<!-- AOP 프록시 저장소 추가 와 AOP기본설정 내용 자동추가됨. -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<aop:config></aop:config>
+	<!-- 트랜잭션 설정 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- 파일업로드 설정 업로드 폴더위치 전역변수로 생성 bean을 실행시 초기값을 지정 contstructor사용 -->
+	<bean id="uploadPath" class="java.lang.String">
+		<constructor-arg value="c:\\upload" />
+	</bean>
+	
 </beans>
