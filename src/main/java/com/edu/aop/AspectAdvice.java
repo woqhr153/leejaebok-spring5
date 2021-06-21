@@ -27,7 +27,6 @@ import com.edu.vo.PageVO;
  * @author 김일국
  *
  */
-@Component
 @Aspect
 @ControllerAdvice
 public class AspectAdvice {
@@ -68,8 +67,7 @@ public class AspectAdvice {
 				pageVO.setBoard_type(board_type);//검색목표달성:여기서 항상 값을 가져가도록 구현됩니다.
 			}
 			logger.info("디버그19: "+(String) session.getAttribute("session_board_type"));
-		}
-		//Aspect > 포인트컷(Around) > 조인포인트(메서드) > 매개변수로 구현한 결과를 리턴
+		}		//Aspect > 포인트컷(Around) > 조인포인트(메서드) > 매개변수로 구현한 결과를 리턴
 		
 		Object result = pjp.proceed();//여기서 조인포인트가 실행됩니다.
 		return result;
