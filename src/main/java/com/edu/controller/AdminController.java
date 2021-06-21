@@ -49,11 +49,10 @@ public class AdminController {
 			pageVO.setPage(1);
 		}
 		pageVO.setPerPageNum(5);//UI하단에서 보여줄 페이징 번호 크기
-		//토탈 카운트를 구하기전 2개의 값이 필수로 필요(아래)
-		pageVO.setQueryPerPageNum(5);
+		pageVO.setQueryPerPageNum(5);//토탈 카운트를 구하기전 필수로 필요
 		pageVO.setTotalCount(boardService.countBoard(pageVO));
 		
-		model.addAttribute("listBoardVO", null);
+		model.addAttribute("listBoardVO", boardService.selectBoard(pageVO));
 		return "admin/board/board_list";//.jsp생략
 	}
 	//jsp에서 게시판생성관리에 Get/Post 접근할때 URL을 bbs_type로 지정합니다.
