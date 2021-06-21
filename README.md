@@ -26,6 +26,17 @@
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
 #### 20210622(화) 작업예정.
+- 수업시작전 아래 내용 확인
+
+```
+pageVO 객체가 발생하지 않는 곳에는 에러가 발생됩니다. 에러발생시 수정하실 부분은 아래와 같습니다.
+[수정전-아래]
+- pageVO.setBoard_type(board_type);//검색목표달성:...
+[수정후-아래]
+if(pageVO != null) {
+   pageVO.setBoard_type(board_type);//검색목표달성:...
+}
+```
 - 정방향으로 개발시작.VO제작.->매퍼쿼리제작.->DAO클래스제작->Service클래스제작.->Controller+jsp
 - 위 내용중 게시물 관리에서 CRUD 컨트롤러 + jsp 처리(4.파일업로드구현)
 - 관리자단 댓글관리 CRUD 처리(6.RestAPI서버구현,JUnit대신에 크롬부메랑으로 테스트)
