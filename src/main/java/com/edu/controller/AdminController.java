@@ -54,6 +54,7 @@ public class AdminController {
 		
 		//첨부파일 부분 attach데이터도 board_view.jsp로 이동해야 함(아래)
 		List<AttachVO> files = boardService.readAttach(bno);
+		logger.info("debug19: "+ files);
 		//배열객체 생성구조: String[] 배열명 = new String[배열크기];
 		//개발자가 만든 클래스형 객체 boardVO는 개발자가 만든 메서드 사용
 		//반면, List<AttachVO> files List클래스형 객체 files는 내장형 메서드 = .size()
