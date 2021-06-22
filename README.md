@@ -54,6 +54,9 @@ if(session.getAttribute("session_search_keyword") != null) {
 -#3 AdminController에서 아래 내용 일괄 삭제
 +"&search_keyword="+pageVO.getSearch_keyword()
 -#4. 기능개선 추가
+if(pageVO.getPage() == null) {
+ session.setAttribute(“세션”,””);
+}
 검색창에 ${session_search_keyword}추가
 그리고, include폴더 header.jsp 에 링크값에 ?search_type= 추가
 ```
