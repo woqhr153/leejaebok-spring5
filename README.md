@@ -26,12 +26,37 @@
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
 #### 20210623(수) 작업예정.
+- 수업전 작업예정: ie11이하계열에서 한글 검색 후 페이지 선택시 400에러발생(크롬계열은 문제없음)-AOP로처리.
 - 작업순서: CRUD -> UC 작업예정.
 - 업데이트 이후엔 파일업로드 구현 후 /download 컨트롤러 실습예정.
 - update: updateBoard(서비스)참조 -> board_update(컨트롤러)작업+jsp작업
 - 관리자단 댓글관리 CRUD 처리(6.RestAPI서버구현,JUnit대신에 크롬부메랑으로 테스트)
-- 에러상황: ie11이하계열에서 한글 검색 후 페이지 선택시 400에러발생(크롬계열은 문제없음)-AOP로처리가능한지검토
 
+```
+내일 수업전 실숩 순서는 아래와 같습니다.
+아래 순서대로 하시고, 개선된 기능은 수업시 알려 드리겠습니다.^^
+ie에서 한글검색과 페이징처리 함께사용시 에러상황 처리
+AOP로 처리 되었습니다.
+-#1 AOP에서 아래내용 추가
+String search_keyword = null;
+search_keyword = pageVO.getSearch_keyword();
+if(search_keyword != null) {//최초로 세션변수가 발생
+   session.setAttribute("session_search_keyword", search_keyword);
+}
+if(session.getAttribute("session_search_keyword") != null) {
+   search_keyword = (String) session.getAttribute("session_search_keyword");
+   if(pageVO != null) {//Set은 pageVO가 null아닐 경우만 실행되도록
+      pageVO.setSearch_keyword(search_keyword);//검색목표달성:여기서 항상 값을 가져가도록 구현됩니다.
+   }
+}
+-#2 member와 board 뷰jsp파일에서 아래 내용을 일괄 삭제
+&search_keyword=${pageVO.search_keyword}
+-#3 AdminController에서 아래 내용 일괄 삭제
++"&search_keyword="+pageVO.getSearch_keyword()
+-#4. 기능개선 추가
+검색창에 ${session_search_keyword}추가
+그리고, include폴더 header.jsp 에 링크값에 ?search_type= 추가
+```
 #### 20210622(화) 작업.
 - 수업시작전 아래 내용 확인
 
