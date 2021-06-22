@@ -103,7 +103,7 @@
               <button type="button" class="btn btn-default" id="btn_list">목록</button>
             </div>
             <input name="page" value="${pageVO.page}" type="hidden">
-            <input name="search_type" value="${pageVO.search_type}" type="hidden">
+            <input name="search_type" value="${pageVO.search_type}" type="text">
             <input name="search_keyword" value="${pageVO.search_keyword}" type="hidden">
             <input name="bno" value="${boardVO.bno}" type="hidden">
           </form>
