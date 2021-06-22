@@ -52,6 +52,7 @@ public class AdminController {
 	@RequestMapping(value="/admin/board/board_delete", method=RequestMethod.POST)
 	public String board_delete(@RequestParam("bno")Integer bno,PageVO pageVO) throws Exception {
 		//디버그 삭제할 전역변수 경로 확인
+		logger.info("디버그 전역업로드경로: " + commonUtil.getUploadPath());
 		//DB테이블삭제한 이후, 첨부파일부터 있으면 삭제처리. 자바에서 파일핸들링처리
 		//기존 등록된 첨부파일 폴더에서 삭제할 UUID(고유한식별값생성클래스)이름을 추출합니다.(아래)
 		List<AttachVO> delFiles = boardService.readAttach(bno);//해당게시물의 모든 첨부파일 delFiles 에 임시로 담아 놓습니다.
