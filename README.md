@@ -40,7 +40,7 @@ if(pageVO != null) {
 - 정방향으로 개발시작.VO제작.->매퍼쿼리제작.->DAO클래스제작->Service클래스제작.->Controller+jsp
 - 위 내용중 게시물 관리에서 CRUD 컨트롤러 + jsp 처리(4.파일업로드구현)
 - 작업순서: RUD -> C
-- Read: readBoard(서비스)참조 -> board_view(컨트롤러)작업예정
+- Read: readBoard(서비스)참조 -> board_view(컨트롤러)작업+jsp작업
 - 관리자단 댓글관리 CRUD 처리(6.RestAPI서버구현,JUnit대신에 크롬부메랑으로 테스트)
 - 에러상황: ie11이하계열에서 한글 검색 후 페이지 선택시 400에러발생(크롬계열은 문제없음)
 
