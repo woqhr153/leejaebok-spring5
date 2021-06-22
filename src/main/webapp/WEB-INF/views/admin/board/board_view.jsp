@@ -34,7 +34,7 @@
           <!-- /.card-header -->
           <!-- form start -->
           <!-- 첨부파일을 전송할때 enctype=필수 없으면, 첨부파일이 전송X -->
-          <form name="form_view" action="/admin/board/board_update" enctype="multipart/form-data">
+          <form name="form_view" action="/admin/board/board_update_form" enctype="multipart/form-data">
             <div class="card-body">
               <div class="form-group">
                 <label for="exampleInputEmail1">제목</label>
@@ -64,10 +64,10 @@
               <div class="form-group">
                 <label for="exampleInputFile">첨부파일</label>
                 <c:forEach begin="0" end="1" var="idx">
-	                <c:if test="${boardVO.save_file_names[idx] == null}">
+	                <c:if test="${boardVO.save_file_names[idx] != null}">
 	                <div class="input-group">
 	                  <div class="custom-file">
-	                  	<!-- 첨부파일을 URL로 직접접근하지 못하기 때문에 다운로드전용 메서드생성 -->
+	                  	<!-- 첨부파일을 URL로 직접접근하지 못하기 때문에 컨트롤러로만 접근이 가능(다운로드전용 메서드생성) -->
 	                    <a href="/download?save_file_name=${boardVO.save_file_names[idx]}&real_file_name=${boardVO.real_file_names[idx]}">
 	                    ${boardVO.real_file_names[idx]}
 	                    </a>
@@ -75,7 +75,20 @@
 	                    	String[] fileNameArray = String.split('변수값','분할기준값');
 	                    -->
 	                    <c:set var="fileNameArray" value="${fn:split(boardVO.save_file_names[idx],'.')}" />
-	                    <c:set var="extName" value="${fileNameArray[fn:length()}" />
+	                    <!-- 그림판.얼굴.코.JPG = 3개배열, 그림판.jpg = 2개배열 -->
+	                    <c:set var="extName" value="${fileNameArray[fn:length(fileNameArray)-1]}" />
+	                    <!-- 그림판.얼굴.jpg 파일을 위 변수로 처리시 extName = fineNameArray[2] = jpg -->
+	                    <!-- 자바언어로는 switch ~ case문 ~ default -->
+	                    <!-- containsIgnoreCase('찾을값의문장','비교기준값') -->
+	                    <c:choose>
+	                    	<c:when test="${fn:containsIgnoreCase(checkImgArray,extName)}">
+	                    		<img src="/image_preview?save_file_name=${boardVO.save_file_names[idx]}" style="width:100%;">
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<!-- 아무의미 없이 개발연습용으로  -->
+	                    		<c:out value="${checkImgArray}" /> 이미지가 아님.
+	                    	</c:otherwise>
+	                    </c:choose>
 	                  </div>
 	                </div>
 	                </c:if>
@@ -86,11 +99,16 @@
 
             <div class="card-footer text-right">
               <button type="submit" class="btn btn-primary">수정</button>
-              <button type="button" class="btn btn-danger">삭제</button>
-              <a href="board_list.html" class="btn btn-default">목록</a>
+              <button type="button" class="btn btn-danger" id="btn_delete">삭제</button>
+              <button type="button" class="btn btn-default" id="btn_list">목록</button>
             </div>
+            <input name="page" value="${pageVO.page}" type="hidden">
+            <input name="search_type" value="${pageVO.search_type}" type="hidden">
+            <input name="search_keyword" value="${pageVO.search_keyword}" type="hidden">
+            <input name="bno" value="${boardVO.bno}" type="hidden">
           </form>
         </div>
+        
         <!-- 댓글 입력폼 -->
         <div class="col-md-12">
           <div class="card-default">
@@ -207,3 +225,15 @@
   <!-- /.content-wrapper -->
 
 <%@ include file="../include/footer.jsp" %>
+<script>
+$(document).ready(function(){
+	$("#btn_list").click(function(){
+		var form_view = $("form[name='form_view']");
+		form_view.attr("action","/admin/board/board_list");
+		form_view.submit();
+	});
+	$("#btn_delete").click(function(){
+		alert('준비중 입니다.');
+	});
+});
+</script>
