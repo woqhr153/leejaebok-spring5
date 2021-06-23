@@ -1,6 +1,9 @@
 package com.edu.util;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -8,10 +11,13 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.edu.service.IF_MemberService;
 import com.edu.vo.MemberVO;
@@ -83,5 +89,18 @@ public class CommonUtil {
 			}
 		}
 		return memberCnt;//0.jsp 이렇게 작동하지 않습니다. 이유는 @ResponseBody때문이고, RestAPI는 값만 반환
+	}
+
+	//파일 업로드 공통 메서드(Admin컨트롤러에서 사용 + Home컨트롤러에서도 사용)
+	public String fileUpload(MultipartFile file) throws IOException {
+		// TODO UUID클래스로 저장될 고유식별(PK) 파일명을 생성 후 물리적으로 저장
+		String realFileName = file.getOriginalFilename();
+		// 폴더에 저장할 PK파일명을 생성(아래)
+		UUID uid = UUID.randomUUID();//유니크ID값 생성
+		String saveFileName = uid.toString() + "." + StringUtils.getFilenameExtension(realFileName);
+		byte[] fileData = file.getBytes();
+		File target = new File(uploadPath, saveFileName);
+		FileCopyUtils.copy(fileData, target);//파일이 물리적으로 폴더에 저장됨.
+		return saveFileName;
 	}
 }
