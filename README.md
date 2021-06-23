@@ -32,7 +32,7 @@
 - 세션 삭제하기: session.removeAttribute("세션변수명");//변수삭제
 - 전체세션삭제하기: session.invalidate();//전체 세션변수명을 삭제 = 세션초기화 = 로그아웃시 사용.
 - 수업전 작업예정: ie11이하계열에서 한글 검색 후 페이지 선택시 400에러발생(크롬계열은 문제없음)-AOP로처리.
-- 작업순서: CRUD -> UC 작업예정.
+- 작업순서: CRUD -> UC 작업.
 - 업데이트 이후엔 파일업로드 구현 후 /download 컨트롤러 실습예정.
 - update: updateBoard(서비스)참조 -> board_update(컨트롤러)작업+jsp작업
 - 관리자단 댓글관리 CRUD 처리(6.RestAPI서버구현,JUnit대신에 크롬부메랑으로 테스트)

@@ -85,7 +85,7 @@
         <!-- //콘텐츠 내용 -->
         <!-- 페이징 처리 -->
         <div class="col-12 text-right">
-          <a href="/admin/board/board_insert" class="btn btn-primary mb-3">글쓰기</a>
+          <a href="/admin/board/board_insert_form" class="btn btn-primary mb-3">글쓰기</a>
           <ul class="pagination justify-content-center">
               <li class="paginate_button page-item previous ${pageVO.prev==false?'disabled':''}" id="example2_previous">
                 <a href="/admin/board/board_list?page=${pageVO.startPage-1}&search_type=${pageVO.search_type}" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
