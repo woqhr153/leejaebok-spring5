@@ -99,7 +99,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/admin/member/member_list" class="nav-link">
+            <a href="/admin/member/member_list?search_keyword=" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>관리자관리</p>
             </a>
@@ -121,7 +121,7 @@
               <!-- 위 게시판 생성관리에서 만든 게시판 개수에 따라서 자동 증가(아래) -->
               <c:forEach var="boardTypeVO" items="${listBoardTypeVO}">
               <li class="nav-item">
-                <a href="/admin/board/board_list?board_type=${boardTypeVO.board_type}" class="nav-link">
+                <a href="/admin/board/board_list?board_type=${boardTypeVO.board_type}&search_keyword=" class="nav-link">
                   <i class="far fa-dot-circle nav-icon"></i>
                   <p>${boardTypeVO.board_name}</p>
                 </a>

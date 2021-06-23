@@ -84,7 +84,7 @@
             </div>
             <input name="page" type="hidden" value="${pageVO.page}">
             <input name="search_type" type="hidden" value="${pageVO.search_type}">
-            <input name="search_keyword" type="hidden" value="${pageVO.search_keyword}">
+            <%-- <input name="search_keyword" type="hidden" value="${pageVO.search_keyword}"> --%>
           </form>
         </div>
         <!-- //콘텐츠 내용 -->

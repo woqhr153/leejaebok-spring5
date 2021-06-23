@@ -41,7 +41,7 @@
                     <option value="user_id">아이디</option>
                     <option value="user_name">이름</option>
                   </select>  
-                  <input type="text" name="search_keyword" class="form-control float-left" placeholder="Search" style="width: inherit;">
+                  <input type="text" value="${session_search_keyword}" name="search_keyword" class="form-control float-left" placeholder="Search" style="width: inherit;">
                   <div class="input-group-append float-left" style="width: inherit;">
                     <button type="submit" class="btn btn-default">
                       <i class="fas fa-search"></i>
@@ -74,7 +74,7 @@
               	</c:if>
                 <!-- jstl반복문으로 listMember객체 바인딩 -->
                 <c:forEach var="memberVO" items="${listMember}">
-                <tr style="cursor: pointer;" onclick="location.replace('/admin/member/member_view?page=${pageVO.page}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}&user_id=${memberVO.user_id}');">
+                <tr style="cursor: pointer;" onclick="location.replace('/admin/member/member_view?page=${pageVO.page}&search_type=${pageVO.search_type}&user_id=${memberVO.user_id}');">
                   <td><c:out value="${memberVO.user_id}" /></td>
                   <td><c:out value="${memberVO.user_name}" /></td>
                   <td><c:out value="${memberVO.email}" /></td>
@@ -91,23 +91,23 @@
         <!-- //콘텐츠 내용 -->
         <!-- 페이징 처리 -->
         <div class="col-12 text-right">
-          <a href="/admin/member/member_insert_form?page=${pageVO.page}&search_keyword=${pageVO.search_keyword}&search_type=${pageVO.search_type}" class="btn btn-primary mb-3">회원등록</a>
+          <a href="/admin/member/member_insert_form?page=${pageVO.page}&search_type=${pageVO.search_type}" class="btn btn-primary mb-3">회원등록</a>
           
           <ul class="pagination justify-content-center">
           	  
               <li class="paginate_button page-item previous <c:out value="${pageVO.prev==false?'disabled':'' }" />" id="example2_previous">
-                <a href="/admin/member/member_list?page=${pageVO.startPage-1}&search_keyword=${pageVO.search_keyword}&search_type=${pageVO.search_type}" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                <a href="/admin/member/member_list?page=${pageVO.startPage-1}&search_type=${pageVO.search_type}" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
               </li>
               
               <c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1" var="idx">
 	              
 	              <li class="paginate_button page-item <c:out value="${idx==pageVO.page?'active':''}" />">
-	                <a href="/admin/member/member_list?page=${idx}&search_keyword=${pageVO.search_keyword}&search_type=${pageVO.search_type}" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">${idx}</a>
+	                <a href="/admin/member/member_list?page=${idx}&search_type=${pageVO.search_type}" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">${idx}</a>
 	              </li> 
               </c:forEach>
                             
               <li class="paginate_button page-item next <c:out value="${pageVO.next==false?'disabled':'' }" />" id="example2_next">
-                <a href="/admin/member/member_list?page=${pageVO.endPage+1}&search_keyword=${pageVO.search_keyword}&search_type=${pageVO.search_type}" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+                <a href="/admin/member/member_list?page=${pageVO.endPage+1}&search_type=${pageVO.search_type}" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
               </li>
           </ul>
         </div>

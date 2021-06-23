@@ -83,7 +83,7 @@
             </div>
             <input name="page" type="hidden" value="${pageVO.page}">
             <input name="search_type" type="hidden" value="${pageVO.search_type}">
-            <input name="search_keyword" type="hidden" value="${pageVO.search_keyword}">
+            <%-- <input name="search_keyword" type="hidden" value="${pageVO.search_keyword}"> --%>
           </form>
         </div>
         <!-- //콘텐츠 내용 -->
@@ -104,9 +104,13 @@ $(document).ready(function(){
 		form_update.submit();
 	});
 	$("#btn_list").click(function(){
+		/* 폼을 get방식을 전송시 암호와 같은 정보가 URL쿼리 스트링에 노출되어서 주석처리 
 		form_update.attr("action","/admin/member/member_list");
 		form_update.attr("method","get");
 		form_update.submit();
+		*/
+		var queryString = 'page=${pageVO.page}&search_type=${pageVO.search_type}';
+		location.replace('/admin/member/member_list?'+queryString);
 	});
 });
 </script>

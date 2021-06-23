@@ -74,8 +74,9 @@ public class BoardServiceImpl implements IF_BoardService {
 	@Override
 	public BoardVO readBoard(int bno) throws Exception {
 		// TODO 게시물 상세보기시 실행순서 readBoard -> updateViewCount 2개의 메서드가 필요
-		BoardVO boardVO = boardDAO.readBoard(bno);
 		boardDAO.updateViewCount(bno);
+		BoardVO boardVO = boardDAO.readBoard(bno);
+		
 		return boardVO;
 	}
 
