@@ -25,7 +25,18 @@
 - ======== 2주간 작업내역 끝(07.16금) ===================
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
-#### 20210624(목) 작업예정
+#### 20210624(목) 작업.
+[복습]오늘 작업한 첨부파일 처리도 데이터 변수의 이동상태나 변수값이 제일 중요합니다.
+핵심은 아래와 같습니다. Attach테이블에서 select쿼리 결과 테이터 구조는 아래와 같습니다.
+List<AttachVO> delFiles = [
+{"save_file_name":"abc1.jpg","real_file_name":"한글이미지1.jpg","bno":"bno10"},
+{"save_file_name":"abc2.jpg","real_file_name":"한글이미지2.jpg","bno":"bno10"}
+]
+데이터베이스에서 가져올때, 위와 같이 구조가 발생됩니다. 구조를 정리하면 아래와 같습니다.
+대괄호 List[VO배열] 안에 
+중괄호 VO{1개레코드 } 안에
+콜론으로 "키":"값" 구분 후 콥마, 로 멤버변수들을 구분합니다.
+
 - file.getBytes() 설명 포함 board_update메서드 리뷰 후 수업진행.
 - 작업순서: CRUD -> UC 작업.
 - update: updateBoard(서비스)참조 -> board_update(컨트롤러)작업+jsp작업
