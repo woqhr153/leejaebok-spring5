@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.edu.dao.IF_BoardDAO;
 import com.edu.service.IF_BoardService;
 import com.edu.service.IF_BoardTypeService;
 import com.edu.service.IF_MemberService;
@@ -48,7 +49,17 @@ public class AdminController {
 	private IF_BoardService boardService;//DI으로 스프링빈을 주입해서 객체로 생성
 	@Inject
 	private CommonUtil commonUtil;
+	@Inject
+	private IF_BoardDAO boardDAO;
 	
+	//게시물 등록 폼을 Get으로 호출합니다.
+	@RequestMapping(value="/admin/board/board_insert_form", method=RequestMethod.GET)
+	public String board_insert_form(@ModelAttribute("pageVO")PageVO pageVO) throws Exception {
+		if(pageVO.getPage() == null) {
+			pageVO.setPage(1);
+		}
+		return "admin/board/board_insert";//.jsp생략
+	}
 	//게시물 수정처리는 POST로만 접근가능
 	@RequestMapping(value="/admin/board/board_update", method=RequestMethod.POST)
 	public String board_update(@RequestParam("file")MultipartFile[] files,BoardVO boardVO, PageVO pageVO) throws Exception {
@@ -67,6 +78,8 @@ public class AdminController {
 						File target = new File(commonUtil.getUploadPath(),file_name.getSave_file_name());
 						if(target.exists()) {
 							target.delete();//물리적인 파일 지우는 명령
+							//DB지우는 부분  추가
+							boardDAO.deleteAttach(file_name.getSave_file_name());
 						}//if(target.exists())
 					}//if(idx == sun)
 					sun = sun + 1;//sun++
