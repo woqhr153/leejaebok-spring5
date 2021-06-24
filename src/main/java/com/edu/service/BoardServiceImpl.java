@@ -60,11 +60,13 @@ public class BoardServiceImpl implements IF_BoardService {
 		int index = 0;
 		String real_file_name = "";
 		for(String save_file_name:save_file_names) {
-			real_file_name = real_file_names[index];
-			attachVO.setBno(bno);
-			attachVO.setSave_file_name(save_file_name);
-			attachVO.setReal_file_name(real_file_name);
-			boardDAO.updateAttach(attachVO);
+			if(save_file_name != null) {//컨트롤러에서 null이 들어갈수 있는 로직이라서 추가
+				real_file_name = real_file_names[index];
+				attachVO.setBno(bno);
+				attachVO.setSave_file_name(save_file_name);
+				attachVO.setReal_file_name(real_file_name);
+				boardDAO.updateAttach(attachVO);
+			}
 			index = index + 1;//index++;
 		}
 				
@@ -95,11 +97,13 @@ public class BoardServiceImpl implements IF_BoardService {
 		String real_file_name = "";//UI용 1개 파일명
 		AttachVO attachVO = new AttachVO();
 		for(String save_file_name:save_file_names) {//첨부파일 개수만큼 반복진행
-			real_file_name = real_file_names[index];
-			attachVO.setBno(bno);
-			attachVO.setReal_file_name(real_file_name);
-			attachVO.setSave_file_name(save_file_name);
-			boardDAO.insertAttach(attachVO);
+			if(save_file_name != null) {
+				real_file_name = real_file_names[index];			
+				attachVO.setBno(bno);
+				attachVO.setReal_file_name(real_file_name);
+				attachVO.setSave_file_name(save_file_name);
+				boardDAO.insertAttach(attachVO);
+			}
 			index++;//index = index + 1;
 		}
 	}
