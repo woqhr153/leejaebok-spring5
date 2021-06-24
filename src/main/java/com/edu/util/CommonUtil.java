@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -14,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -49,6 +52,18 @@ public class CommonUtil {
 		return uploadPath;
 	}
 
+	//다운로드 처리도 같은 페이지에서 결과값만 반환받는 @ResponseBody 사용
+	@RequestMapping(value="/download", method=RequestMethod.GET)
+	@ResponseBody
+	public FileSystemResource download(@RequestParam("save_file_name")String save_file_name, @RequestParam("real_file_name")String real_file_name, HttpServletResponse response) throws Exception {
+		//FileSyste...은 스프링 코어에서 제공하는 전용 파일처리 클래스
+		File file = new File(uploadPath + "/" + save_file_name);
+		response.setContentType("application/download; utf-8");//아래한글,ppt문서등에서 한글내용이 깨지는 것을 방지하는 코드추가
+		real_file_name = URLEncoder.encode(real_file_name);//ie에서 URL한글일때 에러발생방시 코드 추가
+		response.setHeader("Content-Disposition", "attachment; filename=" + real_file_name);
+		return new FileSystemResource(file);
+	}
+	
 	//페이지이동이 아닌 같은 페이지에 결과값만 반환하는 @ResponseBody 
 	@RequestMapping(value="/image_preview", method=RequestMethod.GET)
 	@ResponseBody
@@ -92,8 +107,8 @@ public class CommonUtil {
 			break;
 		default:break;
 		}
-		return null;
-		//return new ResponseEntity<byte[]>(fileArray);//객체생성시 초기값(rawData,)
+		
+		return new ResponseEntity<byte[]>(fileArray,headers,HttpStatus.CREATED);//객체생성시 초기값(rawData,헤더정보,HTTP상태값)
 	}
 	//XSS 크로스사이트스크립트 방지용 코드로 파싱하는 메서드(아래)
 	public String unScript(String data) {
