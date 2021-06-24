@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.edu.dao.IF_BoardDAO;
 import com.edu.service.IF_MemberService;
 import com.edu.vo.MemberVO;
 
@@ -44,6 +45,8 @@ public class CommonUtil {
 	private Logger logger = LoggerFactory.getLogger(CommonUtil.class);
 	@Inject
 	private IF_MemberService memberService;//스프링빈을 주입받아서(DI) 객체준비
+	@Inject
+	private IF_BoardDAO boardDAO;
 	
 	//첨부파일 업로드/다운로드/삭제/인서트/수정에 모두 사용될 저장경로를 1개지정해서 [전역]으로사용
 	@Resource(name="uploadPath")
@@ -52,6 +55,23 @@ public class CommonUtil {
 		return uploadPath;
 	}
 
+	//첨부파일 개별삭제 Ajax로 받아서 처리, @ResponseBody사용
+	@RequestMapping(value="/file_delete", method=RequestMethod.POST)
+	@ResponseBody
+	public String file_delete(@RequestParam("save_file_name")String save_file_name) { //Ajax는 예외처리를 스프링에 던지지 않고, try~catch문으로 처리.
+		String result = "";//Ajax로 보내는 값변수
+		try {
+			boardDAO.deleteAttach(save_file_name);
+			File target = new File(uploadPath + "/" + save_file_name);
+			if(target.exists()) {
+				target.delete();
+			}
+			result = "success";
+		} catch (Exception e) {
+			result = "fail: " + e.toString();
+		}
+		return result;//Ajax에서 바로확인 가능
+	}
 	//다운로드 처리도 같은 페이지에서 결과값만 반환받는 @ResponseBody 사용
 	@RequestMapping(value="/download", method=RequestMethod.GET)
 	@ResponseBody
