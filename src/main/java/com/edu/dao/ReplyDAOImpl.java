@@ -1,6 +1,8 @@
 package com.edu.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -22,26 +24,29 @@ public class ReplyDAOImpl implements IF_ReplyDAO{
 	
 	@Override
 	public void deleteReplyAll(Integer bno) throws Exception {
-		// TODO Auto-generated method stub
-		
+		// TODO 여러개 레코드 지우기
+		sqlSession.delete("replyMapper.deleteReplyAll", bno);
 	}
 
 	@Override
-	public void deleteReply(Integer rno) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void deleteReply(ReplyVO replyVO) throws Exception {
+		// TODO 1게 레코드 지우기
+		sqlSession.delete("replyMapper.deleteReply", replyVO);
 	}
 
 	@Override
 	public void updateReply(ReplyVO replyVO) throws Exception {
-		// TODO Auto-generated method stub
-		
+		// TODO 
+		sqlSession.update("replyMapper.updateReply", replyVO);
 	}
 
 	@Override
 	public void replyCountUpdate(Integer bno, int count) throws Exception {
-		// TODO 매개변수가 2개일때 처리
-		
+		// TODO 매개변수가 2개일때 처리 1개 오브젝트인 Map테이터형태로 담아보냄
+		Map<String,Object> paramMap = new HashMap<String,Object>();
+		paramMap.put("bno", bno);
+		paramMap.put("count", count);
+		sqlSession.update("replyMapper.replyCountUpdate", paramMap);
 	}
 
 	@Override
