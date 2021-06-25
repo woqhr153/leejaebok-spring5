@@ -63,10 +63,11 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputFile">첨부파일</label>
+                <div class="input-group">
                 <c:forEach begin="0" end="1" var="idx">
 	                <c:if test="${boardVO.save_file_names[idx] != null}">
-	                <div class="input-group">
-	                  <div class="">
+	                
+	                  <div class="" style="height:500px;overflow:scroll">
 	                  	<!-- JSTL의 c:url 태그로 URL감싸주면 인코딩처리됩니다.(한글이 인코딩이됩니다) -->
 	                  	<c:url value="/download" var="url"> 
 						   <c:param name="save_file_name" value="${boardVO.save_file_names[idx]}" />
@@ -96,9 +97,10 @@
 	                    	</c:otherwise>
 	                    </c:choose>
 	                  </div>
-	                </div>
+	                
 	                </c:if>
-                </c:forEach>                
+                </c:forEach> 
+                </div>              
               </div>
             </div>
             <!-- /.card-body -->
