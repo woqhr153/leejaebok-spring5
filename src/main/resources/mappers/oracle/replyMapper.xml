@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="replyMapper">
+
+<update id="updateReply">
+update tbl_reply set
+reply_text = #{reply_text}
+,update_date = systimestamp
+where rno = #{rno}
+</update>
+<!-- 댓글을 등록할때 게시판테이블에 reply_count필드에 값이 +1발생 -->
+<update id="replyCountUpdate">
+update tbl_board set reply_count + #{}
+</update>
+<!-- 댓글에서는 Read가 별도로 없이 Select 1개로 구현이됨 -->
+<insert id="insertReply">
+	<selectKey keyProperty="rno" resultType="int" order="BEFORE">
+	select seq_rno.nextval from dual
+	</selectKey>
+	insert into tbl_reply 
+	(rno, reply_text, replyer, reg_date, bno)
+	values
+	(#{rno}, #{reply_text}, #{replyer}, systimestamp, #{bno})
+</insert>
+
+<select id="countReply" resultType="int">
+select count(*) from tbl_reply where bno = #{bno}
+</select>
+
+<select id="selectReply" resultType="com.edu.vo.ReplyVO">
+select rnum, tableB.* from 
+(
+	select rownum AS rnum, tableA.* from 
+	(
+		select * from tbl_reply
+		where bno = #{bno}
+		order by rno desc
+	) tableA
+<![CDATA[
+	where rownum <= #{queryStartNo}+#{queryPerPageNum}
+) tableB
+where rnum > #{queryStartNo}
+]]>	
+</select>
+</mapper>
