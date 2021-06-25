@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="replyMapper">
+<!-- 게시물을 지울때, 댓글내용을 먼저 지우는 쿼리 -->
+<delete id="deleteReplyAll">
+delete from tbl_reply where bno = #{bno}
+</delete>
+
+<delete id="deleteReply">
+delete from tbl_reply where rno = #{rno}
+</delete>
 
 <update id="updateReply">
 update tbl_reply set
@@ -8,10 +16,15 @@ reply_text = #{reply_text}
 ,update_date = systimestamp
 where rno = #{rno}
 </update>
+
 <!-- 댓글을 등록할때 게시판테이블에 reply_count필드에 값이 +1발생 -->
+<!-- 댓글을 삭제할때 게시판테이블에 reply_count필드에 값이 -1발생 -->
 <update id="replyCountUpdate">
-update tbl_board set reply_count + #{}
+update tbl_board set 
+reply_count = reply_count + #{count}
+where bno = #{bno}
 </update>
+
 <!-- 댓글에서는 Read가 별도로 없이 Select 1개로 구현이됨 -->
 <insert id="insertReply">
 	<selectKey keyProperty="rno" resultType="int" order="BEFORE">
