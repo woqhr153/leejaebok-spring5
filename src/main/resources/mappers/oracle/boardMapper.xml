@@ -15,7 +15,7 @@ insert into tbl_attach (save_file_name,real_file_name,reg_date,bno)
 values (#{save_file_name},#{real_file_name},sysdate,#{bno})
 </insert>
 <select id="readAttach" resultType="com.edu.vo.AttachVO">
-select * from tbl_attach where bno = #{bno}
+select * from tbl_attach where bno = #{bno} order by reg_date asc
 </select> 
 <!-- 게시물등록시 발생된 bno를 구한 결과값 1개만 구해서 첨부파일의 bno입력값으로 사용-서브쿼리사용 -->
 <insert id="insertAttach">

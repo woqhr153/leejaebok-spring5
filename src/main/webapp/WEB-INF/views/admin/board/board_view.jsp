@@ -3,6 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../include/header.jsp" %>
+<style>
+/* 아래 미디어쿼리는 IE10,11에서 지원하는 전용CSS 적용시 사용 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+ .ie_only {max-height:500px;overflow:auto;}
+}
+</style>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -67,7 +74,7 @@
                 <c:forEach begin="0" end="1" var="idx">
 	                <c:if test="${boardVO.save_file_names[idx] != null}">
 	                
-	                  <div class="" style="height:500px;overflow:scroll">
+	                  <div class="ie_only" style="">
 	                  	<!-- JSTL의 c:url 태그로 URL감싸주면 인코딩처리됩니다.(한글이 인코딩이됩니다) -->
 	                  	<c:url value="/download" var="url"> 
 						   <c:param name="save_file_name" value="${boardVO.save_file_names[idx]}" />
