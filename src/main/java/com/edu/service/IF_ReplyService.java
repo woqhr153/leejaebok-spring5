@@ -15,5 +15,5 @@ public interface IF_ReplyService {
 	public void updateReply(ReplyVO replyVO) throws Exception;
 	public void insertReply(ReplyVO replyVO) throws Exception;//replyVO jsp폼에서
 	public int countReply(Integer bno) throws Exception;
-	public List<ReplyVO> selectReply(PageVO pageVO) throws Exception;
+	public List<ReplyVO> selectReply(Integer bno, PageVO pageVO) throws Exception;
 }
