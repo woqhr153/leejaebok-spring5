@@ -32,6 +32,7 @@ public class ReplyController {
 	public ResponseEntity<Map<String,Object>> reply_list(@PathVariable("bno")Integer bno,@PathVariable("page")Integer page) {
 		//ResponseEntity는 일반 Controller클래스에서 사용했던 ResponseBody와 같은 역할.
 		//URL주소가 아니고, Json데이터형으로 자료를 반환.
+		/*
 		Map<String,Object> dummyMap1 = new HashMap<String,Object>();
 		Map<String,Object> dummyMap2 = new HashMap<String,Object>();
 		Map<String,Object> dummyMap3 = new HashMap<String,Object>();
@@ -54,19 +55,30 @@ public class ReplyController {
 		dummyMapList.add(0, dummyMap1);
 		dummyMapList.add(1, dummyMap2);
 		dummyMapList.add(2, dummyMap3);
-		
+		*/
 		ResponseEntity<Map<String,Object>> result = null;
 		try {
+		PageVO pageVO = new PageVO();
+		pageVO.setPage(page);
+		//댓글 페이징 처리(아래 3개는 필수)
+		pageVO.setPerPageNum(5);
+		pageVO.setQueryPerPageNum(5);
+		pageVO.setTotalCount(replyService.countReply(bno));
+		//더미데이터 대신에 DB데이터를 가져와서 사용
 		//====================================================
-		//아래 resultMap을 만든 목적은: 위 List객체를 ResponseEntity객체의 매개변수로 사용.
-		Map<String,Object> resultMap = new HashMap<String,Object>();
-		//아래의 Json데이터형태는 일반컨트롤러에서 사용했던 model사용해서 ("변수명",객체내용) 전송한 방식과 동일
-		resultMap.put("replyList", dummyMapList);
-		//객체를 2개 이상 보내게 되는 상황일때, Json데이터형태(key:value)로 만들어서 보냅니다. 
-		//--------------------------------------------------------
 		
-		//result객체를 만든목적:RestApi클라이언트(jsp쪽)으로 resultMap객체를 보낼때 상태값을 보내기위해서
-		result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.OK);
+		//아래의 Json데이터형태는 일반컨트롤러에서 사용했던 model사용해서 ("변수명",객체내용) 전송한 방식과 동일
+		if(pageVO.getTotalCount() > 0) {
+			//아래 resultMap을 만든 목적은: 위 List객체를 ResponseEntity객체의 매개변수로 사용.
+			Map<String,Object> resultMap = new HashMap<String,Object>();
+			resultMap.put("replyList", replyService.selectReply(pageVO));
+			//객체를 2개 이상 보내게 되는 상황일때, Json데이터형태(key:value)로 만들어서 보냅니다. 
+			//--------------------------------------------------------
+			//result객체를 만든목적:RestApi클라이언트(jsp쪽)으로 resultMap객체를 보낼때 상태값을 위해서
+			result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.OK);
+		} else {
+			result = new ResponseEntity<Map<String,Object>>(HttpStatus.NO_CONTENT);
+		}
 		//======================================================
 		} catch(Exception e) {
 			result = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
