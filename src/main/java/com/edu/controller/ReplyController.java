@@ -34,7 +34,7 @@ public class ReplyController {
 	private IF_ReplyService replyService;
 	
 	//댓글 삭제를 RestFul로 처리
-	@RequestMapping(value="reply/reply_delete", method=RequestMethod.DELETE)
+	@RequestMapping(value="/reply/reply_delete", method=RequestMethod.DELETE)
 	public ResponseEntity<String> reply_delete() {
 		ResponseEntity<String> result = null;
 		//삭제 기능을 내일부터
@@ -42,7 +42,7 @@ public class ReplyController {
 	}
 	//댓글은 Read가 필요없음. 왜냐하면, Select로 가져온 값을 Ajax로 처리하기 때문에 쿼리를 날릴 필요가 없습니다.
 	//그래서, 바로 Update를 처리합니다.-간단하게 update시 Read쿼리가 없고, Ajax처리함.
-	@RequestMapping(value="reply/reply_update", method=RequestMethod.PATCH)
+	@RequestMapping(value="/reply/reply_update", method=RequestMethod.PATCH)
 	public ResponseEntity<String> reply_update(@RequestBody ReplyVO replyVO) {
 		//@RequestBody jsp에서 $.ajax를 이용해서 보내는 데이터값 <-> @ResponseBody 응답return값
 		ResponseEntity<String> result = null;
