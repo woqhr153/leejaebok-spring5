@@ -149,7 +149,7 @@
                 </div>
                 <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
                 <button type="button" class="btn btn-warning" id="btn_reply_write">댓글등록</button>
-                <input type="hidden" value="" id="reply_page">
+                <input type="hidden" value="1" id="reply_page">
                 </div>
               </div>
               </div>
@@ -273,10 +273,38 @@ var printPagingList = function(pageVO, target) {
 	pagination += '</li>';
 	$(target).append(pagination);
 };
+//함수형 변수로서 댓글 리스트를 RestApi에서 받아서 출력하는 변수
+var replyList = function() {
+	var page = $("#reply_page").val();
+	$.ajax({
+		type:"post",
+		url:"/reply/reply_list/${boardVO.bno}/"+page,
+		dataType:"json",//전송받는 데이터형태 json
+		success:function(result) {
+			if(typeof result=="undefined" || result == "" || result == null ) {
+				$("#div_reply").empty();//div태그 안의 내용만 삭제하기.
+				$("#div_reply").html('<div class="pagination justify-content-center"><ul class="pagination pageVO">조회된 값이 없습니다.</ul></div>');//div태그 안의 html내용을 추가하기.
+			}else{
+				//json데이터를 화면에 파싱합니다.(구버전:xml복잡한 태그 데이터를 파싱)
+				//템플릿 빵틀에 result데이터를 바인딩해서 출력
+				//J
+				console.log("여기까지" + result.replyList);//크롬콘솔에서 확인
+			}
+		},
+		error:function() {
+			alert("RestAPI서버가 작동하지 않습니다. 다음에 이용해 주세요.");
+		}
+	});
+};
 </script>
 <script>
 //댓글 CRUD처리
 $(document).ready(function(){
+	//댓글 리스트 버튼(아래)
+	$("#btn_reply_list").click(function(){
+		replyList();//댓글 리스트 출력 Ajax호출
+	});
+	//댓글 등록 버튼(아래)
 	$("#btn_reply_write").click(function(){
 		//RestAPI엔드포인트로 보낼 값 지정
 		var bno = "${boardVO.bno}";//자바변수값:게시물번호

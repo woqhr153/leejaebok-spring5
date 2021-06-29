@@ -17,12 +17,13 @@ reply_text = #{reply_text}
 where rno = #{rno}
 </update>
 
-<!-- 댓글을 등록할때 게시판테이블에 reply_count필드에 값이 +1발생 -->
-<!-- 댓글을 삭제할때 게시판테이블에 reply_count필드에 값이 -1발생 -->
+<!-- 댓글을 등록할 때 게시판 테이블에 reply_count 필드에 값이 +1 발생 -->
+<!-- 댓글을 삭제할 때 게시판 테이블에 reply_count필드에 값이 -1 발생 -->
+<!-- nvl(reply_count,0) + #{count} -->
 <update id="replyCountUpdate">
-update tbl_board set 
-reply_count = reply_count + #{count}
-where bno = #{bno}
+ update tbl_board set 
+ reply_count = (select count(*) from tbl_reply where bno = #{bno})
+ where bno = #{bno}
 </update>
 
 <!-- 댓글에서는 Read가 별도로 없이 Select 1개로 구현이됨 -->
