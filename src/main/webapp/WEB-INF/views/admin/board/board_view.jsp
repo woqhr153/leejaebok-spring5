@@ -261,10 +261,10 @@ var printPagingList = function(pageVO, target) {
 	pagination += '<a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>';
 	pagination += '</li>';//pagination = pagination + '</li>';//여기 Previous
 	var active = '';
-	for(var i=0; i<pageVO; i++) {
-		if(i==0) { active = 'active'; } else { active = ''; }
+	for(var i=pageVO.startPage; i<=pageVO.endPage; i++) {
+		if(i==pageVO.page) { active = 'active'; } else { active = ''; }
 		pagination += '<li class="paginate_button page-item '+active+'">';
-		pagination += '<a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link">'+(i+1)+'</a>';
+		pagination += '<a href="'+i+'" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link">'+(i)+'</a>';
 		pagination += '</li>';
 	}
 	//Next 출력(아래)
@@ -291,6 +291,7 @@ var replyList = function() {
 				//JSON.stringify(json데이터) -> json데이터를 일반문자열로 변경하는 함수
 				console.log("여기까지" + JSON.stringify(result.replyList));//크롬콘솔에서 확인
 				printReplyList(result.replyList, $("#template"), $("#collapseReply"));
+				printPagingList(result.pageVO, ".pagination");
 			}
 		},
 		error:function() {
