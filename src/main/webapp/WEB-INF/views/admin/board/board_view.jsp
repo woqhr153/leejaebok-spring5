@@ -241,6 +241,31 @@
   <!-- /.content-wrapper -->
 
 <%@ include file="../include/footer.jsp" %>
+<!-- 모달창(초기엔 숨긴상태-수정버튼을 클릭하면 나타나는 창) -->
+<div class="modal fade" id="modal-reply">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">작성자명</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<input class="form-control" type="text" name="modal_reply_text" id="modal_reply_text" value="댓글내용 출력">
+		</div>
+		<div class="modal-footer"><!-- justify-content-between:양쪽배분정렬 -->
+			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			<button id="btn_reply_update" type="button" class="btn btn-primary">수정</button>
+			<button id="btn_reply_delete" type="button" class="btn btn-danger">삭제</button>
+			<input type="hidden" id="rno" name="rno">
+		</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 <script>
 //댓글 리스트 출력 함수
 var printReplyList = function(data, templateData, target) {
@@ -257,6 +282,7 @@ var printPagingList = function(pageVO, target) {
 //pageVO = 스프링에서 받은 json데이터, 변수3개 pageVO.prev(이전데이터가 있다면 true), pageVO.next(다음데이터 있다면 true), pageVO=5페이지로 가정
 	var pagination = '';//문자열 누적변수
 	//Previous 출력(아래)
+	var prevlink, nextlink;
 	if(pageVO.prev) { prevlink = ''; } else { prevlink = 'disabled'; }
 	pagination += '<li class="paginate_button page-item previous '+prevlink+'" id="example2_previous">';
 	pagination += '<a href="'+(pageVO.startPage-1)+'" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>';
@@ -305,6 +331,45 @@ var replyList = function() {
 <script>
 //댓글 CRUD처리
 $(document).ready(function(){
+	//댓글 모달창 삭제버튼의 액션처리
+	$("#btn_reply_delete").click(function(){});
+	//댓글 모달창 수정버튼의 액션처리
+	$("#btn_reply_update").click(function(){
+		//댓글을 수정할때 필요한 변수확인
+		var reply_text = $("#modal_reply_text").val();//modal내 태그로 변경
+		var rno = $("#rno").val();//modal내 input태그로 추가
+		if(reply_text == '' || rno == '') {//&& and, || or
+			//위 조건 2중에 1개라도 만족하면 아래 내용이 실행
+			alert("댓글내용은 공백이면 않됩니다.");
+			return false;//더이상 실행없이 콜백함수를 빠져 나갑니다.
+		}
+		$.ajax({
+			type:'patch',//컨트롤러의 method값과 같아야 함.
+			url:'/reply/reply_update',
+			dataType:'text',//RestAPI컨트롤러에서 받는 데이터형식
+			data:JSON.stringify({
+				rno:rno,
+				reply_text:reply_text
+			}),//보내는 데이터 자체는 텍스트로 변환됨 단, 구조는 json형식으로 구성.
+			headers:{//보내는 데이터 형식
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"PATCH"
+			},//json데이터 형식으로 브라우저에 내장된 헤더값을 지정.
+			success:function(result){//댓글 입력이 성공시 실행 
+				if(result=="success") {
+					alert("수정에 성공했습니다.");
+					//모달창 숨기기(아래)
+					$("#modal-reply").modal("hide");
+					//댓글 수정 후 화면에 댓글 목록 출력하는 함수실행
+					replyList();//화면의 일부분만 리프레시(재생)
+				}
+				
+			},
+			error:function() {
+				alert("RestAPI서버가 작동하지 않습니다. 잠시 후 이용해 주세요.")
+			}
+		});
+	});
 	//하단 페이징 링크의 링크 속성처리
 	$(".pagination").on("click","li a",function(event){
 		event.preventDefault();//a태그의 링크속성을 사용하지 않겠다.
@@ -370,5 +435,15 @@ $(document).ready(function(){
 			form_view.submit();
 		}
 	});
+});
+</script>
+<script>
+// 댓글 리스트에서 수정 버튼클릭시 현재 선택한 값을 모달창에 보여주는 것을 구현(아래)
+$(document).ready(function(){
+  $('.timeline').on("click", '.div_template',function(){
+    $('#rno').val($(this).attr('data-rno'));
+    $('#modal_reply_text').val($(this).find('.timeline-body').text());
+    $('.modal-title').html($(this).find('.timeline-header').text());
+  });
 });
 </script>
