@@ -34,10 +34,18 @@ public class ReplyController {
 	private IF_ReplyService replyService;
 	
 	//댓글 삭제를 RestFul로 처리
-	@RequestMapping(value="/reply/reply_delete", method=RequestMethod.DELETE)
-	public ResponseEntity<String> reply_delete() {
+	@RequestMapping(value="/reply/reply_delete/{bno}/{rno}", method=RequestMethod.DELETE)
+	public ResponseEntity<String> reply_delete(@PathVariable("bno")Integer bno,@PathVariable("rno")Integer rno) {
 		ResponseEntity<String> result = null;
-		//삭제 기능을 내일부터
+		ReplyVO replyVO = new ReplyVO();
+		replyVO.setBno(bno);
+		replyVO.setRno(rno);
+		try {
+			replyService.deleteReply(replyVO);
+			result = new ResponseEntity<String>("success",HttpStatus.OK);
+		} catch (Exception e) {
+			result = new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return result;
 	}
 	//댓글은 Read가 필요없음. 왜냐하면, Select로 가져온 값을 Ajax로 처리하기 때문에 쿼리를 날릴 필요가 없습니다.

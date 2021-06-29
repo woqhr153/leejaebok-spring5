@@ -168,7 +168,7 @@
           <div class="time-label">
             <span class="bg-red" data-toggle="collapse" href="#collapseReply" role="button" id="btn_reply_list">
               댓글리스트
-              [<span>1</span>]
+              [<span>${empty boardVO.reply_count?'0':boardVO.reply_count}</span>]
             </span>
           </div>
           <!-- 콜랩스 시작 -->
@@ -242,6 +242,17 @@
 <%@ include file="../include/footer.jsp" %>
 <script>
 $(document).ready(function(){
+	$("#btn_reply_write").click(function(){
+		//RestAPI엔드포인트로 보낼 값 지정
+		var reply_text = $("#reply_text").val();
+		var replyer = $("#replyer").val();
+		if(reply_text == '' || replyer == '') {//&& and, || or
+			//위 조건 2중에 1개라도 만족하면 아래 내용이 실행
+			alert("작성자ID와 댓글내용은 공백이면 않됩니다.");
+			return false;//더이상 실행없이 콜백함수를 빠져 나갑니다.
+		}
+		
+	});
 	var form_view = $("form[name='form_view']");//전역변수
 	$("#btn_list").click(function(){
 		//여기서는 함수내 변수
