@@ -282,13 +282,15 @@ var replyList = function() {
 		dataType:"json",//전송받는 데이터형태 json
 		success:function(result) {
 			if(typeof result=="undefined" || result == "" || result == null ) {
-				$("#div_reply").empty();//div태그 안의 내용만 삭제하기.
-				$("#div_reply").html('<div class="pagination justify-content-center"><ul class="pagination pageVO">조회된 값이 없습니다.</ul></div>');//div태그 안의 html내용을 추가하기.
+				$("#collapseReply").empty();//div태그 안의 내용만 삭제하기.
+				$("#collapseReply").html('<div class="pagination justify-content-center"><ul class="pagination pageVO">조회된 값이 없습니다.</ul></div>');//div태그 안의 html내용을 추가하기.
 			}else{
 				//json데이터를 화면에 파싱합니다.(구버전:xml복잡한 태그 데이터를 파싱)
 				//템플릿 빵틀에 result데이터를 바인딩해서 출력
-				//J
-				console.log("여기까지" + result.replyList);//크롬콘솔에서 확인
+				//JSON.parse(문자열)->일반문자열을 json으로 변경하는 함수
+				//JSON.stringify(json데이터) -> json데이터를 일반문자열로 변경하는 함수
+				console.log("여기까지" + JSON.stringify(result.replyList));//크롬콘솔에서 확인
+				printReplyList(result.replyList, $("#template"), $("#collapseReply"));
 			}
 		},
 		error:function() {
