@@ -25,7 +25,33 @@
 - ======== 2주간 작업내역 끝(07.16금) ===================
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
-#### 20210630(수) 작업예정.
+#### 20210701(목) 작업예정.
+- 수업 시작전 깃허브 암호정책 변경으로 토큰사용하는 방법 공유
+- 람다식사용예 : https://github.com/miniplugin/SQLite-kimilguk/blob/master/app/src/main/java/com/human/sqlite_kimilguk/MainActivity.java
+- 어제 시큐리티적용 부분 확인(web.xml에서 누락된 부분 모두 추가)
+
+```
+<!-- 스프링 시큐리티때문에 필터(걸러주는)추가 -->
+<filter>
+	<filter-name>springSecurityFilterChain</filter-name>
+	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>springSecurityFilterChain</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+```
+- 어제 시큐리티 context 누락된 부분 추가(security-context.xml)
+
+```
+<security:authentication-provider>
+	<security:password-encoder ref="passwordEncoder" />
+</security:authentication-provider>
+<!-- 위 쿼리에서 사용할 패스워드 암호화 id passwordEncoder 빈 클래스를 생성(아래) -->
+<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+```
+
+#### 20210630(수) 작업.
 - 댓글 Delete 구현 후 마무리OK.
 - 스프링시큐리티 로그인및 권한체크 설정 후 사용자단 로그인 구현 예정.(관리자단 끝 이면서, 사용자단 시작): 사용자단 로그인 / 로그아웃 기능 처리.
 - 사용자단 회원가입, 수정, 탈퇴 JSP기능 추가예정.
