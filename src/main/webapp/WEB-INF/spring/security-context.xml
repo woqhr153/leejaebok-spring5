@@ -4,6 +4,27 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
-
-
+<!-- 스프링시큐리티는 AOP(@Aspect,@ControllerAdvice)기능의 일종, 핵심
+	intercept 라는 태그를 사용하는 것이 핵심
+ -->
+<!-- 아래는 시큐리티 영향을 받지않는, 아무나 직접 URL접근이 가능한 주소부터 나열 
+	주로 정적인(static, resources폴더안의) 파일들은 보안해제 시킴(아래)
+-->
+<security:http pattern="/**/*.js" security="none" />
+<security:http pattern="/**/*.css" security="none" />
+<security:http pattern="/**/img/*" security="none" />
+<!-- 스프링시큐리티 기본설정 시작 use-expressions=true는 아래 설정내용중 자바의 EL-${}을 사용하겠다, -->
+<security:http auto-config="true" use-expressions="true">
+	<security:session-management invalid-session-url="/">
+	<security:concurrency-control max-sessions="3" error-if-maximum-exceeded="false" />
+	</security:session-management>
+	<!-- 여기서부터 intercept(가로채기AOP)사용해서 로그인+권한체크를 access속성으로 설정함. -->
+	<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+	<security:intercept-url pattern="/**/*_insert" access="hasRole('ROLE_USER','ROLE_ADMIN')" />
+	<security:intercept-url pattern="/**/*_insert_form" access="hasRole('ROLE_USER','ROLE_ADMIN')" />
+	<security:intercept-url pattern="/**/*_update" access="hasRole('ROLE_USER','ROLE_ADMIN')" />
+	<security:intercept-url pattern="/**/*_update_form" access="hasRole('ROLE_USER','ROLE_ADMIN')" />
+	<security:intercept-url pattern="/**/*_delete" access="hasRole('ROLE_USER','ROLE_ADMIN')" />
+	<security:intercept-url pattern="/**/member/**" access="hasRole('ROLE_USER','ROLE_ADMIN')" />
+</security:http>
 </beans>
