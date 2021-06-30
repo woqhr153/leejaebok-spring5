@@ -78,7 +78,7 @@ $(document).ready(function() {
 	<header id="header">
 		<div class="header_area box_inner clear">
 			<!-- 상단로고영역 -->
-			<h1><a href="index.html">스프링 in 자바</a></h1>
+			<h1><a href="/">스프링 in 자바</a></h1>
 			<!-- //상단로고영역 -->
 			
 			<!-- 상단메뉴메뉴영역 -->
@@ -90,8 +90,8 @@ $(document).ready(function() {
 			</p>
 			<div class="header_cont">
 				<ul class="util clear">
-					<li><a href="/login">로그인</a></li>
-					<li><a href="/join">회원가입</a></li>
+					<li><a href="/login_form">로그인</a></li>
+					<li><a href="/join_form">회원가입</a></li>
 					<!-- 로그인 후 보이는 메뉴(아래) -->
 					<li><a href="#">OOO님 환영합니다.</a></li>
 					<li><a href="mypage.html">마이페이지</a></li>
