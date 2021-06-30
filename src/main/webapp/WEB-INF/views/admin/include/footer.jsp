@@ -41,7 +41,13 @@
 </body>
 </html>
 <style>
+/* CSS를 재정의(오버라이드) */
 .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active 
+{
+background-color:#fff;
+color:#000;
+}
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover 
 {
 background-color:#fff;
 color:#000;
