@@ -40,6 +40,13 @@
 <!-- <script src="/resources/admin/dist/js/demo.js"></script> -->
 </body>
 </html>
+<style>
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active 
+{
+background-color:#fff;
+color:#000;
+}
+</style>
 <script>
 //왼쪽메뉴선택시 active 부트스트랩 클래스를 동적으로 추가하는 코드(아래)
 $(document).ready(function(){
@@ -48,8 +55,16 @@ $(document).ready(function(){
 	//alert(current);//url값을 확인 파싱(분해) 0/admin/member/member_list
 	var current2 = current.split("/")[2];//위 current변수값을 /로 분해해서 배열로 만든후 3번째
 	// 3번째 배열값 추출
-	//alert(current2);//member,bbs_type,board
+	//alert(current2);//member,bbs_type,board,undefined
 	//제이쿼리의 반복문 each: 영역.each(구현내용)
-	$(".nav-treeview li a").each(function(){});
+	$(".nav-treeview li a").each(function(){//indexOf는 배열로서 0부터 시작합니다.
+		if($(this).attr('href').indexOf(current2) != -1) {//URL에서 current2와 같은 값 O
+			if(current2 != "board") {//게시물관리 메뉴만 제외하고, 다른메뉴에 적용 코드
+				$(this).addClass("active");
+			}			
+		}else{
+			$(this).removeClass("active");
+		}
+	});
 });
 </script>   
