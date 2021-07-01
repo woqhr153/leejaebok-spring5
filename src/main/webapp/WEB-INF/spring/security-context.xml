@@ -59,7 +59,9 @@
 	위 쿼리결과인 password와 user_pw 비교 해서 같으면 /login_success가 실행됨. 반대일경우 다시 login폼
 	암호 데이터 비교: password(해시값)-user_pw(admin1234)
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	Boolean loginOk = passwordEncoder.matches("admin1234", password);//.equals비교불가
+	스프링방식: Boolean valueTrue = passwordEncoder.matches("admin1234", password);//.equals는비교불가
+	일반사이트방식: select * from tbl_member where user_id=user_id and user_pw=sha1(user_pw);
+	위 matches메서드를 사용할 건지==암호화로 비교할 건지 옵션을 추가
 -->
 <security:authentication-manager>
 	<security:authentication-provider>
@@ -68,6 +70,8 @@
 		users-by-username-query="select user_id as no,user_pw as password, enabled from tbl_member where user_id = ?"
 		authorities-by-username-query="select user_id as no,levels as authority from tbl_member where user_id = ?"
 		/>
+		<security:password-encoder ref="passwordEncoder" />
 	</security:authentication-provider>
 </security:authentication-manager>
+<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 </beans>

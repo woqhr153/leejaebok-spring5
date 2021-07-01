@@ -25,9 +25,9 @@
 - ======== 2주간 작업내역 끝(07.16금) ===================
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
-#### 20210701(목) 작업예정.
+#### 20210701(목) 작업.
 - 어제 작업한 security-context를 데이터 변수값의 이동기준으로 다시 설명.
-- 수업 시작전 깃허브 암호정책 변경으로 토큰사용하는 방법 공유
+- 수업 시작전 깃허브 암호정책 변경으로 토큰사용하는 방법 공유, 8월부터 변경됨.
 - 람다식사용예 : https://github.com/miniplugin/SQLite-kimilguk/blob/master/app/src/main/java/com/human/sqlite_kimilguk/MainActivity.java
 - 어제 시큐리티적용 부분 확인(web.xml에서 누락된 부분 모두 추가)
 
@@ -51,11 +51,11 @@
 <!-- 위 쿼리에서 사용할 패스워드 암호화 id passwordEncoder 빈 클래스를 생성(아래) -->
 <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 ```
+- 스프링시큐리티 로그인및 권한체크 설정 후 사용자단 로그인 구현 예정.(관리자단 끝 이면서, 사용자단 시작): 사용자단 로그인 / 로그아웃 기능 처리.
+- 사용자단 회원가입, 수정, 탈퇴 JSP기능 추가예정.
 
 #### 20210630(수) 작업.
 - 댓글 Delete 구현 후 마무리OK.
-- 스프링시큐리티 로그인및 권한체크 설정 후 사용자단 로그인 구현 예정.(관리자단 끝 이면서, 사용자단 시작): 사용자단 로그인 / 로그아웃 기능 처리.
-- 사용자단 회원가입, 수정, 탈퇴 JSP기능 추가예정.
 
 #### 20210629(화) 작업.
 - json데이터(1개레코드=K:V무제한형태)가 자바의 List데이터(1개레코드=K:V제한형)와 대부분 같음. 틀린점은 K:V 형태는 같으나 V값이 무제한,제한

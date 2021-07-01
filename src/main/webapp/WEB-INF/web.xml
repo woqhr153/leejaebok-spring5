@@ -33,7 +33,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<!-- 톰캣기반에서 페이지간 데이터전송시 영어기반으로 입출력이 되기때문에 한글은 깨집니다. 
-		그래서, 전송값을 UTF-8로 전환시키는 필터클래스를 사용합니다.
+		그래서, POST전용 전송값을 UTF-8로 전환시키는 필터클래스를 사용합니다.
 		웹프로그램실행시 제일 먼저 실행되는 web.xml에 UTF-8유니코드 인코딩필터를 설정을 합니다.
 	-->
 	<filter>
@@ -56,5 +56,16 @@
 	<filter-mapping>
 	    <filter-name>hiddenHttpMethodFilter</filter-name>
 	    <url-pattern>/</url-pattern>
+	</filter-mapping>
+	<!-- 스프링시큐리티가 적용된 URL을 필터링하는 클래스를 추가 
+		필터체인은 security-context에서 등록된 intercept-url의 값을 검사하겠다는 의미
+	-->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 </web-app>
