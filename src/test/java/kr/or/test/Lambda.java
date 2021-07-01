@@ -38,7 +38,8 @@ public class Lambda {
 			result = intSupplier.getAsInt();
 		}
 		//람다식 적용후, 제약이 있음. 클객스의  메서드가 1개인 객체만 람다식으로 가능.
-		//(o) -> o.getAuthority().equals("ROLE_USER")
+		//(매개변수) -> ~ 자바일때 형식, 람다식 익명함수에서 매개변수 1개일때는 괄호()생략가능.
+		//(무명함수) => ~ 자바스크립트일때 람다식
 		if(lambda.equals("lambda")){
 			IntSupplier intSupplier = () -> x + y;//뒤 쪽 항부터 해석 x+y를 실행합니다.
 			/*
