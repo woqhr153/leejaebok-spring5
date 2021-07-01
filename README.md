@@ -26,6 +26,7 @@
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
 #### 20210701(목) 작업예정.
+- 어제 작업한 security-context를 데이터 변수값의 이동기준으로 다시 설명.
 - 수업 시작전 깃허브 암호정책 변경으로 토큰사용하는 방법 공유
 - 람다식사용예 : https://github.com/miniplugin/SQLite-kimilguk/blob/master/app/src/main/java/com/human/sqlite_kimilguk/MainActivity.java
 - 어제 시큐리티적용 부분 확인(web.xml에서 누락된 부분 모두 추가)

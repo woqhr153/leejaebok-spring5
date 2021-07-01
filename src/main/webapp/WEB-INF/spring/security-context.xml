@@ -53,6 +53,14 @@
 	delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE" />
 </security:http>
 <!-- 스프링시큐리티나 OAuth2.0무엇이 되었든,2개로 구성됨. Authenticatoin(인증), Authority(권한) -->
+<!-- /login이 호출되면 아래 쿼리를 실행되면서 최초로 데이터가 발생됨: 스프링시큐리티 클래스에서 실행됨 
+	user_id, user_pw
+	user-by-username-query 이 쿼리가 실행됨(user_id사용) 이쿼리만 가지고는 비교않됨.
+	위 쿼리결과인 password와 user_pw 비교 해서 같으면 /login_success가 실행됨. 반대일경우 다시 login폼
+	암호 데이터 비교: password(해시값)-user_pw(admin1234)
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	Boolean loginOk = passwordEncoder.matches("admin1234", password);//.equals비교불가
+-->
 <security:authentication-manager>
 	<security:authentication-provider>
 		<security:jdbc-user-service 
