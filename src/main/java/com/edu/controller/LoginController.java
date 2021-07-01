@@ -59,7 +59,7 @@ public class LoginController {
 			if(authorities.stream().filter(o -> o.getAuthority().equals("ROLE_ANONYMOUS")).findAny().isPresent()) {
 				levels = "ROLE_ANONYMOUS";//권한_무명
 			}
-			if(authorities.stream().filter(o -> o.getAuthority().equals("ROLE_USER")).findAny().isPresent()) {
+			if( authorities.stream().filter(o -> o.getAuthority().equals("ROLE_USER")).findAny().isPresent() ) {
 				levels = "ROLE_USER";//권한_일반사용자
 			}
 			if(authorities.stream().filter(o -> o.getAuthority().equals("ROLE_ADMIN")).findAny().isPresent()) {

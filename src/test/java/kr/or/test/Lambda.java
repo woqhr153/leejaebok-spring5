@@ -21,27 +21,33 @@ public class Lambda {
 		int result = 0;
 		//람다식 적용전
 		if(lambda.equals("nonLambda")) {
-			IntSupplier intSupplier = new IntSupplier() {
+			IntSupplier2 intSupplier = new IntSupplier2() {
 				@Override
 				public int getAsInt() {
 					int sum = x + y;
 					return sum;
 				}
-				
-				public int product() {
+
+				@Override
+				public int getAsInt2(int x, int y) {
 					int product = x * y;
 					return product;
 				}
+				
 			};
 			result = intSupplier.getAsInt();
 		}
-		//람다식 적용후
+		//람다식 적용후, 제약이 있음. 클객스의  메서드가 1개인 객체만 람다식으로 가능.
+		//(o) -> o.getAuthority().equals("ROLE_USER")
 		if(lambda.equals("lambda")){
-			IntSupplier intSupplier = () -> {
+			IntSupplier intSupplier = () -> x + y;//뒤 쪽 항부터 해석 x+y를 실행합니다.
+			/*
+			{
 				int sum = x + y;
 				return sum;
 			};
-			result = intSupplier.getAsInt();//객체의 메서드가 2개 이상일때 여기서 선택
+			*/
+			result = intSupplier.getAsInt();//객체의 메서드가 1개를 호출
 		}
 		return result;
 	}
