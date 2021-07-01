@@ -74,7 +74,7 @@ public class LoginController {
 			MemberVO memberVO = memberService.readMember(userid);
 			session.setAttribute("session_username", memberVO.getUser_name());
 		}
-		rdat.addFlashAttribute("mag", "로그인");//로그인 성공여부를 jsp페이지로 보내주는 변수생성.
+		rdat.addFlashAttribute("msg", "로그인");//로그인 성공여부를 jsp페이지로 보내주는 변수생성.
 		return "redirect:/";
 	}
 }

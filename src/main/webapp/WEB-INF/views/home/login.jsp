@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./include/header.jsp" %>
+<script>
+//로그인 실패 전용 메세지
+if("${param.msg}" == "fail") {
+	alert("로그인 실패입니다. 다시 입력해 주세요!");
+}
+</script>
 <!-- 게시판용 CSS 임포트 -->
 <link rel="stylesheet" href="/resources/home/css/board.css">
 

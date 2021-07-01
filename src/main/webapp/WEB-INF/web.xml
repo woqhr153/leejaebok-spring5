@@ -60,6 +60,7 @@
 	<!-- 스프링시큐리티가 적용된 URL을 필터링하는 클래스를 추가 
 		필터체인은 security-context에서 등록된 intercept-url의 값을 검사하겠다는 의미
 	-->
+	
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -68,4 +69,5 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
 </web-app>
