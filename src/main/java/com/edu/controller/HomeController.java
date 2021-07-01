@@ -6,13 +6,16 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //외부 라이브러리(모듈) 사용 = import
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edu.service.IF_MemberService;
+import com.edu.vo.MemberVO;
 
 /**
  * 이 클래스는 MVC웹프로젝트를 최초로 생성시 자동으로 생성되는 클래스
@@ -39,6 +42,19 @@ public class HomeController {
 	@Inject
 	private IF_MemberService memberService;
 	
+	//마이페이지 회원정보수정 POST방식. 처리 후 msg를 히든값으로 jsp로 전송합니다.
+	@RequestMapping(value="/member/mypage", method=RequestMethod.POST)
+	public String mypage(MemberVO memberVO, RedirectAttributes rdat) throws Exception {
+		//암호를 인코딩 처리합니다. 조건, 암호를 변경하는 값이 있을때
+		if(!memberVO.getUser_pw().isEmpty()) {
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String rawPassword = memberVO.getUser_pw();
+			memberVO.setUser_pw(passwordEncoder.encode(rawPassword));
+		}
+		memberService.updateMember(memberVO);
+		rdat.addFlashAttribute("msg", "회원정보수정");//회원정보수정 가(이) 성공했습니다. 출력용
+		return "redirect:/member/mypage_form";
+	}
 	//마이페이지 폼호출 GET방식, 회원수정폼이기때문에 model담아서 변수값을 전송이 필요
 	@RequestMapping(value="/member/mypage_form", method=RequestMethod.GET)
 	public String mypage_form(HttpServletRequest request, Model model) throws Exception {
