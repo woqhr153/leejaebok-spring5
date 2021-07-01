@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -61,10 +62,11 @@ if("${msg}" != "") {
 			</p>
 			<div class="header_cont">
 				<ul class="util clear">
+				<li><c:out value="${session_enabled}"></c:out></li>
 					<li><a href="/login_form">로그인</a></li>
 					<li><a href="/join_form">회원가입</a></li>
 					<!-- 로그인 후 보이는 메뉴(아래) -->
-					<li><a href="#">OOO님 환영합니다.</a></li>
+					<li><a href="#">${session_username} 님 환영합니다.</a></li>
 					<li><a href="mypage.html">마이페이지</a></li>
 					<li><a href="/admin">AdminLTE</a></li>
 				</ul>	
