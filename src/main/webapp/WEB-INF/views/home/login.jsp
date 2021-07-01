@@ -34,7 +34,7 @@ if("${param.msg}" == "fail") {
                 <ul class="app_list">
                     <li class="clear">
                         <label for="id_lbl" class="tit_lbl pilsoo_item">아이디</label>
-                        <div class="app_content"><input type="text" name="user_id"" class="w100p" id="id_lbl" placeholder="아이디를 입력해주세요" required/></div>
+                        <div class="app_content"><input autofocus type="text" name="user_id"" class="w100p" id="id_lbl" placeholder="아이디를 입력해주세요" required/></div>
                     </li>
                     <li class="clear">
                         <label for="password_lbl" class="tit_lbl pilsoo_item">암호</label>

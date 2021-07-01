@@ -62,13 +62,22 @@ if("${msg}" != "") {
 			</p>
 			<div class="header_cont">
 				<ul class="util clear">
-				<li><c:out value="${session_enabled}"></c:out></li>
-					<li><a href="/login_form">로그인</a></li>
-					<li><a href="/join_form">회원가입</a></li>
-					<!-- 로그인 후 보이는 메뉴(아래) -->
-					<li><a href="#">${session_username} 님 환영합니다.</a></li>
-					<li><a href="mypage.html">마이페이지</a></li>
-					<li><a href="/admin">AdminLTE</a></li>
+				<c:choose>
+					<c:when test="${session_enabled eq 'true'}">
+						<!-- 로그인 후 보이는 메뉴(아래) -->
+						<li><a href="#">${session_username} 님 환영합니다.</a></li>
+						<li><a href="/logout">로그아웃</a></li>
+						<li><a href="mypage.html">마이페이지</a></li>
+						<!-- ROLE_ADMIN 권한만 AdminLTE에 가능하게 조건추가 -->
+						<c:if test="${session_levels eq 'ROLE_ADMIN'}">
+							<li><a href="/admin">AdminLTE</a></li>
+						</c:if>						
+					</c:when>
+					<c:otherwise>
+						<li><a href="/login_form">로그인</a></li>
+						<li><a href="/join_form">회원가입</a></li>
+					</c:otherwise>
+				</c:choose>					
 				</ul>	
 				<nav>
 				<ul class="gnb clear">
