@@ -9,7 +9,7 @@
     <!-- 메인상단위치표시영역 -->
     <div class="location_area customer">
         <div class="box_inner">
-            <h2 class="tit_page">페이지 오류 <a href="#" class="btn_baseColor">이전페이지</a></h2>
+            <h2 class="tit_page">페이지 오류 <a href="/" class="btn_baseColor">메인페이지</a></h2>
             <p class="location">고객센터 <span class="path">/</span> 에러페이지</p>
             <ul class="page_menu clear">
                 <li style="text-align:left">
