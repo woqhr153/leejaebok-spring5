@@ -52,7 +52,7 @@
 - 헤로쿠 클라우드는 미국의 회사로서 컨테이너를 제공하는 회사
 - 컨테이너는 리눅스OS>톰캣WAS>자바JVM>스프링>컨테이너에 포함됨 기본.
 - 외부 서버는(DB) Add on이라는 이름으로 사용가능
-- 무료: PostgeresDB(조건), 마리아DB(신용카드등록필수)
+- 무료: PostgeresDB(조건없음), 마리아DB(신용카드등록필수)
 - 유료: Mysql(유료)
 - HsqlDB로 연동해서 헤로쿠에 배포예정. http://hsqldb.org/
 - 100% Java Database: 임베디드DB, 메모리DB, 서버를 설치할 필요 Hsql이라는 Maven모듈만 있으면가능
