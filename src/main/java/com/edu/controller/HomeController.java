@@ -42,6 +42,26 @@ public class HomeController {
 	@Inject
 	private IF_MemberService memberService;
 	
+	//회원가입 처리 호출 POST방식
+	@RequestMapping(value="/join",method=RequestMethod.POST)
+	public String join(MemberVO memberVO, RedirectAttributes rdat) throws Exception {
+		memberService.insertMember(memberVO);
+		rdat.addFlashAttribute("msg", "회원가입");//회원가입 가(이) 성공했습니다. 출력
+		return "redirect:/login_form";//페이지 리다이렉트로 이동
+	}
+	//회원가입폼 호출 Get방식
+	@RequestMapping(value="/join_form",method=RequestMethod.GET)
+	public String join_form() throws Exception {
+		
+		return "home/join";//.jsp생략
+	}
+	//마이페이지에서 회원탈퇴 POST방식 처리만.
+	@RequestMapping(value="/member/mypage_leave", method=RequestMethod.POST)
+	public String mypage_leave(MemberVO memberVO) throws Exception {
+		memberService.updateMember(memberVO);
+		//rdat.addFlashAttribute("msg", "회원탈퇴");//스프링내장된logout을 사용시X
+		return "redirect:/logout";
+	}
 	//마이페이지 회원정보수정 POST방식. 처리 후 msg를 히든값으로 jsp로 전송합니다.
 	@RequestMapping(value="/member/mypage", method=RequestMethod.POST)
 	public String mypage(MemberVO memberVO, RedirectAttributes rdat) throws Exception {
