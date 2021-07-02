@@ -65,7 +65,7 @@ public class DataSourceTest {
 		memberVO.setLevels("ROLE_ADMIN");
 		memberVO.setPoint(100);
 		memberVO.setUser_name("최고관리자");
-		memberVO.setUser_pw("");//입력하지 않으면, 업데이트에서 제외
+		memberVO.setUser_pw("1234");//입력하지 않으면, 업데이트에서 제외
 		//메서드내 적용된 객체변수 생성
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		//스프링5시큐리티 암호화 적용로직(아래)
