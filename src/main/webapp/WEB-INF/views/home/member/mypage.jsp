@@ -103,7 +103,7 @@ $(document).ready(function() {
 					<li class="clear">
 						<label for="gender_lbl" class="tit_lbl pilsoo_item">권한여부</label>
 						<div class="app_content radio_area">
-							<select name="levels" class="gender" required>
+							<select name="levels2" class="gender" required>
 								<option value="${memberVO.levels}">${memberVO.levels}</option>
 							</select>
 						</div>

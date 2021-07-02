@@ -56,7 +56,9 @@ $(document).ready(function() {
 		<form method="POST" name="join_form" action="/join" class="appForm">
 			<fieldset>
 				<legend>회원가입폼</legend>
-				<p class="info_pilsoo pilsoo_item">필수입력</p>
+				<p class="info_pilsoo pilsoo_item">
+				필수입력(회원가입 후 관리자가 승인해 줘야만, 로그인이 가능합니다!)
+				</p>
 				<ul class="app_list">
 					<li class="clear">
 						<label for="user_id_lbl" class="tit_lbl pilsoo_item">사용자ID</label>
