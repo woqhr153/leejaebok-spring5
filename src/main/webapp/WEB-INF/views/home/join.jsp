@@ -26,6 +26,16 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style>
+.radio_area {
+	box-sizing: border-box;
+	padding: 10px;
+}
+.gender {
+	padding: 4px 10px;
+	font-size: 14px;
+}
+</style>
 <!-- 메인콘텐츠영역 만 변경됩니다. -->
 <div id="container">
 	<!-- 메인상단위치표시영역 -->
@@ -43,45 +53,51 @@ $(document).ready(function() {
 	<!-- 메인본문영역 -->
 	<div class="bodytext_area box_inner">
 		<!-- 폼영역 -->
-		<form method="POST" name="join_form" action="join.html" class="appForm">
+		<form method="POST" name="join_form" action="/join" class="appForm">
 			<fieldset>
 				<legend>회원가입폼</legend>
 				<p class="info_pilsoo pilsoo_item">필수입력</p>
 				<ul class="app_list">
 					<li class="clear">
+						<label for="user_id_lbl" class="tit_lbl pilsoo_item">사용자ID</label>
+						<div class="app_content"><input type="text" name="user_id" class="w100p" id="user_id_lbl" placeholder="사용자ID를 입력해주세요" required/></div>
+					</li>
+					<li class="clear">
+						<label for="password_lbl" class="tit_lbl pilsoo_item">암호</label>
+						<div class="app_content">
+							<input type="password" name="user_pw" class="w100p" id="password_lbl" placeholder="비밀번호를 입력해주세요" required/>
+						</div>
+					</li>
+					<li class="clear">
+						<label for="password_chk_lbl" class="tit_lbl pilsoo_item">암호확인</label>
+						<div class="app_content"><input type="password" name="password_chk" class="w100p" id="password_chk_lbl" placeholder="비밀번로를 다시 입력해주세요" required/></div>
+					</li>
+					<li class="clear">
+						<label for="user_name_lbl" class="tit_lbl pilsoo_item">사용자이름</label>
+						<div class="app_content"><input type="text" name="user_name" class="w100p" id="user_name_lbl" placeholder="사용자이름을 입력해주세요" required/></div>
+					</li>
+					<li class="clear">
 						<label for="email_lbl" class="tit_lbl pilsoo_item">이메일</label>
 						<div class="app_content"><input type="email" name="email" class="w100p" id="email_lbl" placeholder="이메일을 입력해주세요" required/></div>
 					</li>
 					<li class="clear">
-						<label for="name_lbl" class="tit_lbl pilsoo_item">작성자명</label>
-						<div class="app_content"><input type="text" name="name" class="w100p" id="name_lbl" placeholder="이름을 입력해주세요" required/></div>
+						<label for="point_lbl" class="tit_lbl pilsoo_item">포인트</label>
+						<div class="app_content"><input value="0" readonly type="digits" name="point" class="w100p" id="point_lbl" placeholder="포인트를 입력해주세요" required/></div>
 					</li>
 					<li class="clear">
-						<label for="password_lbl" class="tit_lbl pilsoo_item">비밀번호</label>
+						<label for="gender_lbl" class="tit_lbl pilsoo_item">로그인여부</label>
 						<div class="app_content">
-							<input type="password" name="password" class="w100p" id="password_lbl" placeholder="비밀번호를 입력해주세요" required/>
+							<input checked type="radio" name="enabled" class="css-radio" id="enabled_lbl" />
+							<label for="enabled_lbl">금지</label>
 						</div>
 					</li>
 					<li class="clear">
-						<label for="password_chk_lbl" class="tit_lbl pilsoo_item">비밀번호확인</label>
-						<div class="app_content"><input type="password" name="password_chk" class="w100p" id="password_chk_lbl" placeholder="비밀번로를 다시 입력해주세요" required/></div>
-					</li>
-					<li class="clear">
-						<label for="tel_lbl" class="tit_lbl pilsoo_item">연락처</label>
-						<div class="app_content"><input type="digits" name="tel" class="w100p" id="tel_lbl" placeholder="휴대폰'-'없이 숫자만 입력해주세요" required/></div>
-					</li>
-					<li class="clear">
-						<label for="gender_lbl" class="tit_lbl pilsoo_item">성별</label>
+						<label for="gender_lbl" class="tit_lbl pilsoo_item">권한여부</label>
 						<div class="app_content radio_area">
-							<input type="radio" name="gender" class="css-radio" id="man_lbl" checked="" />
-							<label for="man_lbl">남</label>
-							<input type="radio" name="gender" class="css-radio" id="woman_lbl" />
-							<label for="woman_lbl">여</label>
+							<select name="levels" class="gender" required>
+								<option value="ROLE_USER">일반사용자</option>
+							</select>
 						</div>
-					</li>
-					<li class="clear">
-						<label for="comment_lbl" class="tit_lbl pilsoo_item">문의내용</label>
-						<div class="app_content"><textarea name="comment" class="w100p" id="comment_lbl" placeholder="내용을 입력해주세요" required></textarea></div>
 					</li>
 					<li class="clear">
 						<label for="agree_lbl" class="tit_lbl pilsoo_item">개인정보활용동의</label>
@@ -91,9 +107,10 @@ $(document).ready(function() {
 					</li>
 				</ul>
 				<p class="btn_line">
-				<button class="btn_baseColor">회원가입</button>
+				<button type="submit" class="btn_baseColor" id="btn_insert" disabled style="opacity:0.5;">회원가입</button>
 				</p>	
 			</fieldset>
+			
 		</form>
 		<!-- //폼영역 -->
 	</div>
@@ -102,3 +119,27 @@ $(document).ready(function() {
 <!-- //메인콘텐츠영역 -->
 
 <%@ include file="./include/footer.jsp" %>
+<script>
+$(document).ready(function(){
+	$("#btn_insert").click(function(){
+		alert("준비중입니다.");
+	});
+	$("#user_id_lbl").change(function(){
+		if($(this).val() != "") {
+			$.ajax({
+				type:"get",
+				url:"/id_check?user_id="+$(this).val(),
+				dataType:"text",
+				success:function(result) {
+					
+				},
+				error:function() {
+					alert("RestAP");
+				}
+			});
+			$("#btn_insert").attr("disabled",false);
+			$("#btn_insert").css("opacity","1");
+		}
+	});
+});
+</script>

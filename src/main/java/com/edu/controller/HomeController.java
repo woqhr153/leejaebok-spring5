@@ -45,6 +45,7 @@ public class HomeController {
 	//회원가입 처리 호출 POST방식
 	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public String join(MemberVO memberVO, RedirectAttributes rdat) throws Exception {
+		//jsp폼에서 levels를 ROLE_ADMIN으로 해킹할까봐 여기서 강제로 입력 취소
 		memberService.insertMember(memberVO);
 		rdat.addFlashAttribute("msg", "회원가입");//회원가입 가(이) 성공했습니다. 출력
 		return "redirect:/login_form";//페이지 리다이렉트로 이동
