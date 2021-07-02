@@ -87,7 +87,7 @@ $(document).ready(function() {
 					<li class="clear">
 						<label for="gender_lbl" class="tit_lbl pilsoo_item">로그인여부</label>
 						<div class="app_content">
-							<input checked type="radio" name="enabled" class="css-radio" id="enabled_lbl" />
+							<input checked value="0" type="radio" name="enabled" class="css-radio" id="enabled_lbl" />
 							<label for="enabled_lbl">금지</label>
 						</div>
 					</li>
@@ -121,9 +121,6 @@ $(document).ready(function() {
 <%@ include file="./include/footer.jsp" %>
 <script>
 $(document).ready(function(){
-	$("#btn_insert").click(function(){
-		alert("준비중입니다.");
-	});
 	$("#user_id_lbl").change(function(){
 		if($(this).val() != "") {
 			$.ajax({
@@ -131,14 +128,23 @@ $(document).ready(function(){
 				url:"/id_check?user_id="+$(this).val(),
 				dataType:"text",
 				success:function(result) {
-					
+					if(result == 0) {//중복ID가 존재하지 않으면
+						$("#btn_insert").attr("disabled",false);
+						$("#btn_insert").css("opacity","1");
+						$("#msg").remove();
+						$("#user_id_lbl").after("<div id='msg' style='color:blue'>사용가능한 ID입니다</div>");
+					}else{//중복아이디가 존재할때 아래 실행
+						$("#btn_insert").attr("disabled",true);
+						$("#btn_insert").css("opacity","0.5");
+						$("#msg").remove();
+						$("#user_id_lbl").after("<div id='msg' style='color:red'>중복ID가 존재합니다.</div>");
+					}
 				},
 				error:function() {
-					alert("RestAP");
+					alert("RestAPI서버가 작동하지 않습니다. 다음에 이용해 주세요.");
 				}
 			});
-			$("#btn_insert").attr("disabled",false);
-			$("#btn_insert").css("opacity","1");
+			
 		}
 	});
 });
