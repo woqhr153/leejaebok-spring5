@@ -42,6 +42,13 @@ public class HomeController {
 	@Inject
 	private IF_MemberService memberService;
 	
+	//404파일 에러 처리 GET 호출 추가
+	@RequestMapping(value="/home/error/error_404", method=RequestMethod.GET)
+	public String error_404(HttpServletRequest request,Model model) {
+		//이전페이지로 이동에 사용될 변수 추가
+		model.addAttribute("prevPage", request.getHeader("Referer"));
+		return "home/error/error_404";//.jsp생략
+	}
 	//회원가입 처리 호출 POST방식
 	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public String join(MemberVO memberVO, RedirectAttributes rdat) throws Exception {

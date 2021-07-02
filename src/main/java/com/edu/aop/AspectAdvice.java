@@ -99,11 +99,11 @@ public class AspectAdvice {
 		ModelAndView modelAndView = new ModelAndView();
 		//이전페이지로 돌아가기용 데이터 생성
 		String referer = request.getHeader("Referer");//크롬>네트워크>파일>Referer>이전페이지 URL이 존재
-		request.getSession().setAttribute("prevPage", referer);//prevPage세션변수만듭니다.
+		request.getSession().setAttribute("session_prevPage", referer);//prevPage세션변수만듭니다.
 		//---------------------------------------------
 		//컨트롤러에서 받은 Exception을 ModelAndView로 전달(아래)
 		modelAndView.addObject("exception", ex);
-		modelAndView.setViewName("home/error_spring");//return String .jsp생략
+		modelAndView.setViewName("home/error/error_spring");//return String .jsp생략
 		return modelAndView;
 	}
 	//이 메서드는 컨트롤러의 메서드가 실행 전에 값을 생성해서 model객체에 담아서 jsp로 자료를 전송

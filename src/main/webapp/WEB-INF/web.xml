@@ -73,4 +73,9 @@
 	<session-config>
 		<session-timeout>60</session-timeout>
 	</session-config>
+	<!-- 톰캣서버에서 404파일에러 발생시 보여줄 @RequestMapping경로 지정(아래) -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/home/error/error_404</location>
+	</error-page>
 </web-app>
