@@ -10,16 +10,16 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 알리아스 Alias(별명) dataSource로 만듭니다.이유? 여러개의 DB와 호환되게 만들게됩니다. -->
 	<!-- 오라클, Mysql, Hsql 등 여러 DB서버와 호환되게 만드는데 필요(아래) -->
-	<alias name="dataSource-hsql_local" alias="dataSource"/>
+	<alias name="dataSource-${DbType}" alias="dataSource"/>
 	<!-- embeded는 내장형(앱용)으로서 간단한 용도의 DB구조에 사용.file구조가 아닌 메모리구조로가능 
 		특징: 톰캣과 라이프사이클을 같이합니다.
 	-->	
 	<!-- /embeded/hsql_file.db를 자동으로 생성함(폴더포함) -->
 	<bean id="dataSource-hsql_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-		<property name="url" value="jdbc:hsqldb:file:c:/embeded/hsql_file.db;hsqldb.lock_file=false" />
-		<property name="username" value="sa" />
-		<property name="password" value="" />
+		<property name="url" value="${DbUrl}" />
+		<property name="username" value="${DbUserName}" />
+		<property name="password" value="${DbPassword}" />
 	</bean>
 	
 	<!-- 위 생성DB파일에 더미데이터 생성시키는 스크립트문장(아래) 최초1회만 실행 -->
@@ -60,17 +60,18 @@
 		<property name="driverClassName" 
 				  value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url" 
-				  value="jdbc:log4jdbc:oracle:thin:@localhost:1521/XE"></property>
-		<property name="username" value="XE"></property>
-		<property name="password" value="apmsetup"></property>
+				  value="${DbUrl}"></property>
+		<property name="username" value="${DbUserName}"></property>
+		<property name="password" value="${DbPassword}"></property>
 	</bean>
 	
 	<!-- 위 오라클 jdbc빈을 스프링-마이바티스 에서 사용(아래) -->
+	<!-- 오라클용쿼리와 hsql(mysql)용 쿼리가 틀리기 때문에 아래 쿼리위치수정 -->
 	<!-- SQL세션팩토리(공장)클래스를 빈으로 생성: 쿼리를 찍어낼수 있는 메서드가 있는 클래스 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	   
 	 	<property name="dataSource" ref="dataSource" />
 	 	<!-- 매퍼 xml로만든 쿼리파일의 경로를 인식하게 함.(아래 classpath경로 src/main/resources/쿼리xml) -->
-	 	 <property name="mapperLocations" value="classpath:mappers/**/oracle/*Mapper.xml"></property>
+	 	 <property name="mapperLocations" value="classpath:mappers/**/${QueryType}/*Mapper.xml"></property>
 	</bean>
 	<!-- 위 SQL세션팩토리를 이용해서 템플릿클래스를 생성(insert(),select(),update(),
 	delete()등의 메서드를 사용할수 있는 클래스:세션이름인 이유는 쿼리 접속정보/해제정보를 관리하기 때문에 -->
@@ -90,7 +91,7 @@
 	</bean>
 	<!-- 파일업로드 설정 업로드 폴더위치 전역변수로 생성 bean을 실행시 초기값을 지정 contstructor사용 -->
 	<bean id="uploadPath" class="java.lang.String">
-		<constructor-arg value="c:\\upload" />
+		<constructor-arg value="${UploadPath}" />
 	</bean>
 	
 </beans>
