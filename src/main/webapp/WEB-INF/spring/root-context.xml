@@ -7,7 +7,19 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- properties를 불러오는 스프링빈을 만듭니다.(아래) -->
+	<bean id="propertyConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				
+				<value>classpath:/properties/oracle.properties</value>
+				
+				 <!-- 
+				<value>classpath:/properties/hsql.properties</value>
+				 -->
+			</list>
+		</property>
+	</bean>
 	<!-- 알리아스 Alias(별명) dataSource로 만듭니다.이유? 여러개의 DB와 호환되게 만들게됩니다. -->
 	<!-- 오라클, Mysql, Hsql 등 여러 DB서버와 호환되게 만드는데 필요(아래) -->
 	<alias name="dataSource-${DbType}" alias="dataSource"/>
@@ -23,26 +35,32 @@
 	</bean>
 	
 	<!-- 위 생성DB파일에 더미데이터 생성시키는 스크립트문장(아래) 최초1회만 실행 -->
+	<!-- hsql이 아닌 다른 DB일때는 주석처리 필수 -->
+	<!-- 
 	<jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS"> 
 		<jdbc:script location="classpath:/db_script/hsql_file.sql" /> 
 	</jdbc:initialize-database>
-	
-	<!-- hsql데이터베이스 매니저실행 /embeded/hsql_file.db를 매니저에서 불러옴 -->
+	 -->
+	<!-- hsql데이터베이스 매니저실행 /embeded/hsql_file.db를 매니저에서 불러옴 
+		배포시는 항상 주석처리 합니다.
+	-->
+	<!-- 
 	<bean depends-on="dataSource-hsql_local"
 	class="org.springframework.beans.factory.config.MethodInvokingBean">
 	<property name="targetClass" value="org.hsqldb.util.DatabaseManagerSwing" />
 	<property name="targetMethod" value="main" />
 	<property name="arguments">
 		<list>
-			<value>--url</value>
+			<value>- -url</value>
 			<value>jdbc:hsqldb:file:c:/embeded/hsql_file.db;hsqldb.lock_file=false</value>
-			<value>--user</value>
+			<value>- -user</value>
 			<value>sa</value>
-			<value>--password</value>
+			<value>- -password</value>
 			<value></value>
 		</list>
 	</property>
 	</bean>
+	 -->
 	<!-- 로컬(PC) 오라클 jdbc 드라이버 설정(아래) -->
 	<!-- 
 	<bean id="dataSource-oracle_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
