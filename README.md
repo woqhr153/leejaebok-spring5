@@ -39,6 +39,10 @@
 - hsqldb 외부모듈 pom.xml에 추가.(자바기반 DB사용가능)
 - 우리프로젝트에 HsqlDB를 생성.(메이븐에서 Hsql모듈을 업데이트하면, 사용가능)
 - 오라클은 로컬에서 개발, HsqlDB는 헤로쿠 클라우드용을 개발할 수 있도록 root-context.xml에서 설정예정.
+- 아래 3가지가 root-context에 추가 됩니다.
+- 1. hsql용 jdbc드라이버를 스프링빈으로 생성하기
+- 2. DB생성 스크립트 실행
+- 3. DB매니저실행하기
 - 현재 까지 작업한 소스를 여러분 이름 도메인으로배포예정 kimilguk-spring5.herokuapp.com
 - 관리자단 대시보드 작업예정.
 - 사용자단 게시물관리 CRUD작업예정.

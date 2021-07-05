@@ -10,14 +10,21 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 알리아스 Alias(별명) dataSource로 만듭니다.이유? 여러개의 DB와 호환되게 만들게됩니다. -->
 	<!-- 오라클, Mysql, Hsql 등 여러 DB서버와 호환되게 만드는데 필요(아래) -->
-	<alias name="dataSource-oracle_local" alias="dataSource"/>
-	<!-- 로컬(PC) Hsql용-헤로쿠클라우드에 배포용 드라이버 설정(나중에) -->
+	<alias name="dataSource-hsql_local" alias="dataSource"/>
+	<!-- embeded는 내장형(앱용)으로서 간단한 용도의 DB구조에 사용.file구조가 아닌 메모리구조로가능 
+		특징: 톰캣과 라이프사이클을 같이합니다.
+	-->	
+	<!-- /embeded/hsql_file.db를 자동으로 생성함(폴더포함) -->
+	<bean id="dataSource-hsql_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:file:c:/embeded/hsql_file.db;hsqldb.lock_file=false" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
 	
-	<!-- /embeded/hsql_file.db를 자동으로 생성함(폴더포함) 생성 문장스크립트(아래) -->
-	
-	<!-- 위  -->
+	<!-- 위 생성DB파일에 더미데이터 생성시키는 스크립트문장(아래) 최초1회만 실행 -->
 	<jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS"> 
-		<jdbc:script location="classpath:/db/embeded_hsql_file.sql" /> 
+		<jdbc:script location="classpath:/db_script/hsql_file.sql" /> 
 	</jdbc:initialize-database>
 	
 	<!-- hsql데이터베이스 매니저실행 /embeded/hsql_file.db를 매니저에서 불러옴 -->
