@@ -118,7 +118,9 @@
 			<scope>test</scope>
 		</dependency>  
 		
-		<!-- 이후는 기능추가시 늘어나는 영역 -->
+		<!-- 이후는 기능추가시 늘어나는 영역 
+		mvnrepository.com 아티팩트ID명으로 검색 후 가장많이 사용하는 버전선택
+		-->
 		<!-- 스프링 Test사용 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -186,7 +188,14 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.7</version>
-		</dependency>  
+		</dependency> 
+		<!-- Hsql자바기반DB 모듈 추가 -->
+		<!-- hsql 데이터베이스 사용 -->
+		<dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.4.1</version>
+        </dependency>
 	</dependencies>
     <build>
     	<defaultGoal>install</defaultGoal>

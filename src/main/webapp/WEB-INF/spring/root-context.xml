@@ -12,7 +12,30 @@
 	<!-- 오라클, Mysql, Hsql 등 여러 DB서버와 호환되게 만드는데 필요(아래) -->
 	<alias name="dataSource-oracle_local" alias="dataSource"/>
 	<!-- 로컬(PC) Hsql용-헤로쿠클라우드에 배포용 드라이버 설정(나중에) -->
-
+	
+	<!-- /embeded/hsql_file.db를 자동으로 생성함(폴더포함) 생성 문장스크립트(아래) -->
+	
+	<!-- 위  -->
+	<jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS"> 
+		<jdbc:script location="classpath:/db/embeded_hsql_file.sql" /> 
+	</jdbc:initialize-database>
+	
+	<!-- hsql데이터베이스 매니저실행 /embeded/hsql_file.db를 매니저에서 불러옴 -->
+	<bean depends-on="dataSource-hsql_local"
+	class="org.springframework.beans.factory.config.MethodInvokingBean">
+	<property name="targetClass" value="org.hsqldb.util.DatabaseManagerSwing" />
+	<property name="targetMethod" value="main" />
+	<property name="arguments">
+		<list>
+			<value>--url</value>
+			<value>jdbc:hsqldb:file:c:/embeded/hsql_file.db;hsqldb.lock_file=false</value>
+			<value>--user</value>
+			<value>sa</value>
+			<value>--password</value>
+			<value></value>
+		</list>
+	</property>
+	</bean>
 	<!-- 로컬(PC) 오라클 jdbc 드라이버 설정(아래) -->
 	<!-- 
 	<bean id="dataSource-oracle_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
