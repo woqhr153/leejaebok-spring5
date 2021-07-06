@@ -135,7 +135,9 @@ public class ReplyController {
 		}
 		//======================================================
 		} catch(Exception e) {
-			result = new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			Map<String,Object> resultMap = new HashMap<String,Object>();
+			resultMap.put("errorMsg", e.getMessage());
+			result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return result;
 		/* Json데이터 출력 예 

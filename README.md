@@ -26,10 +26,13 @@
 - ======== 2주간 작업내역 끝(07.16금) ===================
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
-#### 20210706(화) 작업예정.
+#### 20210706(화) 작업.
 - 수업전 mysql폴더의 replyMapper.xml 쿼리파일에서 아래 내용대로 변경합니다.
 - [수정전] limit #{pageVO.queryStartNo}, #{pageVO.queryPerPageNum}
 - [수정후] limit #{queryStartNo}, #{queryPerPageNum}
+- JUnit(스프링테스트방법) - 부메랑(RestApi컨트롤러테스트방법)
+- 스프링백엔드단(logger,이클립스콘솔에서디버그) 
+- 스프링RestApi단=Ajax(로거디버거로하지않고, RestApi리턴값으로 디버그)
 - 관리자단 대시보드 작업예정.
 - 사용자단 게시물관리 CRUD작업예정.
 - 사용자단 메인페이지(대시보드) 작업예정.
