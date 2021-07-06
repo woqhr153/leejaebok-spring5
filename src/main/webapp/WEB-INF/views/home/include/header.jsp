@@ -81,19 +81,20 @@ if("${msg}" != "") {
 				</ul>	
 				<nav>
 				<ul class="gnb clear">
-					<li><a href="board_list.html" class="openAll1">샘플홈페이지</a>
+					<li><a href="/resources/home/index.html" target="_blank" class="openAll1">샘플홈페이지</a>
 
                         <div class="gnb_depth gnb_depth2_1">
                             <ul class="submenu_list">
-                                <li><a href="board_list.html">반응형홈페이지</a></li>
+                                <li><a href="/resources/home/index.html" target="_blank">반응형홈페이지</a></li>
                             </ul>
                         </div>
 					</li>
-					<li><a href="board_list.html" class="openAll2">커뮤니티</a>
+					<li><a href="#" class="openAll2">커뮤니티</a>
 				        <div class="gnb_depth gnb_depth2_2">
                             <ul class="submenu_list">
-                                <li><a href="board_list.html">공지사항</a></li>
-                                <li><a href="board_list.html">겔러리게시판</a></li>
+                            	<c:forEach var="boardTypeVO" items="${listBoardTypeVO}">
+	                            	<li><a href="/home/board/board_list?board_type=${boardTypeVO.board_type}&search_type=">${boardTypeVO.board_name}</a></li>
+                            	</c:forEach>
                             </ul>
                         </div>
 					</li>

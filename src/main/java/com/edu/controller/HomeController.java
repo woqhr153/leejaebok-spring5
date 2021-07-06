@@ -1,21 +1,28 @@
 package com.edu.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //외부 라이브러리(모듈) 사용 = import
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.edu.service.IF_BoardService;
 import com.edu.service.IF_MemberService;
+import com.edu.vo.BoardVO;
 import com.edu.vo.MemberVO;
+import com.edu.vo.PageVO;
 
 /**
  * 이 클래스는 MVC웹프로젝트를 최초로 생성시 자동으로 생성되는 클래스
@@ -41,7 +48,20 @@ public class HomeController {
 	//관리자단에서 작성한 Service 사용자단에서 그대로 이용, 컨트롤러부터 분리해작업->jsp
 	@Inject
 	private IF_MemberService memberService;
+	@Autowired
+	private IF_BoardService boardService;
 	
+	//게시물 리스트 페이지 호출 GET 추가
+	@RequestMapping(value="/home/board/board_list",method=RequestMethod.GET)
+	public String board_list(@ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
+		if(pageVO.getPage() == null) {
+			pageVO.setPage(1);
+		}
+		//pageVO의 2개 필수로 입력해야지만 페이징처리가 가능
+		List<BoardVO> boardList = boardService.selectBoard(pageVO);
+		model.addAttribute("boardList", boardList);
+		return "home/board/board_list";//.jps생략
+	}
 	//404파일 에러 처리 GET 호출 추가
 	@RequestMapping(value="/home/error/error_404", method=RequestMethod.GET)
 	public String error_404() {
