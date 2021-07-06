@@ -326,7 +326,8 @@ var replyList = function() {
 			//console.log(result);//크롬에서 확인할 때,
 			//전체 json데이터를 출력할때 stringify함수로 형변환해서 출력
 			//만역 json데이터에서 키이름을 알게 되면, stringfy함수필요없이 result.responseText출력가능
-			alert(JSON.stringify(result));//이클립스에서 확인할 때
+			alert(result.responseText);//이클립스에서 확인할 때, 관리자단에서만사용
+			//단, 관리자단에서만 디버그하고, 사용자단에서는 아래 항목만 유지
 			alert("RestAPI서버가 작동하지 않습니다. 다음에 이용해 주세요0.");
 		}
 	});

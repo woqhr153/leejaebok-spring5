@@ -366,6 +366,13 @@ public class AdminController {
 	public String admin(Model model) throws Exception {//에러발생시 Exception클래스의 정보를 스프링으로 보내게 됩니다.		
 		//아래 상대경로에서 /WEB-INF/views/폴더가 루트(생략prefix접두어) 입니다.
 		//아래 상대경로 home.jsp에서 .jsp (생략suffix접미어) 입니다.
+		PageVO pageVO = new PageVO();//최소 2개의 기본값이 필수
+		pageVO.setQueryPerPageNum(4);
+		pageVO.setPage(1);
+		List<MemberVO> latestMembers = memberService.selectMember(pageVO);
+		model.addAttribute("latestMembers", latestMembers);
 		return "admin/home";//리턴 경로=접근경로는 반드시 상대경로로 표시
 	}
+	//메인페이지 또는 대시보드에 최신 테이블리스트를 출력하는 방법 2가지(위,model사용
+	//아래, @import방식 : 최신 게시물용도로 사용
 }

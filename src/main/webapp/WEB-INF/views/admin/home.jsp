@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="./include/header.jsp" %>
 
 <!-- 이후 메인 콘텐츠 영역 -->
@@ -44,11 +45,17 @@
           <!-- /.card-header -->
           <div class="card-body p-0">
             <ul class="users-list clearfix">
+            <!-- 최신 등록한 회원정보 4개출력-반복문사용  -->
+            <c:forEach var="memberVO" items="${latestMembers}">
               <li style="cursor: pointer;" onclick="alert('해당회원정보로 이동합니다.-준비중');">
                 <img src="/resources/admin/dist/img/default-150x150.png" alt="User Image">
-                <a class="users-list-name" href="#">관리자</a>
-                <span class="users-list-date">2021-05-28</span>
+                <a class="users-list-name" href="#">${memberVO.user_name}</a>
+                <span class="users-list-date">
+                <fmt:formatDate pattern="yyyy-MM-dd hh:MM:ss" value="${memberVO.reg_date}"/>
+                </span>
               </li>
+            </c:forEach>
+              
               
             </ul>
             <!-- /.users-list -->

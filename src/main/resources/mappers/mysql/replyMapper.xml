@@ -10,7 +10,7 @@ select count(*) from tbl_reply where bno = #{bno}
 select * from tbl_reply 
 where bno = #{bno}
 order by rno desc
-limit #{pageVO.queryStartNo}, #{pageVO.queryPerPageNum}
+limit #{queryStartNo}, #{queryPerPageNum}
 </select>
 
 <update id="replyCountUpdate">
