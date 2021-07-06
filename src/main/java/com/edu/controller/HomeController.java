@@ -57,7 +57,11 @@ public class HomeController {
 		if(pageVO.getPage() == null) {
 			pageVO.setPage(1);
 		}
-		//pageVO의 2개 필수로 입력해야지만 페이징처리가 가능
+		//pageVO의 2개변수값을 필수로 입력해야지만 페이징처리가 가능
+		pageVO.setQueryPerPageNum(5);
+		pageVO.setPerPageNum(5);
+		int totalCount = boardService.countBoard(pageVO);
+		pageVO.setTotalCount(totalCount);//여기에서 startPage,endPage,prev,next변수값이 발생됨
 		List<BoardVO> boardList = boardService.selectBoard(pageVO);
 		model.addAttribute("boardList", boardList);
 		return "home/board/board_list";//.jps생략

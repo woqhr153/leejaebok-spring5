@@ -89,11 +89,11 @@ if("${msg}" != "") {
                             </ul>
                         </div>
 					</li>
-					<li><a href="#" class="openAll2">커뮤니티</a>
+					<li><a href="/home/board/board_list?board_type=notice&search_keyword=" class="openAll2">커뮤니티</a>
 				        <div class="gnb_depth gnb_depth2_2">
                             <ul class="submenu_list">
                             	<c:forEach var="boardTypeVO" items="${listBoardTypeVO}">
-	                            	<li><a href="/home/board/board_list?board_type=${boardTypeVO.board_type}&search_type=">${boardTypeVO.board_name}</a></li>
+	                            	<li><a href="/home/board/board_list?board_type=${boardTypeVO.board_type}&search_keyword=">${boardTypeVO.board_name}</a></li>
                             	</c:forEach>
                             </ul>
                         </div>
