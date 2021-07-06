@@ -69,6 +69,7 @@ public class ReplyDAOImpl implements IF_ReplyDAO{
 		paramMap.put("queryStartNo", pageVO.getQueryStartNo());
 		paramMap.put("queryPerPageNum", pageVO.getQueryPerPageNum());
 		paramMap.put("bno", bno);
+		//paramMap = ["pageVO",{"queryStartNo":"값","queryPerPageNum":"값"}]
 		return sqlSession.selectList("replyMapper.selectReply", paramMap);
 	}
 
