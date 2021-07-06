@@ -51,7 +51,7 @@
 						${pageVO.totalCount-(pageVO.page*pageVO.queryPerPageNum)+pageVO.queryPerPageNum-status.index}
 						</td>
 						<td class="tit_notice">
-						<a href="/home/board/board_view?bno=${boardVO.bno}&page=${pageVO.page}&">
+						<a href="/home/board/board_view?bno=${boardVO.bno}&page=${pageVO.page}&search_type=${pageVO.search_type}">
 						${boardVO.title}
 						</a> </td>
 						<td>${boardVO.view_count}</td>
@@ -63,16 +63,28 @@
 				</tbody>
 			</table>
 			<!-- //게시물리스트영역 -->
-			
+			<style>
+				.disabled {
+					pointer-events:none;
+					cursor:default;
+					opacity:0.5;
+				}
+			</style>
 			<!-- 페이징처리영역 -->
 			<div class="pagination">
-				<a href="javascript:;" class="prevpage  pbtn"><img src="/resources/home/img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
-				<a href="javascript:;"><span class="pagenum currentpage">1</span></a>
-				<a href="javascript:;"><span class="pagenum">2</span></a>
-				<a href="javascript:;"><span class="pagenum">3</span></a>
-				<a href="javascript:;"><span class="pagenum">4</span></a>
-				<a href="javascript:;"><span class="pagenum">5</span></a>
-				<a href="javascript:;" class="nextpage  pbtn"><img src="/resources/home/img/btn_nextpage.png" alt="다음 페이지로 이동"></a>
+				<c:set var="disabled" value="${pageVO.prev?'':'disabled'}" />
+				<a href="/home/board/board_list?page=${pageVO.startPage-1}&search_type=${pageVO.search_type}" class="prevpage pbtn ${disabled}">
+				<img src="/resources/home/img/btn_prevpage.png" alt="이전 페이지로 이동">
+				</a>
+				
+				<c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}" step="1" var="idx">
+				<a href="/home/board/board_list?page=${idx}&search_type=${pageVO.search_type}"><span class="pagenum ${idx==pageVO.page?'currentpage':''}">${idx}</span></a>
+				</c:forEach>
+								
+				<c:set var="disabled" value="${pageVO.next?'':'disabled'}" />
+				<a href="/home/board/board_list?page=${pageVO.endPage+1}&search_type=${pageVO.search_type}" class="nextpage pbtn ${disabled}">
+				<img src="/resources/home/img/btn_nextpage.png" alt="다음 페이지로 이동">
+				</a>
 			</div>
 			<!-- //페이징처리영역 -->
 			<p class="btn_line">
