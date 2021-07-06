@@ -28,6 +28,7 @@
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
 
 #### 20210706(화) 작업.
+- Hsql데이터베이스는 특정?
 - 수업전 mysql폴더의 replyMapper.xml 쿼리파일에서 아래 내용대로 변경합니다.
 - [수정전] limit #{pageVO.queryStartNo}, #{pageVO.queryPerPageNum}
 - [수정후] limit #{queryStartNo}, #{queryPerPageNum}
