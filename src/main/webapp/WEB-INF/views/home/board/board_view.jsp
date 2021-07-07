@@ -35,8 +35,10 @@
             		 ${boardVO.real_file_names[idx]}
             		 </a>
             		 <!-- 만약 첨부파일이 jpg,jpeg,gif,png,bmp라면 img태그를 사용해서 미리보기 기능추가 -->
+            		 <c:set var="fileNameArray" value="${fn:split(boardVO.save_file_names[idx],'.')}" />
+            		 <c:set var="extName" value="${fileNameArray[fn:length(fileNameArray)-1]}" />
             		 <c:choose>
-            		 	<c:when test="">
+            		 	<c:when test="${fn:containsIgnoreCase(checkImgArray,extName)}">
             		 	<img alt="다운로드 이미지" style="width:100%;display:block;" src="/image_preview?save_file_name=${boardVO.save_file_names[idx]}">
             		 	</c:when>
             		 </c:choose>
