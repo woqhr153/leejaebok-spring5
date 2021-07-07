@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../include/header.jsp" %>
 
 <!-- 메인콘텐츠영역 -->
@@ -22,10 +23,23 @@
                     ${boardVO.content}
                 </div>
             </li>
-            <li class="bbs_title">첨부파일:
+            <li class="bbs_title" style="height:inherit">첨부파일:
             <c:forEach begin="0" end="1" var="idx">
             	<c:if test="${boardVO.real_file_names[idx] != null}">
-            		            	
+            		<c:url var="url" value="/download">
+            			<c:param name="save_file_name" value="${boardVO.save_file_names[idx]}" />
+            			<c:param name="real_file_name" value="${boardVO.real_file_names[idx]}"></c:param>
+            		</c:url>
+            		<!-- 위 처럼 c:url로 쿼리스트링을 처리하면 한글이 인코딩되어서 전송됨 -->
+            		 <a href="${url}">다운로드 
+            		 ${boardVO.real_file_names[idx]}
+            		 </a>
+            		 <!-- 만약 첨부파일이 jpg,jpeg,gif,png,bmp라면 img태그를 사용해서 미리보기 기능추가 -->
+            		 <c:choose>
+            		 	<c:when test="">
+            		 	<img alt="다운로드 이미지" style="width:100%;display:block;" src="/image_preview?save_file_name=${boardVO.save_file_names[idx]}">
+            		 	</c:when>
+            		 </c:choose>
             	</c:if> 
             </c:forEach>
             </li>
