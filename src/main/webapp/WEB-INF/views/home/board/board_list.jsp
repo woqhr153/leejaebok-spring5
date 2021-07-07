@@ -2,23 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../include/header.jsp" %>
-<!-- 게시판용 CSS 임포트 -->
-<link rel="stylesheet" href="/resources/home/css/board.css">
 
 	<!-- 메인콘텐츠영역 -->
     <div id="container">
 		<!-- 메인상단위치표시영역 -->
-		<div class="location_area customer">
-			<div class="box_inner">
-				<h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
-				<p class="location">고객센터 <span class="path">/</span> 공지사항</p>
-				<ul class="page_menu clear">
-					<c:forEach var="boardTypeVO" items="${listBoardTypeVO}">
-						<li><a href="/home/board/board_list?board_type=${boardTypeVO.board_type}&search_keyword=" class="${boardTypeVO.board_type==session_board_type?'on':''}">${boardTypeVO.board_name}</a></li>
-					</c:forEach>					
-				</ul>
-			</div>
-		</div>	
+		<%@ include file="./board_header.jsp" %>
 		<!-- //메인상단위치표시영역 -->
 
 		<!-- 메인본문영역 -->
@@ -96,11 +84,11 @@
 				<!-- 관리자일때, 일반사용자일때 1차조건, 2차조건 공지사항이 아닐때 -->
 				<c:choose>
 					<c:when test="${session_levels eq 'ROLE_ADMIN'}">
-						<a href="/home/board/board_insert" class="btn_baseColor">등록</a>
+						<a href="/home/board/board_insert_form" class="btn_baseColor">등록</a>
 					</c:when>
 					<c:otherwise>
 						<c:if test="${session_board_type ne 'notice'}">
-							<a href="/home/board/board_insert" class="btn_baseColor">등록</a>
+							<a href="/home/board/board_insert_form" class="btn_baseColor">등록</a>
 						</c:if>	
 					</c:otherwise>
 				</c:choose>
