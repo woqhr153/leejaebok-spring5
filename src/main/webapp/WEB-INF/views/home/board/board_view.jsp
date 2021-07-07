@@ -34,6 +34,7 @@
             		 <a href="${url}">다운로드 
             		 ${boardVO.real_file_names[idx]}
             		 </a>
+            		 <br>
             		 <!-- 만약 첨부파일이 jpg,jpeg,gif,png,bmp라면 img태그를 사용해서 미리보기 기능추가 -->
             		 <c:set var="fileNameArray" value="${fn:split(boardVO.save_file_names[idx],'.')}" />
             		 <c:set var="extName" value="${fileNameArray[fn:length(fileNameArray)-1]}" />
@@ -47,9 +48,20 @@
             </li>
         </ul>
         <p class="btn_line txt_right">
-            <a href="/home/board/board_list?page=${pageVO.page}&search_type=${pageVO.search_type}" class="btn_bbs">목록</a>
+            <a href="/home/board/board_list?page=${pageVO.page}&search_type=${pageVO.search_type}" class="btn btn-default">목록</a>
+            <button type="button" id="btn_delete" class="btn btn-danger">삭제</button>
+            <button type="button" id="btn_update" class="btn btn-warning">수정</button>
         </p>
-        
+        <script>
+        $(document).ready(function(){
+        	$("#btn_delete").click(function(){
+        		alert("삭제 준비중입니다.");
+        	});
+        	$("#btn_update").click(function(){
+        		alert("수정 준비중입니다.");
+        	});
+        });
+        </script>
     </div>
     <!-- //메인본문영역 -->
 
