@@ -52,10 +52,18 @@
             <button type="button" id="btn_delete" class="btn btn-danger">삭제</button>
             <button type="button" id="btn_update" class="btn btn-warning">수정</button>
         </p>
+        <form name="hide_form" id="hide_form" method="post" action="">
+        	<input type="hidden" name="bno" value="${boardVO.bno}">
+        	<input type="hidden" name="page" value="${pageVO.page}">
+        </form>
         <script>
         $(document).ready(function(){
+        	var form = $("#hide_form");
         	$("#btn_delete").click(function(){
-        		alert("삭제 준비중입니다.");
+        		if(confirm("정말로 삭제 하시겠습니까?")) {
+        			form.attr("action","/home/board/board_delete");
+        			form.submit();
+        		}        		
         	});
         	$("#btn_update").click(function(){
         		alert("수정 준비중입니다.");
