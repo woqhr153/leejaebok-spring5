@@ -61,7 +61,7 @@
 				}
 			</style>
 			<!-- 페이징처리영역 -->
-			<div class="pagination">
+			<div class="pagination justify-content-center">
 				<c:set var="disabled" value="${pageVO.prev?'':'disabled'}" />
 				<a href="/home/board/board_list?page=${pageVO.startPage-1}&search_type=${pageVO.search_type}" class="prevpage pbtn ${disabled}">
 				<img src="/resources/home/img/btn_prevpage.png" alt="이전 페이지로 이동">

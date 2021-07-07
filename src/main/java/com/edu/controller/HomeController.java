@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //외부 라이브러리(모듈) 사용 = import
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.edu.service.IF_BoardService;
 import com.edu.service.IF_MemberService;
 import com.edu.util.CommonUtil;
+import com.edu.vo.AttachVO;
 import com.edu.vo.BoardVO;
 import com.edu.vo.MemberVO;
 import com.edu.vo.PageVO;
@@ -60,6 +62,24 @@ public class HomeController {
 	//public 뷰단jsp파일명리턴형식 콜백함수(자동실행)
 	//return "파일명";
 	
+	//게시물 상세보기 호출 GET 추가
+	@RequestMapping(value="/home/board/board_view",method=RequestMethod.GET)
+	public String board_view(Model model,@RequestParam("bno")Integer bno,@ModelAttribute("pageVO")PageVO pageVO) throws Exception {
+		//첨부파일내용 가져오기
+		List<AttachVO> listAttachVO = boardService.readAttach(bno);
+		//첨부파일이 있다면 save_file_names, real_file_names 2개를 만듬
+		String[] save_file_names = new String[listAttachVO.size()];
+		String[] real_file_names = new String[listAttachVO.size()];
+		int index = 0;
+		for(AttachVO file:listAttachVO) {//세로데이터를 가로데이터로 변경처리
+			
+			
+		}
+		
+		//dB테이블 데이터 가져오기
+		model.addAttribute("boardVO", boardService.readBoard(bno));
+		return "home/board/board_view";//.jsp생략
+	}
 	//게시물 등록 처리 호출 POST 추가
 	@RequestMapping(value="/home/board/board_insert",method=RequestMethod.POST)
 	public String board_insert(RedirectAttributes rdat, @RequestParam("file")MultipartFile[] files,BoardVO boardVO) throws Exception {
