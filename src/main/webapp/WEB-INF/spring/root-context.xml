@@ -14,12 +14,12 @@
 				<!-- 
 				<value>classpath:/properties/oracle.properties</value>
 				-->
-				 
+				<!--  
 				 <value>classpath:/properties/cloude.properties</value>
-				
-				<!-- 
-				<value>classpath:/properties/hsql.properties</value>
 				 -->
+				
+				<value>classpath:/properties/hsql.properties</value>
+				
 			</list>
 		</property>
 	</bean>

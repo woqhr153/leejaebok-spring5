@@ -13,8 +13,9 @@
 				<h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
 				<p class="location">고객센터 <span class="path">/</span> 공지사항</p>
 				<ul class="page_menu clear">
-					<li><a href="#" class="on">공지사항</a></li>
-					<li><a href="#">문의하기</a></li>
+					<c:forEach var="boardTypeVO" items="${listBoardTypeVO}">
+						<li><a href="/home/board/board_list?board_type=${boardTypeVO.board_type}&search_keyword=" class="${boardTypeVO.board_type==session_board_type?'on':''}">${boardTypeVO.board_name}</a></li>
+					</c:forEach>					
 				</ul>
 			</div>
 		</div>	
@@ -89,7 +90,22 @@
 			</div>
 			<!-- //페이징처리영역 -->
 			<p class="btn_line">
-				<a href="board_write.html" class="btn_baseColor">등록</a>
+			<!-- 등록버튼은 로그인한 사용자만 보이도록 -->
+			<c:if test="${session_enabled}">
+				<!-- 게시판이 공지사항일때는 관리자만 사용가능조건,공지사항외에는 로그인한 사용자는 글쓰기 기능 -->
+				<!-- 관리자일때, 일반사용자일때 1차조건, 2차조건 공지사항이 아닐때 -->
+				<c:choose>
+					<c:when test="${session_levels eq 'ROLE_ADMIN'}">
+						<a href="/home/board/board_insert" class="btn_baseColor">등록</a>
+					</c:when>
+					<c:otherwise>
+						<c:if test="${session_board_type ne 'notice'}">
+							<a href="/home/board/board_insert" class="btn_baseColor">등록</a>
+						</c:if>	
+					</c:otherwise>
+				</c:choose>
+							
+			</c:if>
 			</p>
 		</div>
 		<!-- //메인본문영역 -->
