@@ -43,7 +43,7 @@
 			String user_id = null;
 			Integer bno = null;
 			for(Object object:pjp.getArgs()) {
-				if(object instanceof Integer) {//AOP실행메서드중 매개변수 PageVO pageVO객체 판단
+				if(object instanceof Integer) {//AOP실행메서드중 매개변수 판단
 					//파마미터가 bno일때 게시판의 writer를 가져오기
 					bno = (Integer) object;
 					boardVO = boardService.readBoard(bno);//아래 조건때문에 추가
