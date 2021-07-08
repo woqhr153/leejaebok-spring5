@@ -63,6 +63,26 @@ public class HomeController {
 	//public 뷰단jsp파일명리턴형식 콜백함수(자동실행)
 	//return "파일명";
 	
+	//게시물 수정 폼 호출 GET 추가
+	@RequestMapping(value="/home/board/board_update_form",method=RequestMethod.GET)
+	public String board_update_form(@RequestParam("bno")Integer bno,@RequestParam("page")Integer page,Model model) throws Exception {
+		//1개의 레코드만 서비스로 호출 모델로 보내줌 첨부파일은 세로데이터를 가로데이터변경후 boardVO담아서전송 
+		BoardVO boardVO = new BoardVO(); 
+		boardVO = boardService.readBoard(bno);
+		//save_file_names, real_file_names 가상필드값을 채웁니다.
+		List<AttachVO> fileList = boardService.readAttach(bno);//세로데이터 생성
+		int index = 0;
+		String[] save_file_names = new String[fileList.size()];
+		String[] real_file_names = new String[fileList.size()];
+		for(AttachVO file:fileList) {//가로데이터로 변경로직
+			save_file_names[index] = file.getSave_file_name();
+			real_file_names[index] = file.getReal_file_name();
+			index = index + 1;
+		}
+		
+		model.addAttribute("boardVO", null);
+		return "home/board/board_update";//.jsp 생략 반환값은 뷰로 보여줄 파일명
+	}
 	//게시물 삭제 처리 호출 POST 추가
 	@RequestMapping(value="/home/board/board_delete",method=RequestMethod.POST)
 	public String board_delete(@RequestParam("bno")Integer bno,RedirectAttributes rdat) throws Exception {

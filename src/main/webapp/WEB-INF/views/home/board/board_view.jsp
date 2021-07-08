@@ -66,7 +66,10 @@
         		}        		
         	});
         	$("#btn_update").click(function(){
-        		alert("수정 준비중입니다.");
+        		//alert("수정 준비중입니다.");
+        		form.attr("action","/home/board/board_update_form");
+        		form.attr("method","get");
+        		form.submit();
         	});
         });
         </script>
