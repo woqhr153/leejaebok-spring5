@@ -65,7 +65,7 @@ public class HomeController {
 	
 	//게시물 수정 폼 호출 GET 추가
 	@RequestMapping(value="/home/board/board_update_form",method=RequestMethod.GET)
-	public String board_update_form(@RequestParam("bno")Integer bno,@RequestParam("page")Integer page,Model model) throws Exception {
+	public String board_update_form(@RequestParam("bno")Integer bno,@ModelAttribute("pageVO")PageVO pageVO,Model model) throws Exception {
 		//1개의 레코드만 서비스로 호출 모델로 보내줌 첨부파일은 세로데이터를 가로데이터변경후 boardVO담아서전송 
 		BoardVO boardVO = new BoardVO(); 
 		boardVO = boardService.readBoard(bno);
@@ -79,8 +79,9 @@ public class HomeController {
 			real_file_names[index] = file.getReal_file_name();
 			index = index + 1;
 		}
-		
-		model.addAttribute("boardVO", null);
+		boardVO.setReal_file_names(real_file_names);
+		boardVO.setSave_file_names(save_file_names);
+		model.addAttribute("boardVO", boardVO);
 		return "home/board/board_update";//.jsp 생략 반환값은 뷰로 보여줄 파일명
 	}
 	//게시물 삭제 처리 호출 POST 추가
