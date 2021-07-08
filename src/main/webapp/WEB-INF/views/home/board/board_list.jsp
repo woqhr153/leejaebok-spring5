@@ -29,6 +29,7 @@
 					<tr>
 						<th scope="col">번호</th>
 						<th scope="col">제목</th>
+						<th scope="col">작성자</th>
 						<th scope="col">조회수</th>
 						<th scope="col">작성일</th>
 					</tr>
@@ -44,6 +45,7 @@
 						<a href="/home/board/board_view?bno=${boardVO.bno}&page=${pageVO.page}&search_type=${pageVO.search_type}">
 						${boardVO.title}
 						</a> </td>
+						<td>${boardVO.writer}</td>
 						<td>${boardVO.view_count}</td>
 						<td>
 						<fmt:formatDate pattern="yyyy-MM-dd" value="${boardVO.reg_date}"/> 

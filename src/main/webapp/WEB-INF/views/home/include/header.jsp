@@ -40,6 +40,10 @@
 if("${msg}" != "") {
 	alert("${msg} 가(이) 성공하였습니다.");
 }
+//공통으로 사용하는 에러메시지 변수:
+if("${msgError}" != "") {
+	alert("${msgError}");
+}
 </script>
 
 </head>
