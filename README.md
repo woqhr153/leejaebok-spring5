@@ -42,6 +42,7 @@
 			BoardVO boardVO = null;
 			String user_id = null;
 			Integer bno = null;
+			logger.info("디버그 메서드네임 가져오기 : " + pjp.getSignature().getName());//기술참조 https://alwayspr.tistory.com/34
 			for(Object object:pjp.getArgs()) {
 				if(object instanceof Integer) {//AOP실행메서드중 매개변수 판단
 					//파마미터가 bno일때 게시판의 writer를 가져오기
