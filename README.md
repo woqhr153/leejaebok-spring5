@@ -25,7 +25,7 @@
 - [실습시간이 가능하다면: 사용자단 네이버아이디로그인 처리(10.외부RestAPI구현).]
 - ======== 2주간 작업내역 끝(07.16금) ===================
 - 헤로쿠 클라우드에 배포할때, 매퍼폴더의 mysql폴더내의 쿼리에 now()를 date_add(now(3), interval 9 HOUR) 변경예정.(이유는 DB서버 타임존 미국이기 때문에)
-#### 20210709(금) 작업예정.
+#### 작업일정.
 - 7월9일(금) 모두 줌으로 수업
 - 7월12(월) 학원이사로 휴강
 - 7월13(화) 이사한 학원에서 수업시작(A조대면,B조줌)
@@ -33,6 +33,42 @@
 
 #### 20210709(금) 작업예정.
 - 게시물 CRUD시 본인글 인지 확인 하는 메서드를 공통으로 구현하기(많이사용하는 방향으로)
+
+```
+@Around("execution(* com.edu.controller.HomeController.board_delete(..)) || execution(* com.edu.controller.HomeController.board_update*(..))")
+    public Object board_deleteMethod(ProceedingJoinPoint pjp) throws Throwable {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+		if(request != null) {//jsp에서 Get,Post 있을때,
+			BoardVO boardVO = null;
+			String user_id = null;
+			Integer bno = null;
+			for(Object object:pjp.getArgs()) {
+				if(object instanceof Integer) {//AOP실행메서드중 매개변수 PageVO pageVO객체 판단
+					//파마미터가 bno일때 게시판의 writer를 가져오기
+					bno = (Integer) object;
+					boardVO = boardService.readBoard(bno);//아래 조건때문에 추가
+					user_id = boardVO.getWriter();
+				}
+				if(object instanceof BoardVO) {
+					//파라미터가 BoardVO 클래스객체 일때 writer를 가져오기
+					boardVO = (BoardVO) object;
+					user_id = boardVO.getWriter();
+				}
+			}
+			HttpSession session = request.getSession();//클라이언트PC에서 스프링프로젝트 접근시 세션객체
+			if( !user_id.equals(session.getAttribute("session_userid")) && "ROLE_USER".equals(session.getAttribute("session_levels")) ) {
+				FlashMap flashMap = new FlashMap();
+				flashMap.put("msgError", "게시물은 본인글만 수정/삭제 가능합니다.");
+				FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
+				flashMapManager.saveOutputFlashMap(flashMap, request, null);
+				String referer = request.getHeader("Referer");//크롬>네트워크>파일>Referer>이전페이지 URL이 존재
+				return "redirect:"+referer;
+			}
+		}
+		Object result = pjp.proceed();//여기서 조인포인트가 실행됩니다.
+		return result;
+	}
+```
 - 사용자단 댓글서비스 작업예정.
 - 사용자단 메인페이지(대시보드) 작업예정.
 - 헤로쿠 30분 지나서 휴면모드로 들어가기전, 잠깨우는 기능 추가예정.(스프링스케줄러사용)
