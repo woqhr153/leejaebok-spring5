@@ -81,11 +81,12 @@
 					</script>
 				</ul>
 				<p class="btn_line">
-				<button type="submit" class="btn_baseColor">등록</button>
+				<button type="submit" class="btn_baseColor">수정</button>
 				<a href="/home/board/board_list" class="btn_baseColor">목록</a>
 				</p>	
 			</fieldset>
 			<input name="board_type" value="${session_board_type}" type="hidden" >
+			<input name="page" value="${pageVO.page}" type="hidden">
 		</form>
 		<!-- //폼영역 -->
 	</div>
