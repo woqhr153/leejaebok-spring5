@@ -72,7 +72,11 @@ public class HomeController {
 		boardService.deleteBoard(bno);
 		//첨부파일 있으면 삭제
 		for(AttachVO file:delFiles) {//향상된 for문에서 실행조건이 필요없이
-			File target = null;//내일 이어 작업.
+			//File 클래스는 객체를 생성할때 생성자메서드의 매개변수(경로,파일명)가 필요함.
+			File target = new File(commonUtil.getUploadPath(),file.getSave_file_name());
+			if(target.exists()) {//타켓폴더의 파일이 존재하면 삭제 구현(아래)
+				target.delete();//물리적인 UUID파일명의 파일 삭제처리.
+			}
 		}
 		rdat.addFlashAttribute("msg", "게시물 삭제");//성공시 메세지 출력용 변수
 		return "redirect:/home/board/board_list";//성공시 이동할 주소
