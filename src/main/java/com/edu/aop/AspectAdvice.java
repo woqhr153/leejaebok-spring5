@@ -43,6 +43,12 @@ public class AspectAdvice {
 	//Aspect로 AOP를 구현할때는 포인트컷(Advice참견이 실행될 위치)이 필요합니다.
 	//@Around=@Before+@After = @Around(포인트컷 전+후.*(...)모든 메서드)
 	//@Around는 콜백함수 매개변수로 조인포인트객체(포인트컷에서 실해되는 메서드들) 를 필수로 받습니다.
+	//아래 조인포인트(중단점)은 board_delete || board_update* 메서드를 실행할때, 
+	//본인이 작성한글인지 확인하는 기능(단, ROLE_ADMIN 사용자는 제외)을 만듭니다.
+	@Around("execution(* com.edu.controller.HomeController.board_delete(..)) || execution(* com.edu.controller.HomeController.board_update*(..))")
+	public Object 
+	
+	//아래 조인포인트(중단점)은 검색어와 게시판타입의 값을 세션으로 유지시키는 기능
 	@Around("execution(* com.edu.controller.*Controller.*(..))")
 	public Object sessionManager(ProceedingJoinPoint pjp) throws Throwable {
 		//board_type변수값을 세션에 저장하려고 함. 클라이언트별 세션이 발생됨.
