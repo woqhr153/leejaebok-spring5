@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.FlashMap;
+import org.springframework.web.servlet.FlashMapManager;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.edu.service.IF_BoardService;
 import com.edu.service.IF_BoardTypeService;
@@ -70,9 +73,14 @@ public class AspectAdvice {
 		}
 		if(request != null) {
 			HttpSession session = request.getSession();
-			//위 메서드의 매개변수를 이용해서 생성된 user_id와 세션user_id와 비교
-			if(!user_id.equals(session.getAttribute("session_userid"))) {
-				//메세지를 redirect로 
+			//위 메서드의 매개변수를 이용해서 생성된 user_id와 세션user_id와 비교 x ROLE_USER일때조건추가
+			if( !user_id.equals(session.getAttribute("session_userid")) && "ROLE_USER".equals(session.getAttribute("session_levels")) ) {
+				//메세지를 redirect로 .addFlash~로 변수명을 지정해서 보냈음.
+				//위 RedirectAttributes를 사용하는 대신 Flash(휘발성객체1번사용하고,내용없어짐)클래스
+				FlashMap flashMap = new FlashMap();
+                flashMap.put("msgError", "게시물은 본인글만 수정/삭제 가능합니다.");
+                FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
+                flashMapManager.saveOutputFlashMap(flashMap, request, null);
 				return "redirect:" + request.getHeader("Referer");
 			}
 		}
