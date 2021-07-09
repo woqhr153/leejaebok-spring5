@@ -397,7 +397,8 @@ $(document).ready(function(){
 				//alert("test출력2");
 			},
 			error:function() {
-				alert("RestAPI서버가 작동하지 않습니다. 잠시 후 이용해 주세요3.")
+				alert("RestAPI서버가 작동하지 않습니다. 잠시 후 이용해 주세요3.");
+				return false;
 			},//추가기능예정.
 			beforeSend:function() {
 				//alert("전송전에 실행할 내용출력1");
