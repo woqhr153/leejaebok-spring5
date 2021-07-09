@@ -70,7 +70,7 @@
 		return result;
 	}
 ```
-- 사용자단 댓글서비스 작업.
+- 사용자단 댓글서비스 작업.(기술참조: http://www.ktword.co.kr/abbr_view.php?m_temp1=5782 )
 - Ajax소스는 프로그램이기 때문에, 디자인과 크게관련없기때문에, admin단 board_view에 있는 
 - ajax코드를 가져다가 사용하면서 커스터마이징.
 - 사용자단 메인페이지(대시보드) 작업예정.

@@ -369,11 +369,24 @@ $(document).ready(function(){
 				$("#reply_page").val("1");//val()로 값을 입력, input태그라는 말.
 				//댓글 입력 후 화면에 댓글 목록 출력하는 함수실행
 				replyList();
+				//alert("test출력2");
 			},
 			error:function() {
 				alert("RestAPI서버가 작동하지 않습니다. 잠시 후 이용해 주세요3.")
-			}//추가기능예정.
-			
+			},//추가기능예정.
+			beforeSend:function() {
+				//alert("전송전에 실행할 내용출력1");
+			},
+			complete:function() {
+				//success 완료된 이후 실행해야할 내용이 있을때 사용
+				//success에서 함수가 여러개 실행될때 순서가 중요한 경우 분리해서 사용
+				$("#reply_text").val("");//기존 입력창의 댓글 내용을 지우기. 
+				alert("등록이 완료 되었습니다.");
+			},
+			async:true
+			//Async+Javascript And Xml:비동기 데이터통신
+			//Ajax이지만, 비동기 false로 하는경우(아이작스로 대용량첨부파일 업로드할때)
+			//success:업로딩중...표시가 됨. -> 업로드가 완료되면 complete실행됨
 		});
 	});
 });
