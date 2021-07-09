@@ -113,6 +113,26 @@
 	</bean>
 	
 	<!-- 스케줄링 스프링 빈 생성 -->
-	
+	<bean id="herokuJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 스케줄링할 *서비스객체의 빈 이름을 인자로 줍니다. -->
+		<property name="targetObject" ref="memberServiceImpl" />
+		<!-- 위 스케중링할 객체에서 주기적으로 실행할 메서드명 지정 -->
+		<property name="targetMethod" value="herokuJobMethod" />
+		<!-- 동시 실행을 방지하는 코드추가 -->
+		<property name="concurrent" value="false" />
+	</bean>
+	<!-- 위에서 만든 스프링 빈을 20분마다 실행하는 스프링 빈 추가(아래) 크론(데몬-백그라운드)프로그램 -->
+	<bean id="herokuJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="herokuJob" />
+		<property name="cronExpression" value="0 0/1 23,0-14 ? * MON,TUE,WED,THU,FRI" />
+	</bean>
+	<!-- 위에서 만든 트리거가 여러개 일때 1개씩 실행(아래) -->
+	<bean id="jobScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="herokuJobTrigger"/>
+			</list>
+		</property>
+	</bean>
 	
 </beans>
