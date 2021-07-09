@@ -191,6 +191,31 @@
 
 <!-- 댓글 하단의 페이징처리용 변수값지정 -->
 <input id="reply_page" value="1" type="hidden">
+<!-- 모달창(초기엔 숨긴상태modal-display:none, fade-opacity:0-수정버튼을 클릭하면 나타나는 창) -->
+<div class="modal fade" id="modal-reply">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">작성자명</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<input class="form-control" type="text" name="modal_reply_text" id="modal_reply_text" value="댓글내용 출력">
+		</div>
+		<div class="modal-footer"><!-- justify-content-between:양쪽배분정렬 -->
+			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			<button id="btn_reply_update" type="button" class="btn btn-primary">수정</button>
+			<button id="btn_reply_delete" type="button" class="btn btn-danger">삭제</button>
+			<input type="hidden" id="rno" name="rno">
+		</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 <!-- //메인콘텐츠영역 -->
 <%@ include file="../include/footer.jsp" %>
