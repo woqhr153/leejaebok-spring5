@@ -112,4 +112,7 @@
 		<constructor-arg value="${UploadPath}" />
 	</bean>
 	
+	<!-- 스케줄링 스프링 빈 생성 -->
+	
+	
 </beans>

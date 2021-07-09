@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -48,6 +50,24 @@ public class CommonUtil {
 	private IF_MemberService memberService;//스프링빈을 주입받아서(DI) 객체준비
 	@Inject
 	private IF_BoardDAO boardDAO;
+	
+	//헤로쿠클라우드에 30분휴면상태를 깨우는 기능추가->root-context에서 지정한 스케줄러에서 20분간격으로 호출됨
+	public void herokuJobMethod() throws Exception {
+		//한국시간 월-금 8-23시까지(미국시간 0-14) 헤로쿠앱에 20분간격으로 접근
+		//헤로쿠 컨테이너가 러닝할 수 있는 무료 시간 1달 700시간 정보 됩니다. 시간이 넘으면 먹통(1달내)
+		//주말에 이력서보시는 분이 없기때문에
+		String urlStr = "https://kimilguk-spring5.herokuapp.com/";
+		URL url = new URL(urlStr);
+		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();//접속객체만들기
+		urlConnection.setUseCaches(false);//접속시 캐시사용없이 무조건 새로고침하겠다고 명시, 컨테이너가 계속 떠있습니다.(세션도 유지됨)
+		urlConnection.setReadTimeout(10000);//접속대기시간을 10초로 제한
+		//20분 마다 접속이 되는지 개발자가 확인하는 코드
+		if(urlConnection != null && urlConnection.getResponseCode()==HttpURLConnection.HTTP_OK) {
+			logger.info("헤로쿠 앱이 활성화 상태 입니다.");
+		} else {
+			logger.info("헤로쿠앱이 비활성화 상태 입니다.");
+		}
+	}
 	
 	//첨부파일 업로드/다운로드/삭제/인서트/수정에 모두 사용될 저장경로를 1개지정해서 [전역]으로사용
 	@Resource(name="uploadPath")

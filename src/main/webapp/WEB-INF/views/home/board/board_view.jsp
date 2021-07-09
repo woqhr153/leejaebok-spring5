@@ -418,24 +418,6 @@ $(document).ready(function(){
 </script>
 
 <script>
-//게시물 목록버튼과 게시물 삭제버튼 처리
-$(document).ready(function(){
-	var form_view = $("form[name='form_view']");//전역변수
-	$("#btn_list").click(function(){
-		//여기서는 함수내 변수
-		form_view.attr("action","/admin/board/board_list");
-		form_view.submit();
-	});
-	$("#btn_delete").click(function(){
-		if(confirm('정말로 삭제 하시겠습니까?')) {//Yes를 클릭하면 아래내용 실행
-			form_view.attr("action","/admin/board/board_delete");
-			form_view.attr("method", "post");
-			form_view.submit();
-		}
-	});
-});
-</script>
-<script>
 // 댓글 리스트에서 수정 버튼클릭시 현재 선택한 값을 모달창에 보여주는 것을 구현(아래)
 $(document).ready(function(){
   $('.timeline').on("click", '.div_template',function(){
