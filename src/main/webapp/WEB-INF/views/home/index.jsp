@@ -85,7 +85,7 @@ $(document).ready(function() {
 	
 		<!-- 갤러리최근게시물영역 -->
 		<div class="about_area">
-			<h2>겔러리 최근 게시물 <b>TOP 3</b></h2>
+			<h2><a herf="/home/board/board_list?board_type=gallery&search_keyword=">겔러리 최근 게시물 <b>TOP 3</b></a></h2>
 			<div class="about_box">
 				<ul class="place_list box_inner clear">
 					<li><a href="#" onclick="$('.popup_base').css('height',$(document).height());$('.contact_pop').show();">
