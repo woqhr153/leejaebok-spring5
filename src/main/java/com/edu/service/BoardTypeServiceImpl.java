@@ -11,7 +11,7 @@ import com.edu.vo.BoardTypeVO;
 
 /**
  * 이 클래스는 DAO클래스에 접근하기 위한 서비스 클래스 입니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 @Service //애노테이션을 붙여야지만 스프링빈으로 등록이 됩니다.

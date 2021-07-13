@@ -1,7 +1,7 @@
 package com.edu.vo;
 /**
  * 이 클래스는 공통(회원관리,게시물관리)으로 사용하는 페이징처리+검색기능의 클래스.
- * @author 김일국
+ * @author 이재복
  * 이 클래스는 오라클이든, MySql(마리아DB) 어디서든 공통으로사용 Get/Set. 
  * 페이징에 사용되는 변수(쿼리변수+VO변수) 아래
  * queryStartNo, queryPerPageNum, page, perPageNum, startPage, endPage

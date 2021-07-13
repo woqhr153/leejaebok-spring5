@@ -9,7 +9,7 @@ import com.edu.vo.PageVO;
 /**
  * 이 인터페이스는 DAO를 호출하는 서비스 입니다.
  * DAO클래스의 12메서드가 7개로 변동이 있습니다. 나머지 5개 메서드는 구현 클래스에 사용합니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 public interface IF_BoardService {

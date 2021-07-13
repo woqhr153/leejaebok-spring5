@@ -7,7 +7,7 @@ import com.edu.vo.ReplyVO;
 
 /**
  * 이 인터페이스는 댓글 쿼리에 입출력하는 메서드명만 존재합니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 public interface IF_ReplyDAO {

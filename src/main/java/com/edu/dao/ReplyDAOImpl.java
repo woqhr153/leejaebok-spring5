@@ -14,7 +14,7 @@ import com.edu.vo.ReplyVO;
 
 /**
  * 이클래스는 sqlSession템플릿을 이용해서 쿼리를 실행하는 클래스입니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 @Repository

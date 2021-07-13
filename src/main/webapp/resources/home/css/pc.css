@@ -1,9 +1,12 @@
 @charset "UTF-8";
-/* PC용 메인페이지 스타일 지정 1066px~무한대까지 재정의 */
-@media all and (min-width:1066px) {
-	/* 상단로고, 메뉴영역 */
+
+/* PC용 메인페이지 스타일 지정(아래) 1066px ~ 무한대 재정의*/
+@media all and (min-width : 1066px) {
+	
+	/* 상단로고, 메뉴영역*/
+
 	.header_area h1 {
-		padding-left: 0px;
+		padding-left: 0;
 	}
 	.header_cont {
 		width: 769px;
@@ -12,12 +15,12 @@
 	.gnb li a {
 		padding: 26px 40px;
 	}
-	.gnb_depth { /* 2차메뉴 내용 */
-		position: absolute;/* 부모태그를 기준으로 절대위치 */
-		left: 0px;
-		top: 113px;
+	.gnb_depth {/* 2차 메뉴 내용*/
+		position: absolute; /* 부모태그를 기준으로 절대위치 */
+		left: 0;
+		top:  113px;
 		width: 100%;
-		background: rgba(250,100,0,0.85);
+		background: rgba(250, 100, 0, 0.85);
 		z-index: 100;
 	}
 	.gnb_depth2_1 .submenu_list {
@@ -25,26 +28,28 @@
 	}
 	.gnb_depth2_2 .submenu_list {
 		padding-left: 800px;
-		/* display: none; */
 	}
 	.submenu_list {
 		box-sizing: border-box;
-		width: 1050px;/* 원래는 1065px정상인데 혹시 레이아웃 깨질까봐 1050px로 고정 */
-		margin:0 auto;
+		width: 1050px; /* 원래는 1065px이 정상이지만 레이아웃이 깨질까봐 1050px로 고정 */
+		margin: 0 auto;
 		text-align: left;
 	}
+
 	/* //상단로고, 메뉴영역 */
 
-    /* 겔러리,공지사항 최근게시물영역 */
+    
+	/* 겔러리, 공지사항 최근게시물영역 */
+
 	.place_list {
-		padding: 0px;
+		padding: 0;
 	}
 	.appbbs_box {
-		padding: 0px;
+		padding: 0;
 	}
 	.app_line a, .app_line a + a {
 		text-align: center;
-		background-position: 20px 50%;/* 백그라운드 이미지위치를 가로 20px, 세로 50%로 배치 */
+		background-position: 20px 50%;
 	}
 	.app_line {
 		width: 66%;
@@ -52,11 +57,14 @@
 	.bbs_line {
 		width: 32%;
 	}
-	/* //겔러리,공지사항 최근게시물영역 */
+
+	/* //겔러리, 공지사항 최근게시물영역 */
+
 	/* 푸터영역 */
+
 	.foot_area {
-		padding-left: 0px;
-		padding-right: 0px;
+		padding-left: 0;
+		padding-right: 0;
 	}
 	.foot_area .snslink {
 		top: 50px;
@@ -64,5 +72,6 @@
 	.foot_area .snslink li {
 		margin-left: 60px;
 	}
+
 	/* //푸터영역 */
 }

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.edu</groupId>
 	<artifactId>controller</artifactId>
-	<name>kimilguk-spring5</name>
+	<name>leejaebok-spring5</name>
 	<packaging>war</packaging>
 	<version>edu_webapp_v1.0</version>
 	<properties>

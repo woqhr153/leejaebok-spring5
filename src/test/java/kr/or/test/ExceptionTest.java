@@ -1,7 +1,7 @@
 package kr.or.test;
 /**
  * 이 클래스는 자바앱에서 개발자 예외를 처리하는 방법 실습하는 클래스 입니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 public class ExceptionTest {

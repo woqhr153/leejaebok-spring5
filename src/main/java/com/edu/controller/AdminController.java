@@ -32,7 +32,7 @@ import com.edu.vo.PageVO;
  * 디스페처 서블렛 클래스는 톰캣이 실행(web.xml)될때 제일 먼저 실행되는 클래스, 그래서, 게이트웨이라고 합니다.
  * 디스페처 서블릿 실행될때, 컨트롤러의 Request매핑경로를 재 등록합니다.
  * 변수 Object를 만들어서 jsp로 전송 <-> jsp 폼값을 받아서 Object로 처리
- * @author 김일국
+ * @author 이재복
  *
  */
 @Controller

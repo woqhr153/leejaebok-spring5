@@ -15,7 +15,7 @@ import com.edu.vo.PageVO;
 
 /**
  * 이 클래스는 DAO메서드를 호출하는 기능을 합니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 @Service //@애노테이션을 붙이면 스프링 빈으로 등록이 됨.

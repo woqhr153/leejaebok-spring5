@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 이 클래스틑 첨부파일 입출력에 사용될 멤버변수를 생성한 클래스.
- * @author 김일국
+ * @author 이재복
  *
  */
 public class AttachVO {

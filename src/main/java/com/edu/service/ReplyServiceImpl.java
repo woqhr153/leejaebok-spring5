@@ -13,7 +13,7 @@ import com.edu.vo.ReplyVO;
 
 /**
  * 이 클래스는 댓글 DAO의 CRUD를 실행하는 서비스 클래스 입니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 @Service

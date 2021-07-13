@@ -18,7 +18,7 @@ import com.edu.vo.PageVO;
  * 이 클래스는 회원관리 서비스 인터페이스를 구현하는 클래스.
  * 상속 extends, 구현 implements 키워드를 사용
  * 스프링빈으로 등록하려면, @Service 애너테이션을 명시.
- * @author 김일국
+ * @author 이재복
  *
  */
 @Service
@@ -32,7 +32,7 @@ public class MemberServiceImpl implements IF_MemberService {
 		//한국시간 월-금 8-23시까지(미국시간 0-14) 헤로쿠앱에 20분간격으로 접근
 		//헤로쿠 컨테이너가 러닝할 수 있는 무료 시간 1달 550시간 정보 됩니다. 시간이 넘으면 먹통(단 1달지나면 시간카운팅 다시시작)
 		//주말에 이력서보시는 분이 없기때문에
-		String urlStr = "https://kimilguk-spring5.herokuapp.com/";
+		String urlStr = "https://leejaebok-spring5.herokuapp.com/";
 		URL url = new URL(urlStr);
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();//접속객체만들기
 		urlConnection.setUseCaches(false);//접속시 캐시사용없이 무조건 새로고침하겠다고 명시, 컨테이너가 계속 떠있습니다.(세션도 유지됨)

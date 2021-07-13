@@ -30,7 +30,7 @@ import com.edu.vo.PageVO;
 
 /**
  * 이 클래스는 AOP기능 중 @Aspect 과 @ControllerAdvice 로 구현됩니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 @Aspect

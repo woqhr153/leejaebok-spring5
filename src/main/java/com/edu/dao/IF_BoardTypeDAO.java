@@ -6,7 +6,7 @@ import com.edu.vo.BoardTypeVO;
 
 /**
  * 이 인터페이스는 게시판생성관리 쿼리를 접근하기 위한 명세서(영수증-가격,상품명) 파일입니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 public interface IF_BoardTypeDAO {

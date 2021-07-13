@@ -9,7 +9,7 @@ import com.edu.vo.PageVO;
 /**
  * 이 인터페이스는 boardMapper.xml을 접근하기 위한 DataAccessObject 입니다.
  * DAO 와 서비스를 나눈 이유 확인.
- * @author 김일국
+ * @author 이재복
  *
  */
 public interface IF_BoardDAO {

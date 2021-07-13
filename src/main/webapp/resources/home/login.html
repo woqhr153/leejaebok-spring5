@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title> 로그인페이지 </title>
+<title> 로그인 페이지 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +27,10 @@
 <style>
 /* 모바일용 로그인 스타일 */
 
+
+
 /* //모바일용 로그인 스타일 */
+
 /* 테블릿용 메인페이지 스타일 지정(아래) 801px~무한대까지 재정의 */
 @media all and (min-width:801px) {
 	
@@ -38,9 +41,11 @@
 }
 </style>
 <script>
+
 // 메인페이지 전용 슬라이드 호출 부분
+
 $(document).ready(function() {
-	
+
 });
 </script>
 </head>
@@ -97,50 +102,50 @@ $(document).ready(function() {
 	</header>
 	<!-- //헤더상단메뉴영역영역 -->
 
-<!-- 메인콘텐츠영역 만 변경됩니다. -->
-<div id="container">
-    <!-- 메인상단위치표시영역 -->
-    <div class="location_area customer">
-        <div class="box_inner">
-            <h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
-            <p class="location">고객센터 <span class="path">/</span> 로그인</p>
-            <ul class="page_menu clear">
-                <li><a href="#" class="on">로그인</a></li>
-            </ul>
-        </div>
-    </div>	
-    <!-- //메인상단위치표시영역 -->
+    <!-- 메인콘텐츠영역만 변경 -->
+    <div id="container">
+        		<!-- 메인상단위치표시영역 -->
+		<div class="location_area customer">
+			<div class="box_inner">
+				<h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
+				<p class="location">고객센터 <span class="path">/</span> 로그인</p>
+				<ul class="page_menu clear">
+					<li><a href="#" class="on">로그인</a></li>
+				</ul>
+			</div>
+		</div>	
+		<!-- //메인상단위치표시영역 -->
 
-    <!-- 메인본문영역 -->
-    <div class="bodytext_area box_inner">
-        <!-- 폼영역 -->
-        <form method="POST" name="login_form" action="login.html" class="appForm">
-            <fieldset>
-                <legend>로그인폼</legend>
-                <p class="info_pilsoo pilsoo_item">필수입력</p>
-                <ul class="app_list">
-                    <li class="clear">
-                        <label for="id_lbl" class="tit_lbl pilsoo_item">아이디</label>
-                        <div class="app_content"><input type="text" name="id"" class="w100p" id="id_lbl" placeholder="아이디를 입력해주세요" required/></div>
-                    </li>
-                    <li class="clear">
-                        <label for="password_lbl" class="tit_lbl pilsoo_item">암호</label>
-                        <div class="app_content"><input type="password" name="password" class="w100p" id="password_lbl" placeholder="암호를 입력해주세요" required/></div>
-                    </li>
+		<!-- 메인본문영역 -->
+		<div class="bodytext_area box_inner">
+			<!-- 폼영역 -->
+			<form method="POST" name="login_form" action="login.html" class="appForm">
+				<fieldset>
+					<legend>로그인폼</legend>
+					<p class="info_pilsoo pilsoo_item">필수입력</p>
+					<ul class="app_list">
+						<li class="clear">
+							<label for="id_lbl" class="tit_lbl pilsoo_item">아이디</label>
+							<div class="app_content"><input type="text" name="id"" class="w100p" id="id_lbl" placeholder="아이디를 입력해주세요" required/></div>
+						</li>
+						<li class="clear">
+							<label for="password_lbl" class="tit_lbl pilsoo_item">암호</label>
+							<div class="app_content"><input type="password" name="password" class="w100p" id="password_lbl" placeholder="암호를 입력해주세요" required/></div>
+						</li>
 
-                </ul>
-                <p class="btn_line">
-                <button class="btn_baseColor">로그인</button>
-                </p>	
-            </fieldset>
-        </form>
-        <!-- //폼영역 -->
+					</ul>
+					<p class="btn_line">
+					<button class="btn_baseColor">로그인</button>
+					</p>	
+				</fieldset>
+			</form>
+			<!-- //폼영역 -->
+		</div>
+
     </div>
-    <!-- //메인본문영역 -->
-</div>
-<!-- //메인콘텐츠영역 -->
+    <!-- //메인콘텐츠영역 -->
 
-	<!-- 푸터메뉴및사업자정보영역 -->
+    	<!-- 푸터메뉴및사업자정보영역 -->
 	<footer>
 		<div class="foot_area box_inner">
 			<ul class="foot_list clear">

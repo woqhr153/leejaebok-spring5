@@ -8,7 +8,7 @@ import com.edu.vo.PageVO;
 /**
  * 이 인터페이스는 회원관리에 관련된 CRUD 메서드 명세가 포함된 파일.
  * 이 인테페이스는 메서드명만 있고, {구현내용} 이 없는 목록파일.
- * @author 김일국
+ * @author 이재복
  *
  */
 public interface IF_MemberDAO {

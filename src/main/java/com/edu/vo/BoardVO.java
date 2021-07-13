@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 이 클래스는 게시물 CRUD에 필요한 멤버변수(필드)가 정의된 클래스 입니다.
  * 목적은 데이터 변수값 이동시 Get/Set 작업이 주 목적입니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 public class BoardVO {

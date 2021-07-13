@@ -6,7 +6,7 @@ import java.util.Date;
  * 이 클래스는 DB에서 Model클래스로 입출력, Model에서 Service클래스로 입출력
  * Service에서 Controller클래스 데이터를 입출력,
  * Controller에서 jsp로 데이터를 주고 받을때 사용하는 데이터 클래스 입니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 public class MemberVO {

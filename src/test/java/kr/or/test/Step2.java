@@ -1,7 +1,7 @@
 package kr.or.test;
 /**
  * 이 클래스는 메서드기반의 Step1클래스를 객체기반의 클래스로 변경한 클래스.
- * @author 김일국
+ * @author 이재복
  *
  */
 class MemberVO {

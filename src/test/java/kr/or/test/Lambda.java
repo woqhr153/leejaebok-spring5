@@ -9,7 +9,7 @@ import com.edu.vo.PageVO;
 
 /**
  * 이 클래스는 람다식(애로우메서드)을 테스트하는 클래스입니다.
- * @author 김일국
+ * @author 이재복
  *
  */
 public class Lambda {

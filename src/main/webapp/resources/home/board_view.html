@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title> 스프링 </title>
+<title> 로그인 페이지 </title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,23 +28,32 @@
 <link rel="stylesheet" href="/resources/admin/plugins/fontawesome-free/css/all.min.css">
 <!-- 부트스트랩CSS코어 임포트 -->
 <link rel="stylesheet" href="/resources/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-<!-- 부트스트랩JS코어 임포트 -->
+<!-- 부트스트랩JS코어 임프트 -->
 <script src="/resources/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE전용CSS코어 임포트 -->
+<!-- AdminLTE전용 CSS 임포트 -->
 <link rel="stylesheet" href="/resources/admin/dist/css/adminlte.min.css">
 <style>
-/* 모바일용 댓글 스타일 */
-.row { margin:0px; }
+
+
+
+/* //모바일용 댓글 스타일 */
+
 .timeline, .card-default {
 	text-align: left;
-	margin: 0px 5px;
+    margin: 0 5px;
 }
+.row {margin: 0;}
 .bs-stepper-content {
 	padding: 20px 10px;
 }
+.btn {
+	font-weight: bold;
+}
+
 /* 테블릿용 메인페이지 스타일 지정(아래) 801px~무한대까지 재정의 */
-@media all and (min-width:801px) {
-    
+@media all and (min-width:801px) { 
+    /* 뷰페이지 버튼 스타일 */
+
 }
 /* PC용 메인페이지 스타일 지정 1066px~무한대까지 재정의 */
 @media all and (min-width:1066px) {
@@ -52,9 +61,11 @@
 }
 </style>
 <script>
+
 // 메인페이지 전용 슬라이드 호출 부분
+
 $(document).ready(function() {
-	
+
 });
 </script>
 </head>
@@ -110,169 +121,176 @@ $(document).ready(function() {
 		</div>
 	</header>
 	<!-- //헤더상단메뉴영역영역 -->
-	
-<!-- 메인콘텐츠영역 -->
-<div id="container">
-    <!-- 메인상단위치표시영역 -->
-    <div class="location_area customer">
-        <div class="box_inner">
-            <h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
-            <p class="location">고객센터 <span class="path">/</span> 공지사항</p>
-            <ul class="page_menu clear">
-                <li><a href="#" class="on">공지사항</a></li>
-                <li><a href="#">문의하기</a></li>
-            </ul>
-        </div>
-    </div>	
-    <!-- //메인상단위치표시영역 -->
 
-    <!-- 메인본문영역 -->
-    <div class="bodytext_area box_inner">			
-        <ul class="bbsview_list">
-            <li class="bbs_title">박물관 미션 투어 응모 당첨자 발표</li>
-            <li class="bbs_date">작성일 : <span>2018.08.09</span></li>
-            <li class="bbs_hit">조회수 : <span>235</span></li>
-            <li class="bbs_content">
-                <div class="editer_content">
-                    안녕하세요. 믿을 수 있는 스프링정보, 스프링입니다.<br>
-                    박물관 미션투어에 관심과 참여 감사드립니다. <br>
-                    선정되신 분들도 진심으로 축하드립니다. <br>
-                    앞으로도 큰 관심 부탁드리며, 메일로도 안내 예정이니 참고하시기 바랍니다. <br>
-                    감사합니다. <br><br>
-                    [당첨자]<br>
-                    김용* kimyong***@naver.com <br>
-                    인봉* in2018a***@naver.com<br>
-                    예경* yyhong***@naver.com<br>
-                    한진* haha***@naver.com<br>
-                    박수* pky**@naver.com<br>
-                    명진* mma5**@nate.com<br>
-                    김영* rtfg6*@naver.com<br>
-                    서영* seo20**@gmail.com<br>
-                    윤소* yoon2***@naver.com<br>
-                    지은* ji***@daum.net
-                </div>
-            </li>
-        </ul>
-        <p class="btn_line txt_right">
-            <a href="board_list.html" class="btn_bbs">목록</a>
-        </p>
-        
-    </div>
-    <!-- //메인본문영역 -->
+	<!-- 메인콘텐츠영역 -->
 
-	<!-- 댓글영역 -->
-	<div class="row">
-		<div class="col-md-12">
-			<!-- 댓글 입력폼 -->
-			<div class="card-default">
-				<div class="card-header">
-				  <h3 class="card-title">댓글 쓰기</h3>
-				</div>
-				<div class="card-body p-0">
-				  <div class="bs-stepper linear">
-					<div class="bs-stepper-header" role="tablist">
-					  <div class="line"></div>
-					</div>
-					<div class="bs-stepper-content">
-					  <!-- your steps content here -->
-					  <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
-						<div class="form-group">
-						  <label for="writer">작성자</label>
-						  <input type="text" class="form-control" id="writer" placeholder="작성자를 입력하세요">
-						</div>
-						<div class="form-group">
-						  <label for="reply_text">댓글내용</label>
-						  <input type="text" class="form-control" id="reply_text" placeholder="댓글내용을 입력하세요">
-						</div>
-					  </div>
-					  <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
-						<button type="button" class="btn btn-warning" id="btn_reply_write">댓글등록</button>
-					  </div>
-					</div>
-				  </div>
-				</div>
-				<!-- /.card-body -->
-				<div class="card-footer">
-				  아래 댓글리스트 버튼을 클릭하시면 댓글 목록이 출력이 됩니다.
-				</div>
-			  </div>
-			<!-- //댓글 입력폼 -->
-		</div>
-		<div class="col-md-12">
-		  <!-- The time line -->
-		  <div class="timeline">
-			<!-- timeline time label -->
-			<div class="time-label">
-			  <span class="bg-red" data-toggle="collapse" href="#collapseReply" role="button" id="btn_reply_list">
-				  댓글리스트
-				  [<span>1</span>]
-			  </span>
-			</div>
-			<!-- 콜랩스 시작 -->
-			<div class="collapse timeline" id="collapseReply">
-			<!-- time-label 이후 after요소로 템플릿결과가 여기에 출력됨. -->
-			<!-- /.timeline-label -->
-			<!-- timeline item -->
-			<!-- 댓글리스트를 자바스크립트의 빵틀(템플릿)을 만듭니다.  -->
-			<!-- 고전append함수를 사용하지 않고, handlebars라는 확장프로그램(아래) 임포트 -->
-			<!-- 장점은 기존 퍼블리셔가 만든태그를 그대로 사용가능 -->
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-			<script id="template" type="text/x-handlebars-template">
-			{{#each .}}
-			<div class="div_template" data-rno="{{rno}}">
-			  <i class="fas fa-envelope bg-blue"></i>
-			  <div class="timeline-item">
-				<h3 class="timeline-header">{{replyer}}</h3>
-				<div class="timeline-body">{{reply_text}}</div>
-				<div class="timeline-footer">
-				  <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-reply">수정</a>
-				</div>
-			  </div>
-			</div>
-			{{/each}}
-			</script>
-			
-			<!-- 페이징 처리 -->
-			<div class="row">
-				<ul class="pagination" style="margin: 0 auto;">
-					<!-- <li class="paginate_button page-item previous disabled" id="example2_previous">
-						<a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-					</li>
-					<li class="paginate_button page-item active">
-						<a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-					</li>
-					<li class="paginate_button page-item ">
-						<a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-					</li>
-					<li class="paginate_button page-item ">
-						<a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-					</li>
-					<li class="paginate_button page-item ">
-						<a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-					</li>
-					<li class="paginate_button page-item ">
-						<a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-					</li>
-					<li class="paginate_button page-item ">
-						<a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link">6</a>
-					</li>
-					<li class="paginate_button page-item next" id="example2_next">
-						<a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-					</li> -->
+    <div id="container">
+		<!-- 메인상단위치표시영역 -->
+		<div class="location_area customer">
+			<div class="box_inner">
+				<h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
+				<p class="location">고객센터 <span class="path">/</span> 공지사항</p>
+				<ul class="page_menu clear">
+					<li><a href="#" class="on">공지사항</a></li>
+					<li><a href="#">문의하기</a></li>
 				</ul>
 			</div>
-		  	<!-- //페이징 처리 -->
-		    </div>
-		    <!-- //콜랩스 끝 -->
-		  </div>
-		  <!-- END timeline item -->
-		</div>
-		<!-- /.col -->
-	</div>
-	<!-- //댓글영역 -->
+		</div>	
+		<!-- //메인상단위치표시영역 -->
 
-</div>
-<!-- //메인콘텐츠영역 -->
+		<!-- 메인본문영역 -->
+		<div class="bodytext_area box_inner">			
+			<ul class="bbsview_list">
+				<li class="bbs_title">박물관 미션 투어 응모 당첨자 발표</li>
+				<li class="bbs_hit">작성일 : <span>2018.08.09</span></li>
+				<li class="bbs_date">조회수 : <span>235</span></li>
+				<li class="bbs_content">
+					<div class="editer_content">
+					    안녕하세요. 믿을 수 있는 스프링정보, 스프링입니다.<br>
+                        박물관 미션투어에 관심과 참여 감사드립니다. <br>
+                        선정되신 분들도 진심으로 축하드립니다. <br>
+                        앞으로도 큰 관심 부탁드리며, 메일로도 안내 예정이니 참고하시기 바랍니다. <br>
+                        감사합니다. <br><br>
+                        [당첨자]<br>
+                        김용* kimyong***@naver.com <br>
+                        인봉* in2018a***@naver.com<br>
+                        예경* yyhong***@naver.com<br>
+                        한진* haha***@naver.com<br>
+                        박수* pky**@naver.com<br>
+                        명진* mma5**@nate.com<br>
+                        김영* rtfg6*@naver.com<br>
+                        서영* seo20**@gmail.com<br>
+                        윤소* yoon2***@naver.com<br>
+                        지은* ji***@daum.net
+                    </div>
+				</li>
+			</ul>
+			<p class="btn_line txt_right">
+				<a href="board_list.html" class="btn_bbs">목록</a>
+			</p>
+			
+		</div>
+		<!-- //메인본문영역 -->
+
+		<!-- 댓글영역 -->
+
+		<div class="row">
+			<div class="col-md-12">
+				<!-- 댓글입력 폼 -->
+
+				<div class="card-default">
+					<div class="card-header">
+					  <h3 class="card-title">댓글 쓰기</h3>
+					</div>
+					<div class="card-body p-0"> 
+					  <div class="bs-stepper linear">
+						<div class="bs-stepper-header" role="tablist">
+						  <!-- your steps here -->
+						  <div class="line"></div>
+						</div>
+						<div class="bs-stepper-content">
+						  <!-- your steps content here -->
+						  <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+							<div class="form-group">
+							  <label for="writer">작성자</label>
+							  <input type="text" class="form-control" id="writer" placeholder="작성자명을 입력해주세요">
+							</div>
+							<div class="form-group">
+							  <label for="reply_text">댓글내용</label>
+							  <input type="text" class="form-control" id="reply_text" placeholder="댓글내용을 입력해주세요">
+							</div>
+						  </div>
+						  <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+							<button type="button" class="btn btn-warning" id="btn_reply_write">댓글등록</button>
+						  </div>
+						</div>
+					  </div>
+					</div>
+					<!-- /.card-body -->
+					<div class="card-footer">
+					아래 댓글리스트 버튼을 클릭하시면 댓글 목록이 출력이됩니다.
+					</div>
+				  </div>
+
+				<!-- //댓글입력 폼 -->
+			</div>
+			<div class="col-md-12">
+			  	<!-- The time line -->
+			<div class="timeline">
+				<!-- timeline time label -->
+				<div class="time-label">
+				  	<span class="bg-red" data-toggle="collapse" href="#collapseReply" role="button" id="btn_reply_list">
+					  댓글리스트
+					  [<span>1</span>]
+					</span>
+				</div>
+				<!-- 콜랩스 -->
+				<div class="collapse timeline" id="collapseReply">
+					<!-- time-label 이후 after요소로  -->
+					<!-- /.timeline-label -->
+					<!-- timeline item -->
+					<!-- 댓글리스트를 자바스크립트의 빵틀(탬플릿)을 만듭니다.-->
+					<!-- 고전 append 함수를 사용하지 않고, handlebars 확장프로그램 임포트(아래)-->
+					<!-- 장점은 기존 퍼블리셔가 만든태그를 그대로 사용 가능-->
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+					<script id="template" type="text/x-handlebars-template">
+						{{#each .}}
+						<div class="div_template" data-rno="{{rno}}">
+						<i class="fas fa-envelope bg-blue"></i>
+						<div class="timeline-item">
+							<h3 class="timeline-header">{{replyer}}</h3>
+							<div class="timeline-body">{{reply_text}}
+							</div>
+							<div class="timeline-footer">
+							<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-reply">수정</a>
+							</div>
+						</div>
+						</div>
+						{{/each}}
+					</script>
+					<!-- 페이징 처리 -->
+					<div class="row">
+						<ul class="pagination" style="margin: 0 auto;">
+							<!-- <li class="paginate_button page-item previous disabled" id="example2_previous">
+								<a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+							</li>
+							<li class="paginate_button page-item active">
+								<a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+							</li>
+							<li class="paginate_button page-item ">
+								<a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+							</li>
+							<li class="paginate_button page-item ">
+								<a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link">3</a>
+							</li>
+							<li class="paginate_button page-item ">
+								<a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link">4</a>
+							</li>
+							<li class="paginate_button page-item ">
+								<a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">5</a>
+							</li>
+							<li class="paginate_button page-item ">
+								<a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link">6</a>
+							</li>
+							<li class="paginate_button page-item next" id="example2_next">
+								<a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+							</li> -->
+						</ul>
+					</div>
+					<!-- //페이징 처리 -->
+					<!-- END timeline item -->	
+			  	</div>
+				<!-- //콜랩스 -->
+			</div>
+			</div>
+			<!-- /.col -->
+		  </div>
+
+		<!-- //댓글영역 -->
+
+	</div>
+
+    <!-- //메이콘텐츠영역 -->
 	
 	<!-- 푸터메뉴및사업자정보영역 -->
 	<footer>
@@ -304,121 +322,123 @@ $(document).ready(function() {
 	<p class="to_top"><a href="#wrap" class="s_point">TOP</a></p>
 </div>
 <!-- //하단퀵메뉴영역 -->
-<!-- 모달창(초기엔 숨긴상태-수정버튼을 클릭하면 나타나는 창) -->
+<!-- 모달창(초기엔 숨긴상태 -> 수정버튼을 클릭시 나오는 창) -->
 <div class="modal fade" id="modal-reply">
 	<div class="modal-dialog">
-		<div class="modal-content">
+	  <div class="modal-content">
 		<div class="modal-header">
-			<h4 class="modal-title">작성자명</h4>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		  <h4 class="modal-title">작성자명</h4>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
-			</button>
+		  </button>
 		</div>
 		<div class="modal-body">
-			<input class="form-control" type="text" name="modal_reply_text" id="modal_reply_text" value="댓글내용 출력">
+		  <input class="form-control" type="text" name="modal_reply_text" id="modal_reply_text" value="댓글내용 출력"></input>
 		</div>
-		<div class="modal-footer"><!-- justify-content-between:양쪽배분정렬 -->
-			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		<div class="modal-footer">
 			<button type="button" class="btn btn-primary">수정</button>
 			<button type="button" class="btn btn-danger">삭제</button>
-			<input type="hidden" id="rno" name="rno">
+		 	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			<input type="hidden" id="rno" name="rno" >
 		</div>
-		</div>
-		<!-- /.modal-content -->
+	  </div>
+	  <!-- /.modal-content -->
 	</div>
-<!-- /.modal-dialog -->
+	<!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
-<script>
-// 오리지널방식 페이징처리 함수형 변수(아래)
-var printPagingList = function(pageVO, target) {
-	$(target).html('');// tartget 의 내용만 지우고, target은 남아있음.
-//pageVO = 스프링에서 받은 json데이터, 변수3개 pageVO.prev(이전데이터가 있다면 true), pageVO.next(다음데이터 있다면 true), pageVO=5페이지로 가정
-	var pagination = '';//문자열 누적변수
-	//Previous 출력(아래)
-	pagination += '<li class="paginate_button page-item previous disabled" id="example2_previous">';
-	pagination += '<a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>';
-	pagination += '</li>';//pagination = pagination + '</li>';//여기 Previous
-	var active = '';
-	for(var i=0; i<pageVO; i++) {
-		if(i==0) { active = 'active'; } else { active = ''; }
-		pagination += '<li class="paginate_button page-item '+active+'">';
-		pagination += '<a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link">'+(i+1)+'</a>';
-		pagination += '</li>';
-	}
-	//Next 출력(아래)
-	pagination += '<li class="paginate_button page-item next" id="example2_next">';
-	pagination += '<a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>';
-	pagination += '</li>';
-	$(target).append(pagination);
-};
-
-// 템플릿방식 댓글리스트처리 함수형 변수(아래)
-var printReplyList = function(data, templateData, target) {
-	var template = Handlebars.compile(templateData.html());//템플릿을 태그로 변환
-	var html = template(data);//파싱처리
-	$('.div_template').remove();//기존 댓글데이터 누적을 방지 target안쪽의 자식만지움
-	target.prepend(html);
-};
-	$(document).ready(function(){
-		$('#btn_reply_list').click(function(){
+  <!-- /.modal -->
+  <script>
+	//   페이징처리 함수형 변수
+	  var printPagingList = function(pageVO, target) {
+		$(target).html('');
+		// pageVO = 스플링에서 받은 json데이터, 변수 3개 pageVO.prev(이전 데이터가 있다면 true), pageVO.next(다음 데이터가 있다면 true), pageVO=5페이지로 가정
+		var pagination ='';
+		// Previos 출력(아래)
+		pagination += '<li class="paginate_button page-item previous disabled" id="example2_previous">';
+		pagination += '<a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>';
+		pagination += '</li>'; //pagination = pagination + '</i>' //여기 Previos
+		var active = '';
+		for(var i = 0; i<pageVO; i++) {
+			if(i==0) {active = 'active';} else {active = '';}
+			pagination += '<li class="paginate_button page-item '+active+' ">';
+			pagination += '<a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link">'+(i+1)+'</a>';
+			pagination += '</li>';
+		}
+		// Next 출력(아래)
+		pagination += '<li class="paginate_button page-item next" id="example2_next">'
+		pagination += '<a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>'
+		pagination += '</li>'
+		$(target).append(pagination);
+	  };
+	  //댓그리스트처리 함수형 변수(아래)
+	  var printReplyList = function(data, templateData, target) {
+		var template = Handlebars.compile(templateData.html()); // 템플릿을 태그로 변환
+		var html = template(data); // 파싱처리
+		$('.div_template').remove();// before delete
+		target.prepend(html);
+		
+	  };
+	  $(document).ready(function(){
+		  $('#btn_reply_list').click(function(){
 			$.ajax({
-				method:'get',
-				url:'./board_view.html',//RestAPI URL 입력
-				dataType:'text',
-				success:function(result) {
+				method: 'get',
+				url: './board_view.html', // RestaAPI URL 입력
+				dataType: 'text',
+				success:function(result){
 					// alert('RestAPI성공');
 					result = [
-						{rno:2,bno:2,reply_text:'두번째 댓글입니다.',replyer:'관리자',reg_date:1601234512345},
+						{rno:2,bno:2,reply_text:'두번째 댓글입니다.',replyer:'관리자',reg_date:1601234512345},	
 						{rno:1,bno:2,reply_text:'첫번째 댓글입니다.',replyer:'관리자',reg_date:1601234512345}
 					];
-					//자바스크립트는 함수기반 구조화된 언어
-					//위 result데이터를 #template에 바인시키는 함수호출(아래)
-					//함수의(인자=아규먼트=매개변수=파라미터)
-					//printReplyList(jsonDate, 바인딩(파싱)위치, 화면출력위치);
+					// 자바스크립트는 함수기반 구조화된 언어
+					// 위 result데이터를 #template에 바인시키는 함수호출(아래)
+					// 함수의(인자=아규먼트=매개변수=파라미터)
+					// printReplyList(jsonDate, 바인딩위치, 화면출력위치);
 					printReplyList(result, $('#template'), $('#collapseReply'));
-					printPagingList(5, '.pagination');
+					printPagingList(5,'.pagination');
 				},
-				error:function() {
+				error:function(){
 					alert('RestAPI서버가 작동하지 않습니다.');
 				}
 			});
-		});
-		$('#btn_reply_write').click(function(){
-			// alert('댓글등록버튼');
+		  });
+		  $('#btn_reply_write').click(function(){
 			$.ajax({
-				method:'get',
-				url:'./board_view.html',//RestAPI URL 입력
-				dataType:'text',
-				success:function(result) {
+				method: 'get',
+				url: './board_view.html', // RestaAPI URL 입력
+				dataType: 'text',
+				success:function(result){
+					// alert('댓글등록 성공');
+					// 자바스크립트는 함수기반 구조화된 언어
+					// 위 result데이터를 #template에 바인시키는 함수호출(아래)
+					// 함수의(인자=아규먼트=매개변수=파라미터)
+					// printReplyList(jsonDate, 바인딩위치, 화면출력위치);
 					result = [
-						{rno:3,bno:2,reply_text:'세번째 댓글입니다.',replyer:'관리자',reg_date:1601234512345},
+						{rno:3,bno:2,reply_text:'세번째 댓글입니다.',replyer:'관리자',reg_date:1601234512345},	
 						{rno:2,bno:2,reply_text:'두번째 댓글입니다.',replyer:'관리자',reg_date:1601234512345},
 						{rno:1,bno:2,reply_text:'첫번째 댓글입니다.',replyer:'관리자',reg_date:1601234512345}
 					];
-					//자바스크립트는 함수기반 구조화된 언어
-					//위 result데이터를 #template에 바인시키는 함수호출(아래)
-					//함수의(인자=아규먼트=매개변수=파라미터)
-					//printReplyList(jsonDate, 바인딩(파싱)위치, 화면출력위치);
 					printReplyList(result, $('#template'), $('#collapseReply'));
-					printPagingList(6, '.pagination');
+					printPagingList(6,'.pagination');
 				},
-				error:function() {
+				error:function(){
 					alert('RestAPI서버가 작동하지 않습니다.');
 				}
 			});
+		  });
+	    });
+  </script>
+<script>
+	// 댓글리스트에서 수정 버튼 클릭시 현재 선택한 값을 모달창에 보여주는 것을 구현(아래)
+	$(document).ready(function(){
+		$('.timeline').on("click", '.div_template', function(){
+			$('#rno').val($(this).attr('data-rno'));
+			$('#modal_reply_text').val($(this).find('.timeline-body').text());
+			$('.modal-title').html($(this).find('.timeline-header').text());
 		});
 	});
-</script>
-<script>
-// 댓글 리스트에서 수정 버튼클릭시 현재 선택한 값을 모달창에 보여주는 것을 구현(아래)
-$(document).ready(function(){
-	$('.timeline').on("click", '.div_template',function(){
-		$('#rno').val($(this).attr('data-rno'));
-		$('#modal_reply_text').val($(this).find('.timeline-body').text());
-		$('.modal-title').html($(this).find('.timeline-header').text());
-	});
-});
-</script>
+
+
+  </script>
 </body>
 </html>

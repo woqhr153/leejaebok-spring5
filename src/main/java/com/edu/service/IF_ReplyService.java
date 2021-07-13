@@ -7,7 +7,7 @@ import com.edu.vo.ReplyVO;
 
 /**
  * 이 인터페이스 댓글 DAO를 이용해서 댓글 CRUD를 구현하는 서비스
- * @author 김일국
+ * @author 이재복
  *
  */
 public interface IF_ReplyService {

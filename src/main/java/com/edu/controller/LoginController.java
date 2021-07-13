@@ -21,7 +21,7 @@ import com.edu.vo.MemberVO;
 /**
  * 이 클래스는 스프링시큐리티의 /login처리한 결과를 받아서 /login_success
  * 를 처리하는 클래스 입니다. 
- * @author 김일국
+ * @author 이재복
  *
  */
 @Controller
