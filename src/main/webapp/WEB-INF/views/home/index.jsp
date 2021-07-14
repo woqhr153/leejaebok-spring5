@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./include/header.jsp" %>
+
+<style>
+.latest_img:hover {opacity:1.0;}
+.latest_img {
+	height:250px;
+	overflow:hidden;
+	opacity:0.7;
+}
+/* 겔러리, 공지사항 게시물 제목 자르기(아래) */
+.title_crop {
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+</style>
 <script>
 // 메인페이지 전용 슬라이드 호출 부분: index에서만 필요한 코드이기 때문에
 $(document).ready(function() {
@@ -85,15 +100,43 @@ $(document).ready(function() {
 	
 		<!-- 갤러리최근게시물영역 -->
 		<div class="about_area">
-			<h2><a herf="/home/board/board_list?board_type=gallery&search_keyword=">겔러리 최근 게시물 <b>TOP 3</b></a></h2>
+			<h2><a href="/home/board/board_list?board_type=gallery&search_keyword=">겔러리 최근 게시물 <b>TOP 3</b></a></h2>
 			<div class="about_box">
 				<ul class="place_list box_inner clear">
-					<li><a href="#" onclick="$('.popup_base').css('height',$(document).height());$('.contact_pop').show();">
-							<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
-							<h3>OOOO OOOOO</h3>
-							<p class="txt">OOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOOOOOO OOOOO!</p>
-							<span class="view">VIEW</span></a>
+				<c:forEach var="galleryVO" items="${latestGallery}">
+					<!-- 게시판종류 board_type은 세션이지만, 여기서 최초로 세션을 발생시켜야됨. -->
+					<li><a href="/home/board/board_view?bno=${galleryVO.bno}&page=1&board_type=gallery">
+					<div class="latest_img">
+						<c:choose>
+							<c:when test="${empty galleryVO.save_file_names[0]}">
+								<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO"/>						
+							</c:when>
+							<c:otherwise>
+								<img class="img_topplace" src="/image_preview?save_file_name=${galleryVO.save_file_names[0]}" alt="OOOO OOOOO" style="opacity:0.7;"/>										
+							</c:otherwise>
+						</c:choose>
+					</div>
+						<h3 class="title_crop">			
+						<!-- css로 1줄 글자수 자르기 처리 -->		
+							${galleryVO.title}													
+						</h3>
+						<!--  -->
+						<p class="txt">
+						<!-- jstl로 글자수 자르기 처리 -->
+							<c:choose>
+								<c:when test="${fn:length(galleryVO.content) gt 52}">
+									${fn:substring(galleryVO.content, 0, 50)}...
+								</c:when>
+								<c:otherwise>
+									${galleryVO.content}
+								</c:otherwise>
+							</c:choose>
+						
+						</p>
+						<span class="view">VIEW</span></a>
 					</li>
+				</c:forEach>
+					
 				</ul>
 			</div>
 		</div>
@@ -108,10 +151,15 @@ $(document).ready(function() {
 					<a href="javascript:;">전화 상담 신청</a>
 				</p>
 				<div class="bbs_line">
-					<h3>NOTICE</h3>
+					<h3><a href="/home/board/board_list?board_type=notice&search_keywrod=">NOTICE</a></h3>
 					<ul class="notice_recent">
-						<li><a href="javascript:;">OOOO OOOOO (스프링OOOO OOOOO)</a></li>
-					</ul>
+					<c:forEach var="noticeVO" items="${latestNotice}">
+						<li>
+							<a href="/home/board/board_view?bno=${noticeVO.bno}&page=1&board_type=notice">${noticeVO.title}</a>
+						</li>
+					</c:forEach>
+
+				</ul>
 				</div>
 			</div>
 		</div>

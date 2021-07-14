@@ -43,7 +43,9 @@ if("${param.msg}" == "fail") {
 
                 </ul>
                 <p class="btn_line">
-                <button class="btn_baseColor">로그인</button>
+                <button type="submit" class="btn_baseColor">로그인</button>
+                
+                <button type="button" class="btn_baseColor" id="btn_naver_login" style="background-color:#19ce60; min-width:250px;">네아로 로그인</button>
                 </p>	
             </fieldset>
         </form>
@@ -54,3 +56,14 @@ if("${param.msg}" == "fail") {
 <!-- //메인콘텐츠영역 -->
 
 <%@ include file="./include/footer.jsp" %>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+<script>
+
+$(document).ready(function(){
+	$("#btn_naver_login").click(function(){
+		// alert("준비중");
+		location.replace("${url}"); // login컨트롤러에서 model로 받은 $url 변수값 필요
+		// 위 url 자바 변수값은 네이버의  RestAPI주소(네아로 인증 ID와 secret)
+	});
+});
+</script>

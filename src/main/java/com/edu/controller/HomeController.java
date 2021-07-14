@@ -303,17 +303,43 @@ public class HomeController {
 		return "home/member/mypage";//.jsp생략
 	}
 	//사용자단 로그인 폼호출 GET, 로그인POST처리는 컨트롤러에서 하지않고 스프링시큐리티로 처리
-	@RequestMapping(value="/login_form", method=RequestMethod.GET)
-	public String login_form() throws Exception {
-		
-		return "home/login";//.jsp생략
-	}
+	// 네아로 로그인때문에 LoginController클래스로 분리해서 사용.
+	/*
+	 * @RequestMapping(value="/login_form", method=RequestMethod.GET) public String
+	 * login_form() throws Exception {
+	 * 
+	 * return "home/login";//.jsp생략 }
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String homepage(Model model) { //콜백메스드,자동실행됨.
-		String jspVar = "@서비스(DB)에서 처리한 결과";
-		model.addAttribute("jspObject", jspVar);
-		logger.info("디버그 스프링로고사용: " + jspVar);//System.out 대신 logger 객체를 사용
+	public String homepage(Model model) throws Exception { //콜백메스드,자동실행됨.
+//		String jspVar = "@서비스(DB)에서 처리한 결과";
+//		model.addAttribute("jspObject", jspVar);
+//		logger.info("디버그 스프링로고사용: " + jspVar);//System.out 대신 logger 객체를 사용
+		
 		//home.jsp파일로 자료를 전송(스프링)하는 기능= model인터페이스 객체(스프링이처리)에 내용만 채우면됨
+		PageVO pageVO = new PageVO();
+		pageVO.setPage(1);
+		pageVO.setQueryPerPageNum(3);
+		pageVO.setBoard_type("gallery");
+		// 첨부파일 save_file_names 배열변수 값 지정.
+		List<BoardVO> latestGallery = boardService.selectBoard(pageVO);
+		
+		for(BoardVO boardVO:latestGallery) { // 리스트형 객체를 1개씩 뽑아 1개의 레코드에 입력 반복
+			List<AttachVO> listAttachVO = boardService.readAttach(boardVO.getBno());
+			
+			if(listAttachVO.size() > 0) {
+				String[] save_file_names = new String[listAttachVO.size()];
+				save_file_names[0] = listAttachVO.get(0).getSave_file_name();
+				boardVO.setSave_file_names(save_file_names);
+			}
+			
+		}
+		
+		model.addAttribute("latestGallery", latestGallery); // 겔러리 최근 게시물
+		
+		pageVO.setQueryPerPageNum(5); // 공지사항 5개, 보드타입 필요(세션으로 처리X)
+		pageVO.setBoard_type("notice");
+		model.addAttribute("latestNotice", boardService.selectBoard(pageVO)); // 공지사항 최근게시물
 		return "home/index";//확장자가 생략 .jsp가 생략되어 있음.
 	}
 	
