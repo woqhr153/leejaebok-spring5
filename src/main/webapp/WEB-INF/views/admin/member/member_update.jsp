@@ -37,7 +37,20 @@
           <!-- 첨부파일을 전송할때 enctype=필수 없으면, 첨부파일이 전송X -->
           <form name="form_write" action="/admin/member/member_update" method="post" enctype="multipart/form-data">
             <div class="card-body">
-              
+            <div class="form-group">
+            		<img style="widh:120px;height:120px;border-radius:70%;" onerror="this.src='/resources/admin/dist/img/default-150x150.png'"  src="/resources/profile/${memberVO.user_id}.png">
+           	 </div>
+              <!-- 사용자 프로필 이미지 등록 -->
+              <div class="form -group">
+                <label for="exampleInputFile">사용자프로필</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input accept=".png" name="file" type="file" class="custom-file-input" id="file0">
+                    <label class="custom-file-label" for="file0">파일선택(png)</label>
+                  </div>
+                </div>
+                <div class="mb-2"></div>
+              </div>
               <div class="form-group">
                 <label for="user_id">사용자ID</label>
                 <input readonly value="${memberVO.user_id}" name="user_id" type="text" class="form-control" id="user_id" placeholder="회원ID를 입력해 주세요" required>
@@ -94,6 +107,14 @@
   <!-- /.content-wrapper -->
 
 <%@ include file="../include/footer.jsp" %>
+<!-- 첨부파일명을 input태그디자인 안쪽에 집어넣는 확장프로그램 -->
+<script src="/resources/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- 위 첨부파일 확장프로그램 실행(아래-개발자가 처리) -->
+<script>
+	$(document).ready(function(){
+		bsCustomFileInput.init();
+	});
+</script>
 <!-- 관리자단은 jQuery코어가 하단 footer에 있기 때문에 여기에 위치합니다. -->
 <script>
 $(document).ready(function(){

@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
@@ -210,5 +211,28 @@ public class CommonUtil {
 		File target = new File(uploadPath, saveFileName);
 		FileCopyUtils.copy(fileData, target);//파일이 물리적으로 폴더에 저장됨.
 		return saveFileName;//UUID로 생성된 식별값의 파일명 
+	}
+
+	public void profile_upload(String user_id, HttpServletRequest request, MultipartFile file) throws IOException {
+		// TODO 프로필이미지는 보안이 필요한 폴더가 아닌, resources폴더에 업로드 처리. 서버의 경로 필요
+		String folderPath = request.getServletContext().getRealPath("/resources/profile");
+		File makeFolder = new File(folderPath); // 공백인 객체가 생성
+		if(!makeFolder.exists()) {
+			makeFolder.mkdir(); // 여기서 신규폴더 생성										
+		}
+		// 1개에 파일이 1000개 이상이면 조회속도 엄청느림
+			// 년월폴더를 생성 후, 해당년월에 업로드된 파일은 년월 폴더로 관리
+		byte[] fileData = file.getBytes();
+		File target = new File(makeFolder, user_id +".png"); // user_id는 PK이기 때문에 기존파일이 있다면, 덮어쓰면서 저장됨
+		FileCopyUtils.copy(fileData, target); // 첨부파일 저장
+		}
+
+	public void profile_delete(String user_id, HttpServletRequest request) {
+		// TODO 프로필 이미지가 프로필 폴더에 존재하면 삭제하는 로직
+		String folderPath = request.getServletContext().getRealPath("/resources/profile");
+		File target = new File(folderPath,user_id+".png");
+		if(target.exists()) {
+			target.delete(); // 프로필파일 실제 지워짐.
+		}
 	}
 }

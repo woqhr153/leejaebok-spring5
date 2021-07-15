@@ -38,6 +38,17 @@
           <form name="form_write" action="/admin/member/member_insert" method="post" enctype="multipart/form-data">
             <div class="card-body">
               
+              <!-- 사용자 프로필 이미지 등록 -->
+              <div class="form -group">
+                <label for="exampleInputFile">사용자프로필</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input accept=".png" name="file" type="file" class="custom-file-input" id="file0">
+                    <label class="custom-file-label" for="file0">파일선택(png)</label>
+                  </div>
+                </div>
+                <div class="mb-2"></div>
+              </div>
               <div class="form-group">
                 <!-- 신규등록시 ID중복체크필수:버튼이벤트 -->
                 <label for="user_id">사용자ID
@@ -95,6 +106,14 @@
   <!-- /.content-wrapper -->
 
 <%@ include file="../include/footer.jsp" %>
+<!-- 첨부파일명을 input태그디자인 안쪽에 집어넣는 확장프로그램 -->
+<script src="/resources/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- 위 첨부파일 확장프로그램 실행(아래-개발자가 처리) -->
+<script>
+	$(document).ready(function(){
+		bsCustomFileInput.init();
+	});
+</script>
 <!-- 관리자단은 jQuery코어가 하단 footer에 있기 때문에 여기에 위치합니다. -->
 <script>
 $(document).ready(function(){
@@ -108,7 +127,7 @@ $(document).ready(function(){
 			url:"/id_check?user_id="+user_id,//RestAPI서버(스프링클래스로제작)의 URL
 			dataType:"text",//결과값(0,1)을 받을때, 데이터형을 text, json, xml중 선택
 			success:function(result){
-				alert(result);//디버그용
+				// alert(result);//디버그용
 				if(result==0){//중복ID가 없다면 정상진행
 					$("#btn_insert").attr("disabled",false);//등록버튼 활성화
 					alert("사용가능한 ID입니다.");

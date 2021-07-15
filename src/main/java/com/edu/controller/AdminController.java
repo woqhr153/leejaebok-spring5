@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -274,7 +275,10 @@ public class AdminController {
 	}
 	//아래 경로는 회원신규등록을 처리하는 서비스를 호출하는 URL
 	@RequestMapping(value="/admin/member/member_insert", method=RequestMethod.POST)
-	public String insertMember(PageVO pageVO,MemberVO memberVO) throws Exception {
+	public String insertMember(HttpServletRequest request, MultipartFile file, PageVO pageVO,MemberVO memberVO) throws Exception {
+		if(!file.getOriginalFilename().isEmpty()) {
+			commonUtil.profile_upload(memberVO.getUser_id(),request, file);
+		}
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String rawPassword = memberVO.getUser_pw();//원시 패스워드값
 		String encPassword = passwordEncoder.encode(rawPassword);
@@ -284,7 +288,12 @@ public class AdminController {
 	}
 	//아래 경로는 수정처리를 호출=DB를 변경처리함.
 	@RequestMapping(value="/admin/member/member_update", method=RequestMethod.POST)
-	public String updateMember(MemberVO memberVO, PageVO pageVO) throws Exception {
+	public String updateMember(HttpServletRequest request, MultipartFile file, MemberVO memberVO, PageVO pageVO) throws Exception {
+		// 프로필 이미지 처리 추가
+		if(!file.getOriginalFilename().isEmpty()) {
+			String user_id = memberVO.getUser_id();
+			commonUtil.profile_upload(user_id, request, file);
+		}
 		//update 서비스만 처리하면 끝
 		//업데이트 쿼리서비스 호출하기 전 스프링시큐리티 암호화 적용합니다.
 		String rawPassword = memberVO.getUser_pw();
@@ -295,8 +304,8 @@ public class AdminController {
 			//스프링시큐리티 내장클래스에서 user_pw(admin1234)와 password(해시값)비교함수
 			//passwordEncoder.matches("admin1234", password);
 		}
-		memberService.updateMember(memberVO);//반환값이 없습니다.
-		//redirect로 페이지를 이동하면, model로 담아서 보낼수 없습니다. 쿼리스트링(URL?)으로 보냅니다.
+		memberService.updateMember(memberVO);//반습니다.
+		//redirect로 페이지를 이동하면, model로 담아환값이 없서 보낼수 없습니다. 쿼리스트링(URL?)으로 보냅니다.
 		String queryString = "user_id="+memberVO.getUser_id()+"&page="+pageVO.getPage()+"&search_type="+pageVO.getSearch_type();
 		return "redirect:/admin/member/member_update_form?"+queryString;
 	}
@@ -311,15 +320,17 @@ public class AdminController {
 		return "admin/member/member_update";//상대경로
 	}
 	@RequestMapping(value="/admin/member/member_delete", method=RequestMethod.POST)
-	public String deleteMember(MemberVO memberVO) throws Exception {
+	public String deleteMember(HttpServletRequest request, MemberVO memberVO) throws Exception {
 		logger.info("디버그: " + memberVO.toString());
 		//MemberVO memberVO는 클래스형 변수: String user_id 스트링형 변수 같은 방식.
 		String user_id = memberVO.getUser_id();
 		//이 메서드는 회원상세보기페이지에서 삭제버튼을 클릭시 전송받은 memberVO값을 이용해서 삭제를 구현(아래)
 		memberService.deleteMember(user_id);//삭제쿼리가 실행됨
 		//return "admin/member/member_list";//삭제후 이동할 jsp경로지정
-		//위 방식대로하면, 새로고침하면, /admin/member/member_delete 계속 실행됩니다.-사용자단에서 실습
+		//위 방식대로하면, 새로고침하면, /admin/member/member_delete 계속 실행됩니다.-사용자단에서 실습		
 		//게시판테러상황을 방지하기 위해서, 쿼리를 작업 후 이동할때는 redirect(다시접속)라는 명령을 사용합니다.
+		// DB테이블 삭제 후 회원 프로필 이미지가 exist() == true면 삭제하는 로직 추가.
+		commonUtil.profile_delete(user_id, request);
 		return "redirect:/admin/member/member_list";//단,redirect는 절대경로를 사용.
 	}
 	@RequestMapping(value="/admin/member/member_view", method=RequestMethod.GET)
